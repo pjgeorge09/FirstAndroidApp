@@ -23,7 +23,7 @@
         completions."
     </string>
 
-    <string name="peters_test"> Peter's Github Test Merge </string>
+    <string name="peters_test"> Peter\'s Github Test Merge </string>
 
 
 </resources>
