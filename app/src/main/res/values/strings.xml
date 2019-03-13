@@ -10,6 +10,9 @@
     <string name="manager">Manager</string>
     <string name="managerName">John Temporary</string>
     <string name="title_activity_login">Sign in</string>
+    <!-- Strings related to worker page -->
+    <string name="worker">Worker</string>
+    <string name="workerName">Example Worker</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -22,12 +25,5 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-<<<<<<< HEAD
-
-    <string name="peters_test"> Peter\'s Github Test Merge </string>
-=======
-    <string name="Bryans test">This is my name</string>
-    <string name="peters_test"> Peter's Github Test Merge </string>
->>>>>>> 20d064b7fc89d49af7b3a52a66f70f245e6b5dfd
 
 </resources>
