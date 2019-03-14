@@ -11,16 +11,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
+public class Donors extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_donors);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.settings_menu, menu);
+        getMenuInflater().inflate(R.menu.donors, menu);
         return true;
     }
 
@@ -70,22 +69,6 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-<<<<<<< HEAD
-        if (id == R.id.nav_inventory) { // TODO Rename camera, gallery, etc
-            // Handle the camera action
-            // Transition to new activity
-
-        } else if (id == R.id.nav_staff) {
-
-        } else if (id == R.id.nav_donors) {
-
-        } else if (id == R.id.nav_donations) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_email) {
-
-=======
         if (id == R.id.nav_camera) { //Inventory
             Intent intent = new Intent(getApplicationContext(), Inventory.class);
             startActivity(intent);
@@ -93,14 +76,13 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), Donations.class);
             startActivity(intent);
         } else if (id == R.id.nav_slideshow) {  //Donors
-            Intent intent = new Intent(getApplicationContext(), Donors.class);
-            startActivity(intent);
+//            Intent intent = new Intent(getApplicationContext(), Donors.class);
+//            startActivity(intent);
         } else if (id == R.id.nav_manage) {  //
             Intent intent = new Intent(getApplicationContext(), Staff.class);
             startActivity(intent);
         } else if (id == R.id.nav_share) {
         } else if (id == R.id.nav_send) {
->>>>>>> d5ccf6e1161d53a3425bc2f7ff923ff0b49959bd
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
