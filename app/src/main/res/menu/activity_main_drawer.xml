@@ -4,21 +4,26 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <!-- Icon declaration, implementation, and title for Inventory -->
         <item
             android:id="@+id/nav_inventory"
             android:icon="@drawable/ic_baseline_storage_24px"
             android:title="Inventory" />
 
+        <!-- Icon declaration, implementation, and title for Donations -->
         <item
             android:id="@+id/nav_donations"
             android:icon="@drawable/ic_heart"
             android:title="Donations" />
 
+        <!-- Icon declaration, implementation, and title for Donors -->
         <item
             android:id="@+id/nav_donors"
             android:icon="@drawable/ic_donors"
             android:title="Donors" />
 
+        <!-- Icon declaration, implementation, and title for Staff -->
         <item
             android:id="@+id/nav_staff"
             android:icon="@drawable/ic_staff"
@@ -32,6 +37,8 @@
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Share" />
+
+            <!-- Icon declaration, implementation, and title for Email -->
             <item
                 android:id="@+id/nav_email"
                 android:icon="@drawable/ic_baseline_mail_24px"
