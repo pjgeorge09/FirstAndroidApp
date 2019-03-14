@@ -2,9 +2,6 @@ package com.example.managertabs;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,16 +11,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ManagerInventory extends AppCompatActivity
+public class Donations extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager_inventory);
+        setContentView(R.layout.activity_donations);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -48,7 +44,7 @@ public class ManagerInventory extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.donations, menu);
         return true;
     }
 
@@ -73,20 +69,20 @@ public class ManagerInventory extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            Intent intent = new Intent(getApplicationContext(), WorkerHomeScreen.class);
-
+        if (id == R.id.nav_camera) { //Inventory
+            Intent intent = new Intent(getApplicationContext(), Inventory.class);
             startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.nav_gallery) {  //Donations
+//            Intent intent = new Intent(getApplicationContext(), Donations.class);
+//            startActivity(intent);
+        } else if (id == R.id.nav_slideshow) {  //Donors
+            Intent intent = new Intent(getApplicationContext(), Donors.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_manage) {  //
+            Intent intent = new Intent(getApplicationContext(), Staff.class);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
-
         } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

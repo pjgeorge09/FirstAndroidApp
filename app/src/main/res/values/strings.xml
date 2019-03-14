@@ -10,7 +10,7 @@
     <string name="manager">Manager</string>
     <string name="managerName">John Temporary</string>
     <string name="title_activity_login">Sign in</string>
-    <!-- Strings related to worker page -->
+    <!-- Strings related to worker_tabs page -->
     <string name="worker">Worker</string>
     <string name="workerName">Example Worker</string>
     <!-- Strings related to login -->
@@ -27,5 +27,8 @@
     </string>
     <string name="title_activity_login_temp">LoginTemp</string>
     <string name="title_activity_manager_inventory">ManagerInventory</string>
+    <string name="title_activity_donations">Donations</string>
+    <string name="title_activity_donors">Donors</string>
+    <string name="title_activity_staff">Staff</string>
 
 </resources>

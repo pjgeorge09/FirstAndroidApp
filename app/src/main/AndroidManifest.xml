@@ -14,9 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ManagerInventory"
-            android:label="@string/title_activity_manager_inventory"
+            android:name=".Staff"
+            android:label="@string/title_activity_staff"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Donors"
+            android:label="@string/title_activity_donors"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Donations"
+            android:label="@string/title_activity_donations"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Inventory"
+            android:label="@string/title_activity_manager_inventory"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginTemp"
             android:label="@string/title_activity_login_temp"
