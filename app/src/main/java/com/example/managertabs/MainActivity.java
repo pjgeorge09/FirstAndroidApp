@@ -70,37 +70,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-<<<<<<< HEAD
-        if (id == R.id.nav_inventory) { // TODO Rename camera, gallery, etc
-            // Handle the camera action
-            // Transition to new activity
-
-        } else if (id == R.id.nav_staff) {
-
-        } else if (id == R.id.nav_donors) {
-
-        } else if (id == R.id.nav_donations) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_email) {
-
-=======
-        if (id == R.id.nav_camera) { //Inventory
+        if (id == R.id.nav_inventory) { //Inventory
             Intent intent = new Intent(getApplicationContext(), Inventory.class);
             startActivity(intent);
-        } else if (id == R.id.nav_gallery) {  //Donations
+        } else if (id == R.id.nav_donations) {  //Donations
             Intent intent = new Intent(getApplicationContext(), Donations.class);
             startActivity(intent);
-        } else if (id == R.id.nav_slideshow) {  //Donors
+        } else if (id == R.id.nav_donors) {  //Donors
             Intent intent = new Intent(getApplicationContext(), Donors.class);
             startActivity(intent);
-        } else if (id == R.id.nav_manage) {  //
+        } else if (id == R.id.nav_staff) {  //
             Intent intent = new Intent(getApplicationContext(), Staff.class);
             startActivity(intent);
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_email) {
         } else if (id == R.id.nav_send) {
->>>>>>> d5ccf6e1161d53a3425bc2f7ff923ff0b49959bd
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
