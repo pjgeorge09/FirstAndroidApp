@@ -6,6 +6,9 @@
     <item name="ic_menu_manage" type="drawable">@android:drawable/ic_menu_manage</item>
     <item name="ic_menu_share" type="drawable">@android:drawable/ic_menu_share</item>
     <item name="ic_menu_send" type="drawable">@android:drawable/ic_menu_send</item>
-
+    <item name="ic_baseline_storage_24px" type="drawable">@drawable/ic_baseline_storage_24px</item>
+    <item name="ic_donors" type="drawable">@drawable/ic_donors</item>
+    <item name="ic_heart" type="drawable">@drawable/ic_heart</item>
+    <item name="ic_staff" type="drawable">@drawable/ic_staff</item>
 
 </resources>
