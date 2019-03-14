@@ -30,6 +30,7 @@
             android:name=".Inventory"
             android:label="@string/title_activity_manager_inventory"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".LoginTemp"
             android:label="@string/title_activity_login_temp"
@@ -40,6 +41,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".WorkerHomeScreen"
             android:label="@string/worker"

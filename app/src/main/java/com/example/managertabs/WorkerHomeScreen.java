@@ -73,16 +73,11 @@ public class WorkerHomeScreen extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-<<<<<<< HEAD
+
         if (id == R.id.nav_inventory) { // TODO Rename camera, gallery, etc
-            // Handle the camera action
-            // Transition to new activity
-=======
-        if (id == R.id.nav_camera) { // TODO Rename camera, gallery, etc
             Intent intent = new Intent(getApplicationContext(), WorkerHomeScreen.class);
 
             startActivity(intent);
->>>>>>> d5ccf6e1161d53a3425bc2f7ff923ff0b49959bd
 
         } else if (id == R.id.nav_staff) {
 
