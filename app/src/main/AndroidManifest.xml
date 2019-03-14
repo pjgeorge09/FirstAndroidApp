@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        // Login screen activity settings
         <activity
             android:name=".LoginTemp"
             android:label="@string/title_activity_login_temp"
@@ -26,7 +25,6 @@
             </intent-filter>
         </activity>
 
-        // Workers home screen activity settings
         <activity android:name=".WorkerHomeScreen"
         android:label="@string/worker"
         android:theme="@style/AppTheme.NoActionBar">
@@ -37,7 +35,6 @@
         </intent-filter>
         </activity>
 
-        // Managers home screen activity settings
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
