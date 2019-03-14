@@ -1,4 +1,3 @@
-
 package com.example.managertabs;
 
 import android.content.Intent;
@@ -15,16 +14,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class WorkerHomeScreen extends AppCompatActivity
+public class ManagerInventory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_worker);
+        setContentView(R.layout.activity_manager_inventory);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -75,11 +73,10 @@ public class WorkerHomeScreen extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) { // TODO Rename camera, gallery, etc
+        if (id == R.id.nav_camera) {
             Intent intent = new Intent(getApplicationContext(), WorkerHomeScreen.class);
 
             startActivity(intent);
-
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

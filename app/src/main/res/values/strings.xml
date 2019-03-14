@@ -26,5 +26,6 @@
         completions."
     </string>
     <string name="title_activity_login_temp">LoginTemp</string>
+    <string name="title_activity_manager_inventory">ManagerInventory</string>
 
 </resources>
