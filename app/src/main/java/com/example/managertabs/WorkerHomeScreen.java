@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+// Workers Home Screen Class
 public class WorkerHomeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
