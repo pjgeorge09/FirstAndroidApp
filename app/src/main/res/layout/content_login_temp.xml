@@ -41,8 +41,9 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:gravity="center"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,15 +60,19 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Login"
+        android:background="@android:color/black"
         android:gravity="center"
+        android:text="Login"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword1" />
+        app:layout_constraintTop_toBottomOf="@+id/etPassword1"
+        app:layout_constraintVertical_bias="0.254" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvForgot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -76,9 +81,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Number of incorrent attmepts"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:clickable="true"
+        android:onClick="pressForgot"
+        android:text="Forgot username or password"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin1" />
+        app:layout_constraintTop_toBottomOf="@+id/etPassword1"
+        app:layout_constraintVertical_bias="0.093" />
+
 </android.support.constraint.ConstraintLayout>

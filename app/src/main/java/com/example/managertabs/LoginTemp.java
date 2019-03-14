@@ -1,7 +1,9 @@
 package com.example.managertabs;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +12,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginTemp extends AppCompatActivity {
 
     private EditText Email;
     private EditText Password;
-    private TextView Info;
     private Button Login;
+    private TextView Forgot;
     private int counter = 5;
 
 
@@ -28,10 +31,9 @@ public class LoginTemp extends AppCompatActivity {
 
         Email = (EditText)findViewById(R.id.etEmail1);
         Password = (EditText)findViewById(R.id.etPassword1);
-        Info = (TextView)findViewById(R.id.textView2);
         Login = (Button)findViewById(R.id.btnLogin1);
+        Forgot = (TextView)findViewById(R.id.tvForgot);
 
-        Info.setText("No of attempts remaining: 5");
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +41,6 @@ public class LoginTemp extends AppCompatActivity {
                 validate(Email.getText().toString(), Password.getText().toString());
             }
         });
-
-
     }
 
     /*
@@ -48,23 +48,58 @@ public class LoginTemp extends AppCompatActivity {
         Needs to direct to correct page (manager or users) if valid login
      */
     private void validate(String userEmail, String userPassword) {
+        //manager, manager goes to manager tab
         if(userEmail.equals("manager") && userPassword.equals("manager")) {
             Intent intent = new Intent(LoginTemp.this, MainActivity.class);
             startActivity(intent);
         }
+
+        //worker, worker goes to worker tab
         else if(userEmail.equals("worker") && userPassword.equals("worker")){
             Intent intent1 = new Intent(LoginTemp.this, WorkerHomeScreen.class);
             startActivity(intent1);
         }
+        //counter for wrong attempts
         else {
             counter--;
 
-            Info.setText("Number of attempts reamining: " + String.valueOf(counter));
+            //Setting for Toast notification
+            Context context = getApplicationContext();
+            CharSequence numberOfIncorrect = "Number of attempts reamining: " + String.valueOf(counter);
+            int duration = Toast.LENGTH_SHORT;
 
+            //Implication of toast
+            Toast.makeText(context, numberOfIncorrect, duration).show();
+
+            //If use of all login
             if(counter == 0) {
+
+                //Setting for toast notification for too many attempts
+                Context context1 = getApplicationContext();
+                CharSequence tooManyAttempts = "Too many incorrect attempts";
+                int duration1 = Toast.LENGTH_SHORT;
+
+                Toast.makeText(context1, tooManyAttempts, duration1).show();
+
                 Login.setEnabled(false);
+                Login.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Login.setEnabled(true);
+                    }
+                }, 5000);
+
+                counter = 5;
             }
         }
+    }
 
+    /*
+        Forgotten user or name or password button
+        Will link to SQL later
+     */
+    public void pressForgot(View v) {
+        Intent intent = new Intent(LoginTemp.this, WorkerHomeScreen.class);
+        startActivity(intent);
     }
 }
