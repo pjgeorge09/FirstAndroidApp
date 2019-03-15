@@ -37,5 +37,6 @@
 
     <!-- Strings related to Staff Page -->
     <string name="title_Staff">Worker Staff</string>
+    <string name="image2description">Profile Pic 1</string>
 
 </resources>

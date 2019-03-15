@@ -10,9 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 public class Staff extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+        private ImageView profile1;
+        private ImageView profile2;
+        private ImageView profile3;
+        private ImageView profile4;
+        private ImageView profile5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,16 @@ public class Staff extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        profile1 = (ImageView) findViewById(R.id.imageView2);
+        profile2 = (ImageView) findViewById(R.id.imageView3);
+        profile3 = (ImageView) findViewById(R.id.imageView4);
+        profile4 = (ImageView) findViewById(R.id.imageView5);
+        profile5 = (ImageView) findViewById(R.id.imageView6);
+        profile1.setImageResource(R.drawable.profileicon);
+        profile2.setImageResource(R.drawable.profileicon);
+        profile3.setImageResource(R.drawable.profileicon);
+        profile4.setImageResource(R.drawable.profileicon);
+        profile5.setImageResource(R.drawable.profileicon);
     }
 
     @Override
