@@ -112,109 +112,111 @@
     <!-- Picture 1 -->
     <EditText
         android:id="@+id/editText3"
-        android:layout_width="129dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:autofillHints="Name"
         android:ems="10"
         android:hint="Name"
-        android:autofillHints="Name"
         android:inputType="textPersonName"
         android:text="Name"
+        android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
-        tools:textSize="12sp" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <EditText
         android:id="@+id/editText4"
-        android:layout_width="80dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
         android:layout_marginTop="8dp"
+        android:autofillHints="804-xxx-xxxx"
         android:ems="10"
         android:hint="804-xxx-xxxx"
-        android:autofillHints="804-xxx-xxxx"
         android:inputType="phone"
         android:text="804-xxx-xxxx"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/editText3"
-        app:layout_constraintVertical_bias="1.0"
-        tools:textSize="12sp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText5"
-        android:layout_width="146dp"
-        android:layout_height="34dp"
+        android:layout_width="149dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:autofillHints="John.Temporary@gmail.com"
         android:ems="10"
         android:hint="John.Temporary@gmail.com"
-        android:autofillHints="John.Temporary@gmail.com"
         android:inputType="textEmailAddress"
         android:text="John.Temporary@gmail.com"
+        android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/editText6"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/editText3"
         app:layout_constraintTop_toTopOf="@+id/editText3"
-        tools:textSize="10sp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editText6"
         android:layout_width="194dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:autofillHints="12345 Main St. Richmond Va, 23220"
         android:ems="10"
         android:hint="12345 Main St. Richmond Va, 23220"
-        android:autofillHints="12345 Main St. Richmond Va, 23220"
         android:inputType="textPostalAddress"
         android:text="12345 Main St. Richmond Va, 23220"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/editText4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText4"
-        tools:textSize="10sp" />
+        app:layout_constraintStart_toEndOf="@+id/editText4" />
 
     <!-- Picture 2 -->
     <EditText
         android:id="@+id/editText7"
         android:layout_width="129dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
+        android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
-        tools:textSize="12sp" />
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     <EditText
         android:id="@+id/editText8"
         android:layout_width="80dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="phone"
         android:text="804-xxx-xxxx"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/editText7"
-        app:layout_constraintVertical_bias="1.0"
-        tools:textSize="12sp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText9"
         android:layout_width="146dp"
-        android:layout_height="34dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -223,16 +225,16 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         android:text="John.Temporary@gmail.com"
+        android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/editText10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText7"
-        app:layout_constraintTop_toTopOf="@+id/editText7"
-        tools:textSize="10sp" />
+        app:layout_constraintTop_toTopOf="@+id/editText7" />
 
     <EditText
         android:id="@+id/editText10"
         android:layout_width="194dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -240,45 +242,45 @@
         android:ems="10"
         android:inputType="textPostalAddress"
         android:text="12345 Main St. Richmond Va, 23220"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/editText8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText8"
-        tools:textSize="10sp" />
+        app:layout_constraintStart_toEndOf="@+id/editText8" />
 
         <!-- Picture 3 -->
     <EditText
         android:id="@+id/editText11"
         android:layout_width="129dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
+        android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
-        tools:textSize="12sp" />
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
     <EditText
         android:id="@+id/editText12"
         android:layout_width="80dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="phone"
         android:text="804-xxx-xxxx"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/editText11"
-        app:layout_constraintVertical_bias="1.0"
-        tools:textSize="12sp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText13"
         android:layout_width="146dp"
-        android:layout_height="34dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -287,16 +289,16 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         android:text="John.Temporary@gmail.com"
+        android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/editText14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText11"
-        app:layout_constraintTop_toTopOf="@+id/editText11"
-        tools:textSize="10sp" />
+        app:layout_constraintTop_toTopOf="@+id/editText11" />
 
     <EditText
         android:id="@+id/editText14"
         android:layout_width="194dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -304,45 +306,45 @@
         android:ems="10"
         android:inputType="textPostalAddress"
         android:text="12345 Main St. Richmond Va, 23220"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/editText12"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText12"
-        tools:textSize="10sp" />
+        app:layout_constraintStart_toEndOf="@+id/editText12" />
 
             <!-- Picture 4 -->
     <EditText
         android:id="@+id/editText15"
         android:layout_width="129dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
+        android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        tools:textSize="12sp" />
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
     <EditText
         android:id="@+id/editText16"
         android:layout_width="80dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="phone"
         android:text="804-xxx-xxxx"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toBottomOf="@+id/editText15"
-        app:layout_constraintVertical_bias="1.0"
-        tools:textSize="12sp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText17"
         android:layout_width="146dp"
-        android:layout_height="34dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -351,16 +353,16 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         android:text="John.Temporary@gmail.com"
+        android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/editText18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText15"
-        app:layout_constraintTop_toTopOf="@+id/editText15"
-        tools:textSize="10sp" />
+        app:layout_constraintTop_toTopOf="@+id/editText15" />
 
     <EditText
         android:id="@+id/editText18"
         android:layout_width="194dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -368,45 +370,45 @@
         android:ems="10"
         android:inputType="textPostalAddress"
         android:text="12345 Main St. Richmond Va, 23220"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/editText16"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText16"
-        tools:textSize="10sp" />
+        app:layout_constraintStart_toEndOf="@+id/editText16" />
 
     <!-- Picture 5 -->
     <EditText
         android:id="@+id/editText19"
         android:layout_width="129dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
+        android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
-        tools:textSize="12sp" />
+        app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
     <EditText
         android:id="@+id/editText20"
         android:layout_width="80dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="phone"
         android:text="804-xxx-xxxx"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/editText19"
-        app:layout_constraintVertical_bias="1.0"
-        tools:textSize="12sp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText21"
         android:layout_width="146dp"
-        android:layout_height="34dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -415,16 +417,16 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         android:text="John.Temporary@gmail.com"
+        android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/editText22"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText19"
-        app:layout_constraintTop_toTopOf="@+id/editText19"
-        tools:textSize="10sp" />
+        app:layout_constraintTop_toTopOf="@+id/editText19" />
 
     <EditText
         android:id="@+id/editText22"
         android:layout_width="194dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -432,10 +434,10 @@
         android:ems="10"
         android:inputType="textPostalAddress"
         android:text="12345 Main St. Richmond Va, 23220"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/editText20"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText20"
-        tools:textSize="10sp" />
+        app:layout_constraintStart_toEndOf="@+id/editText20" />
 
 
 </android.support.constraint.ConstraintLayout>
