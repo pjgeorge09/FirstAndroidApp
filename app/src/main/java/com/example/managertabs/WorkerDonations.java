@@ -2,6 +2,9 @@ package com.example.managertabs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,15 +14,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
+public class WorkerDonations extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_worker_donations);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.settings_menu, menu);
+        getMenuInflater().inflate(R.menu.worker_tabs, menu);
         return true;
     }
 
@@ -71,17 +75,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_inventory) { //Inventory
-            Intent intent = new Intent(getApplicationContext(), Inventory.class);
+            Intent intent = new Intent(getApplicationContext(), WorkerInventory.class);
             startActivity(intent);
         } else if (id == R.id.nav_donations) {  //Donations
-            Intent intent = new Intent(getApplicationContext(), Donations.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_donors) {  //Donors
-            Intent intent = new Intent(getApplicationContext(), Donors.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_staff) {  //
-            Intent intent = new Intent(getApplicationContext(), Staff.class);
-            startActivity(intent);
+//            Intent intent = new Intent(getApplicationContext(), WorkerDonations.class);
+//            startActivity(intent);
         } else if (id == R.id.nav_email) {
         } else if (id == R.id.nav_send) {
         }

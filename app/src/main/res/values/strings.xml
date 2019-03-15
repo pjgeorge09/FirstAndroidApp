@@ -26,9 +26,11 @@
         completions."
     </string>
     <string name="title_activity_login_temp">LoginTemp</string>
-    <string name="title_activity_manager_inventory">ManagerInventory</string>
+    <string name="title_activity_manager_inventory">Manager Inventory</string>
     <string name="title_activity_donations">Donations</string>
     <string name="title_activity_donors">Donors</string>
     <string name="title_activity_staff">Staff</string>
+    <string name="title_activity_worker_inventory">Inventory</string>
+    <string name="title_activity_worker_donations">Donations</string>
 
 </resources>

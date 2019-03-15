@@ -70,19 +70,19 @@ public class Inventory extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) { //Inventory
+        if (id == R.id.nav_inventory) { //Inventory
 //            Intent intent = new Intent(getApplicationContext(), Inventory.class);
 //            startActivity(intent);
-        } else if (id == R.id.nav_gallery) {  //Donations
+        } else if (id == R.id.nav_donations) {  //Donations
             Intent intent = new Intent(getApplicationContext(), Donations.class);
             startActivity(intent);
-        } else if (id == R.id.nav_slideshow) {  //Donors
+        } else if (id == R.id.nav_donors) {  //Donors
             Intent intent = new Intent(getApplicationContext(), Donors.class);
             startActivity(intent);
-        } else if (id == R.id.nav_manage) {  //
+        } else if (id == R.id.nav_staff) {  //
             Intent intent = new Intent(getApplicationContext(), Staff.class);
             startActivity(intent);
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_email) {
         } else if (id == R.id.nav_send) {
         }
 

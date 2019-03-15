@@ -3,18 +3,14 @@ package com.example.managertabs;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginTemp extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     private EditText Email;
     private EditText Password;
@@ -27,7 +23,7 @@ public class LoginTemp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_temp);
+        setContentView(R.layout.activity_login);
 
         Email = (EditText)findViewById(R.id.etEmail1);
         Password = (EditText)findViewById(R.id.etPassword1);
@@ -50,13 +46,13 @@ public class LoginTemp extends AppCompatActivity {
     private void validate(String userEmail, String userPassword) {
         //manager, manager goes to manager tab
         if(userEmail.equals("manager") && userPassword.equals("manager")) {
-            Intent intent = new Intent(LoginTemp.this, MainActivity.class);
+            Intent intent = new Intent(com.example.managertabs.Login.this, ManagerHomeScreen.class);
             startActivity(intent);
         }
 
         //worker, worker goes to worker tab
         else if(userEmail.equals("worker") && userPassword.equals("worker")){
-            Intent intent1 = new Intent(LoginTemp.this, WorkerHomeScreen.class);
+            Intent intent1 = new Intent(com.example.managertabs.Login.this, WorkerHomeScreen.class);
             startActivity(intent1);
         }
         //counter for wrong attempts
@@ -99,7 +95,7 @@ public class LoginTemp extends AppCompatActivity {
         Will link to SQL later
      */
     public void pressForgot(View v) {
-        Intent intent = new Intent(LoginTemp.this, WorkerHomeScreen.class);
+        Intent intent = new Intent(com.example.managertabs.Login.this, WorkerHomeScreen.class);
         startActivity(intent);
     }
 }

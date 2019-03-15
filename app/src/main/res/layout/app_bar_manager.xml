@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Inventory">
+    android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,7 +19,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_manager_inventory" />
+    <!--<include layout="@layout/content_manager_home" />-->
+    <!--<include layout="@layout/content_donations" />-->
+    <!--<include layout="@layout/content_donors" />-->
+    <!--<include layout="@layout/content_manager_inventory" />-->
+    <!--<include layout="@layout/content_staff" />-->
+
+
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -19,7 +19,7 @@ public class WorkerHomeScreen extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_worker);
+        setContentView(R.layout.activity_worker_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -74,23 +74,15 @@ public class WorkerHomeScreen extends AppCompatActivity
         int id = item.getItemId();
 
 
-        if (id == R.id.nav_inventory) { // TODO Rename camera, gallery, etc
-            Intent intent = new Intent(getApplicationContext(), WorkerHomeScreen.class);
-
+        if (id == R.id.nav_inventory) { //Inventory
+            Intent intent = new Intent(getApplicationContext(), WorkerInventory.class);
             startActivity(intent);
-
-        } else if (id == R.id.nav_staff) {
-
-        } else if (id == R.id.nav_donors) {
-
-        } else if (id == R.id.nav_donations) {
-
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_donations) {  //Donations
+            Intent intent = new Intent(getApplicationContext(), WorkerDonations.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_email) {
         } else if (id == R.id.nav_send) {
-
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

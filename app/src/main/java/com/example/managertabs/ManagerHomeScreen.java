@@ -11,16 +11,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Staff extends AppCompatActivity
+public class ManagerHomeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_staff);
+        setContentView(R.layout.activity_manager_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -81,8 +80,8 @@ public class Staff extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), Donors.class);
             startActivity(intent);
         } else if (id == R.id.nav_staff) {  //
-//            Intent intent = new Intent(getApplicationContext(), Staff.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), Staff.class);
+            startActivity(intent);
         } else if (id == R.id.nav_email) {
         } else if (id == R.id.nav_send) {
         }
