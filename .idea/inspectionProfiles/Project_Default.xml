@@ -1,0 +1,43 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="AccessorsWereOverridden" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="AlwaysNilVariable" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="AssociatedTypeMismatch" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="CallDealloc" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="DuplicateAttribute" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="EqualityInConditionalOperatorWithSelf" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="HidesClassScope" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="ImplementationHasNoInterface" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="ImplicitDeclarationOfIvar" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="InterfaceHasNoImplementation" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="KeyValueCodingInspection" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="LastArgumentMustBeNull" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="MethodIsLaterInTheScope" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="NoAttributeForProperty" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="NoClassDefinition" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="NoGetterOrSetter" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="NotImplementedMethods" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="NotImplementsProtocol" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="NotInHierarchyMessage" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="NotReleasedValue" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="NotVisibleClass" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="OCLegacyObjCLiteralInspection" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="OCNotLocalizedStringInspection" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="OCNotReleasedIvarInspection" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="ObsoleteNSLiteral" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="OverriddenAttributeMismatch" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="OverriddenTypeMismatch" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="PrivateCategoryShouldBeNearImplementation" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="PropertyAndIvarTypeMismatch" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="ReleasingOfAssignProperties" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="SetterForReadonlyProperty" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="SeveralTargetsMessage" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="StringLocalizationInspection" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="UnavailableInDeploymentTarget" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="UnresolvedCollectionMessage" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="UnresolvedMessage" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="UnusedImportStatement" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="UsingZeroAsNil" enabled="true" level="INFORMATION" enabled_by_default="true" />
+  </profile>
+</component>

@@ -17,8 +17,13 @@ public class WorkerHomeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
+    /*
+     Method to create an instance of the workers home screen activity
+     @param savedInstanceState passes the previous state of the instance if there was one
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Sets the design of the activity to the activity_worker_home layout
         setContentView(R.layout.activity_worker_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
