@@ -73,8 +73,8 @@ public class Donations extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), Inventory.class);
             startActivity(intent);
         } else if (id == R.id.nav_donations) {  //Donations
-//            Intent intent = new Intent(getApplicationContext(), Donations.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), Donations.class);
+            startActivity(intent);
         } else if (id == R.id.nav_donors) {  //Donors
             Intent intent = new Intent(getApplicationContext(), Donors.class);
             startActivity(intent);

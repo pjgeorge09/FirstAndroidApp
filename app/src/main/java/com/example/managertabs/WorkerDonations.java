@@ -78,8 +78,8 @@ public class WorkerDonations extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), WorkerInventory.class);
             startActivity(intent);
         } else if (id == R.id.nav_donations) {  //Donations
-//            Intent intent = new Intent(getApplicationContext(), WorkerDonations.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), WorkerDonations.class);
+            startActivity(intent);
         } else if (id == R.id.nav_email) {
         } else if (id == R.id.nav_send) {
         }

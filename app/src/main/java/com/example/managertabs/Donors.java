@@ -76,8 +76,8 @@ public class Donors extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), Donations.class);
             startActivity(intent);
         } else if (id == R.id.nav_donors) {  //Donors
-//            Intent intent = new Intent(getApplicationContext(), Donors.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), Donors.class);
+            startActivity(intent);
         } else if (id == R.id.nav_staff) {  //
             Intent intent = new Intent(getApplicationContext(), Staff.class);
             startActivity(intent);
