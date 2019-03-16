@@ -44,8 +44,8 @@ public class LoginTests {
                 closeSoftKeyboard());
 
         // Clicks the login button
-        onView(withText("LOGIN")).perform(click());
-
+        //onView(withText("LOGIN")).perform(click());
+        onView(withId(R.id.btnLogin1)).perform(click());
         // Checks to see that the managers home screen was opened
         intended(hasComponent(ManagerHomeScreen.class.getName()));
     }
@@ -61,8 +61,8 @@ public class LoginTests {
                 closeSoftKeyboard());
 
         // Clicks the login button
-        onView(withText("LOGIN")).perform(click());
-
+       // onView(withText("LOGIN")).perform(click());
+        onView(withId(R.id.btnLogin1)).perform(click());
         // Checks to see that the workers home screen was opened
         intended(hasComponent(WorkerHomeScreen.class.getName()));
     }

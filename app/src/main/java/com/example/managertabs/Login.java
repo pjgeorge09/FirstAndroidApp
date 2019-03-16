@@ -61,7 +61,7 @@ public class Login extends AppCompatActivity {
 
             //Setting for Toast notification
             Context context = getApplicationContext();
-            CharSequence numberOfIncorrect = "Number of attempts reamining: " + String.valueOf(counter);
+            CharSequence numberOfIncorrect = "Number of attempts remaining: " + String.valueOf(counter);
             int duration = Toast.LENGTH_SHORT;
 
             //Implication of toast
