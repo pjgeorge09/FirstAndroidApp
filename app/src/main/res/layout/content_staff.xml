@@ -122,6 +122,7 @@
         android:hint="Jane Temporary"
         android:inputType="textPersonName"
         android:text="Jane Temporary"
+        android:textColor="@android:color/black"
         android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -139,6 +140,7 @@
         android:inputType="phone"
         android:text="804-xxx-xxxx"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/editText3"
@@ -158,6 +160,7 @@
         android:inputType="textEmailAddress"
         android:text="John.Temporary@gmail.com"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toEndOf="@+id/editText3"
@@ -178,6 +181,7 @@
         android:inputType="textPostalAddress"
         android:text="12345 Main St. Richmond Va, 23220"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/editText4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText4"
@@ -196,6 +200,7 @@
         android:inputType="textPersonName"
         android:text="John Temporary"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -210,6 +215,7 @@
         android:inputType="phone"
         android:text="804-xxx-xxxx"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/editText7"
@@ -227,6 +233,7 @@
         android:inputType="textEmailAddress"
         android:text="John.Temporary@gmail.com"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText7"
         app:layout_constraintTop_toTopOf="@+id/editText7" />
@@ -244,6 +251,7 @@
         android:inputType="textPostalAddress"
         android:text="12345 Main St. Richmond Va, 23220"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/editText8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText8"
@@ -262,6 +270,7 @@
         android:inputType="textPersonName"
         android:text="Jane Temporary"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
@@ -276,6 +285,7 @@
         android:inputType="phone"
         android:text="804-xxx-xxxx"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/editText11"
@@ -293,6 +303,7 @@
         android:inputType="textEmailAddress"
         android:text="Jane.Temporary@gmail.com"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText11"
         app:layout_constraintTop_toTopOf="@+id/editText11" />
@@ -310,6 +321,7 @@
         android:inputType="textPostalAddress"
         android:text="12345 Main St. Richmond Va, 23220"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/editText12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText12"
@@ -328,6 +340,7 @@
         android:inputType="textPersonName"
         android:text="John Temporary"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
@@ -342,6 +355,7 @@
         android:inputType="phone"
         android:text="804-xxx-xxxx"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toBottomOf="@+id/editText15"
@@ -359,6 +373,7 @@
         android:inputType="textEmailAddress"
         android:text="John.Temporary@gmail.com"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText15"
         app:layout_constraintTop_toTopOf="@+id/editText15" />
@@ -376,6 +391,7 @@
         android:inputType="textPostalAddress"
         android:text="12345 Main St. Richmond Va, 23220"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/editText16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText16"
@@ -394,6 +410,7 @@
         android:inputType="textPersonName"
         android:text="Jane Temporary"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
@@ -408,6 +425,7 @@
         android:inputType="phone"
         android:text="804-xxx-xxxx"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/editText19"
@@ -425,6 +443,7 @@
         android:inputType="textEmailAddress"
         android:text="Jane.Temporary@gmail.com"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText19"
         app:layout_constraintTop_toTopOf="@+id/editText19" />
@@ -442,6 +461,7 @@
         android:inputType="textPostalAddress"
         android:text="12345 Main St. Richmond Va, 23220"
         android:textSize="10sp"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/editText20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText20"
