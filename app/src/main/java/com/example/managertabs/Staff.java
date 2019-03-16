@@ -43,11 +43,11 @@ public class Staff extends AppCompatActivity
         profile3 = (ImageView) findViewById(R.id.imageView4);
         profile4 = (ImageView) findViewById(R.id.imageView5);
         profile5 = (ImageView) findViewById(R.id.imageView6);
-        profile1.setImageResource(R.drawable.profileicon);
-        profile2.setImageResource(R.drawable.profileicon);
-        profile3.setImageResource(R.drawable.profileicon);
-        profile4.setImageResource(R.drawable.profileicon);
-        profile5.setImageResource(R.drawable.profileicon);
+        profile1.setImageResource(R.drawable.girl1);
+        profile2.setImageResource(R.drawable.boy);
+        profile3.setImageResource(R.drawable.girl2);
+        profile4.setImageResource(R.drawable.man);
+        profile5.setImageResource(R.drawable.girl3);
     }
 
     @Override
