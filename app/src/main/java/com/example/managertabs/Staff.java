@@ -102,8 +102,8 @@ public class Staff extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), Donors.class);
             startActivity(intent);
         } else if (id == R.id.nav_staff) {  //
-//            Intent intent = new Intent(getApplicationContext(), Staff.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), Staff.class);
+            startActivity(intent);
         } else if (id == R.id.nav_email) {
         } else if (id == R.id.nav_send) {
         }
