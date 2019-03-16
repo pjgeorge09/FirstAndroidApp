@@ -71,8 +71,8 @@ public class Inventory extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_inventory) { //Inventory
-//            Intent intent = new Intent(getApplicationContext(), Inventory.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), Inventory.class);
+            startActivity(intent);
         } else if (id == R.id.nav_donations) {  //Donations
             Intent intent = new Intent(getApplicationContext(), Donations.class);
             startActivity(intent);
