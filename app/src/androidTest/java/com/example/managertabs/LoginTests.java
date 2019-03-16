@@ -28,25 +28,42 @@ public class LoginTests {
             = new ActivityTestRule<>(Login.class);
             */
 
+    // Sets the startup screen for this test file to the Login screen
     @Rule
-    public IntentsTestRule<Login> loginActivityTestRule
+    public IntentsTestRule<Login> loginIntentsTestRule
             = new IntentsTestRule<>(Login.class);
 
+    // Tests that logging in as a manager takes you to the managers home screen
     @Test
     public void testLoginManager(){
+        // Inputs "manager" into the email field
         onView(withId(R.id.etEmail1)).perform(typeText("manager"));
+
+        // Inputs "manager" into the password field and closes the keyboard
         onView(withId(R.id.etPassword1)).perform(typeText("manager"),
                 closeSoftKeyboard());
+
+        // Clicks the login button
         onView(withText("LOGIN")).perform(click());
+
+        // Checks to see that the managers home screen was opened
         intended(hasComponent(ManagerHomeScreen.class.getName()));
     }
 
+    // Tests that logging in as a worker takes you to the workers home screen
     @Test
     public void testLoginWorker(){
+        // Inputs "worker" into the email field
         onView(withId(R.id.etEmail1)).perform(typeText("worker"));
+
+        // Inputs "worker" into the password field
         onView(withId(R.id.etPassword1)).perform(typeText("worker"),
                 closeSoftKeyboard());
+
+        // Clicks the login button
         onView(withText("LOGIN")).perform(click());
+
+        // Checks to see that the workers home screen was opened
         intended(hasComponent(WorkerHomeScreen.class.getName()));
     }
 }

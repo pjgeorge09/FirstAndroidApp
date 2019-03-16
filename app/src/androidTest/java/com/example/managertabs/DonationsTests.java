@@ -26,43 +26,73 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
 public class DonationsTests{
+    // Sets the startup screen for this test file to the donations screen
     @Rule
     public IntentsTestRule<Donations> donationsIntentsTestRule
             = new IntentsTestRule<>(Donations.class, true, true);
 
+    // Tests navigation from the donations screen to the inventory screen
     @Test
     public void testDonationsToInventory(){
+        // Checks to make sure the navigation drawer is closed
+        // and then opens it
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT)))
                 .perform(DrawerActions.open());
+
+        // Clicks the inventory tab and navigates to it
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_inventory));
+
+        // Checks to see that the correct screen is opened
         intended(hasComponent(Inventory.class.getName()));
     }
 
+    // Tests navigation from the donations screen to the donations screen
     @Test
     public void testDonationsToDonations(){
+        // Checks to make sure the navigation drawer is closed
+        // and then opens it
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT)))
                 .perform(DrawerActions.open());
+
+        // Clicks the donations tab and navigates to it
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_donations));
+
+        // Checks to see that the correct screen is opened
         intended(hasComponent(Donations.class.getName()));
     }
 
+    // Tests navigation from the donations screen to the donors screen
     @Test
     public void testDonationsToDonors(){
+        // Checks to make sure the navigation drawer is closed
+        // and then opens it
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT)))
                 .perform(DrawerActions.open());
+
+        // Clicks the donors tab and navigates to it
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_donors));
+
+        // Checks to see that the correct screen is opened
         intended(hasComponent(Donors.class.getName()));
     }
 
+    // Tests navigation from the donations screen to the staff screen
     @Test
     public void testDonationsToStaff(){
+        // Checks to make sure the navigation drawer is closed
+        // and then opens it
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT)))
                 .perform(DrawerActions.open());
+
+        // Clicks the staff tab and navigates to it
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_staff));
+
+        // Checks to see that the correct screen is opened
         intended(hasComponent(Staff.class.getName()));
     }
+
 }
