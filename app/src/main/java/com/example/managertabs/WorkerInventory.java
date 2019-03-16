@@ -74,8 +74,8 @@ public class WorkerInventory extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_inventory) { //Inventory
-//            Intent intent = new Intent(getApplicationContext(), WorkerInventory.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), WorkerInventory.class);
+            startActivity(intent);
         } else if (id == R.id.nav_donations) {  //Donations
             Intent intent = new Intent(getApplicationContext(), WorkerDonations.class);
             startActivity(intent);
