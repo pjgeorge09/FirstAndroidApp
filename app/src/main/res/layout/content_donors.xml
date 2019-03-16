@@ -67,7 +67,7 @@
 
     <TextView
         android:id="@+id/editText5"
-        android:layout_width="139dp"
+        android:layout_width="144dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginLeft="72dp"
@@ -140,8 +140,8 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
         android:text="03/12/19"
         android:textColor="@android:color/black"
@@ -186,7 +186,7 @@
 
     <TextView
         android:id="@+id/editText9"
-        android:layout_width="139dp"
+        android:layout_width="144dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginLeft="72dp"
@@ -259,8 +259,8 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
         android:text="03/09/19"
         android:textColor="@android:color/black"
@@ -304,7 +304,7 @@
 
     <TextView
         android:id="@+id/editText13"
-        android:layout_width="139dp"
+        android:layout_width="144dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginLeft="72dp"
@@ -377,8 +377,8 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
         android:text="03/03/19"
         android:textColor="@android:color/black"
