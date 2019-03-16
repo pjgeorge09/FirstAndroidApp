@@ -47,4 +47,23 @@ public class ManagerHomeScreenTests {
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_donations));
         intended(hasComponent(Donations.class.getName()));
     }
+
+    @Test
+    public void testManagerHomeScreenToDonors(){
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_donors));
+        intended(hasComponent(Donors.class.getName()));
+    }
+
+    @Test
+    public void testManagerHomeScreenToStaff(){
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_staff));
+        intended(hasComponent(Staff.class.getName()));
+    }
 }
+
