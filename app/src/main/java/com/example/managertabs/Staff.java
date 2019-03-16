@@ -15,6 +15,7 @@ import android.widget.ImageView;
 public class Staff extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+        // ImageView declarations for profile pictures
         private ImageView profile1;
         private ImageView profile2;
         private ImageView profile3;
@@ -38,11 +39,14 @@ public class Staff extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Sets ImageViews variables to layout imageviews
         profile1 = (ImageView) findViewById(R.id.imageView2);
         profile2 = (ImageView) findViewById(R.id.imageView3);
         profile3 = (ImageView) findViewById(R.id.imageView4);
         profile4 = (ImageView) findViewById(R.id.imageView5);
         profile5 = (ImageView) findViewById(R.id.imageView6);
+        // Assigns profile .png picutres to variables.
         profile1.setImageResource(R.drawable.girl1);
         profile2.setImageResource(R.drawable.boy);
         profile3.setImageResource(R.drawable.girl2);
