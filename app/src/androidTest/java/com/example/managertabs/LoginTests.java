@@ -1,7 +1,5 @@
 package com.example.managertabs;
 
-import static android.support.test.espresso.intent.Intents.*;
-import static android.support.test.espresso.intent.matcher.IntentMatchers.*;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
@@ -10,6 +8,8 @@ import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.junit.Test;
 
+import static android.support.test.espresso.intent.Intents.*;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.*;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
