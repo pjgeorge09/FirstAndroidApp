@@ -73,6 +73,12 @@ public class WorkerDonations extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        else if (id == R.id.logout) {
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            // The below code clears the stack so the activity cannot be reached. (Security bug cleared) (I.E. ERASE STACK MEMORY)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
