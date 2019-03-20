@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-public class Staff extends AppCompatActivity
+public class Staff extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
 
         // ImageView declarations for profile pictures
@@ -74,34 +74,7 @@ public class Staff extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.settings_menu, menu);
-        return true;
-    }
 
-    /* Method to be instantiated later, will listen for buttons in settings that are not yet designated */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        else if (id == R.id.logout) {
-            Intent intent = new Intent(getApplicationContext(), Login.class);
-            // The below code clears the stack so the activity cannot be reached. (Security bug cleared) (I.E. ERASE STACK MEMORY)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and
     does a screen transition based on received */

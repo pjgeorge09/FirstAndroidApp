@@ -13,7 +13,6 @@ public class MainActivityManager extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
     }
 
     /* Sets the back button to revert to the last screen. In the case that the drawer is open, it simply closes the drawer instead. */
