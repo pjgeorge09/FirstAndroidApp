@@ -92,8 +92,6 @@ public class Donations extends AppCompatActivity
         // If DONATIONS is selected by manager, go to Donations.class
         else if (id == R.id.nav_donations) {
             //DO NOTHING
-            Intent intent = new Intent(getApplicationContext(), Donations.class);
-            startActivity(intent);
         }
         // If DONORS is selected by manager, Donors.class
         else if (id == R.id.nav_donors) {

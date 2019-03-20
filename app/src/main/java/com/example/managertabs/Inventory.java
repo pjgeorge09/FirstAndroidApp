@@ -86,8 +86,6 @@ public class Inventory extends AppCompatActivity
         // If INVENTORY is selected by manager, go to Inventory.class
         if (id == R.id.nav_inventory) {
             //DO NOTHING
-            Intent intent = new Intent(getApplicationContext(), Inventory.class);
-            startActivity(intent);
         }
         // If DONATIONS is selected by manager, go to Donations.class
         else if (id == R.id.nav_donations) {

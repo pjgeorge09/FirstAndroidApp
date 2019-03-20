@@ -92,8 +92,6 @@ public class WorkerDonations extends AppCompatActivity
         // If INVENTORY is selected by worker, go to WorkerDonations.class
         else if (id == R.id.nav_donations) {
             //DO NOTHING
-            Intent intent = new Intent(getApplicationContext(), WorkerDonations.class);
-            startActivity(intent);
         }
 
 

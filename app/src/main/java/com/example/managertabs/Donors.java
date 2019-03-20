@@ -96,8 +96,6 @@ public class Donors extends AppCompatActivity
         // If DONORS is selected by manager, Donors.class
         else if (id == R.id.nav_donors) {
             //DO NOTHING
-            Intent intent = new Intent(getApplicationContext(), Donors.class);
-            startActivity(intent);
         }
         // If STAFF is selected by manager, go to Staff.class
         else if (id == R.id.nav_staff) {

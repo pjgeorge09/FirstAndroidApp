@@ -122,8 +122,6 @@ public class Staff extends AppCompatActivity
         // If STAFF is selected by manager, go to Staff.class
         else if (id == R.id.nav_staff) {
             //DO NOTHING
-            Intent intent = new Intent(getApplicationContext(), Staff.class);
-            startActivity(intent);
         }
         // If ______ is selected by manager, go to ______
         else if (id == R.id.nav_email) {
