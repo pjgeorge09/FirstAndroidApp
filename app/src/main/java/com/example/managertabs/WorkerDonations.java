@@ -47,7 +47,9 @@ public class WorkerDonations extends AppCompatActivity
         }
         // If drawer (tabs) are closed, revert to last activity via super.onBackPressed method
         else {
-            super.onBackPressed();
+            Intent intent = new Intent(getApplicationContext(), WorkerHomeScreen.class);
+            startActivity(intent);
+            //super.onBackPressed();
         }
     }
 
@@ -71,6 +73,12 @@ public class WorkerDonations extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        else if (id == R.id.logout) {
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            // The below code clears the stack so the activity cannot be reached. (Security bug cleared) (I.E. ERASE STACK MEMORY)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -90,8 +98,6 @@ public class WorkerDonations extends AppCompatActivity
         // If INVENTORY is selected by worker, go to WorkerDonations.class
         else if (id == R.id.nav_donations) {
             //DO NOTHING
-            Intent intent = new Intent(getApplicationContext(), WorkerDonations.class);
-            startActivity(intent);
         }
 
 

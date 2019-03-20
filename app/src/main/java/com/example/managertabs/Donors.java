@@ -11,7 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Donors extends AppCompatActivity
+public class Donors extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
 
     /* onCreate method creates the screen */
@@ -37,42 +37,7 @@ public class Donors extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    /* Sets the back button to revert to the last screen. In the case that the drawer is open, it simply closes the drawer instead. */
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        // If drawer (tabs) are open, close them
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        }
-        // If drawer (tabs) are closed, revert to last activity via super.onBackPressed method
-        else {
-            super.onBackPressed();
-        }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.settings_menu, menu);
-        return true;
-    }
-
-    /* Method to be instantiated later, will listen for buttons in settings that are not yet designated */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and
     does a screen transition based on received */
@@ -94,8 +59,6 @@ public class Donors extends AppCompatActivity
         // If DONORS is selected by manager, Donors.class
         else if (id == R.id.nav_donors) {
             //DO NOTHING
-            Intent intent = new Intent(getApplicationContext(), Donors.class);
-            startActivity(intent);
         }
         // If STAFF is selected by manager, go to Staff.class
         else if (id == R.id.nav_staff) {

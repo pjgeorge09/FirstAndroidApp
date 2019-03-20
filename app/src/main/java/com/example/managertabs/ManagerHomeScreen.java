@@ -11,7 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ManagerHomeScreen extends AppCompatActivity
+public class ManagerHomeScreen extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
 
     /* onCreate method creates the screen */
@@ -45,9 +45,14 @@ public class ManagerHomeScreen extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
-        // If drawer (tabs) are closed, revert to last activity via super.onBackPressed method
+
+        // If drawer (tabs) are closed, revert to login screen, CLEAR MEMORY
         else {
-            super.onBackPressed();
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            // The below code clears the stack so the activity cannot be reached. (Security bug cleared) (I.E. ERASE STACK MEMORY)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            //super.onBackPressed();
         }
     }
 
@@ -71,7 +76,12 @@ public class ManagerHomeScreen extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-
+        else if (id == R.id.logout) {
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            // The below code clears the stack so the activity cannot be reached. (Security bug cleared) (I.E. ERASE STACK MEMORY)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 
