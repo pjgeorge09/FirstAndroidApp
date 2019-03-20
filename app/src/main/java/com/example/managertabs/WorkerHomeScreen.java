@@ -48,7 +48,9 @@ public class WorkerHomeScreen extends AppCompatActivity
         }
         // If drawer (tabs) are closed, revert to last activity via super.onBackPressed method
         else {
-            super.onBackPressed();
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            startActivity(intent);
+            //super.onBackPressed();
         }
     }
 
