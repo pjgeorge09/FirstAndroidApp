@@ -13,10 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MainActivityManager"></activity>
         <activity
             android:name=".WorkerDonations"
             android:label="@string/title_activity_worker_donations"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".WorkerInventory"
             android:label="@string/title_activity_worker_inventory"
