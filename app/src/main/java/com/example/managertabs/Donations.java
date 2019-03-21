@@ -7,13 +7,20 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Donations extends MainActivityManager
-        implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
 
+public class Donations extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private RecyclerView recyclerView;
+    private     RecyclerView.LayoutManager layoutManager;
+    private  RecyclerView.Adapter adapter;
+    //test data
+    private ArrayList<String> TestData;
     /* onCreate method creates the screen */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +42,22 @@ public class Donations extends MainActivityManager
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
+// REcycle STUFf
+        recyclerView =(RecyclerView) findViewById(R.id.recycle_donation);
+        //generates the test data
+        TestData = new ArrayList<>();
+        for (int i=0; i<100; i++) {
+            TestData.add("Donation" + i);
+
+        }
+        layoutManager= new LinearLayoutManager(this);
+        recyclerView.setHasFixedSize(true);
+        adapter = new MainAdapter(TestData);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter );
+        }
+
+
 
 
 
