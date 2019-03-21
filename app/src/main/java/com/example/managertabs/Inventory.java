@@ -68,9 +68,12 @@ public class Inventory extends MainActivityManager
         // If ______ is selected by manager, go to ______
         else if (id == R.id.nav_email) {
         }
-        // If ______ is selected by manager, go to ______
-        else if (id == R.id.nav_send) {
+        // If home is selected by manager, go to home
+        else if (id == R.id.nav_home) {
+            Intent intent = new Intent(getApplicationContext(), ManagerHomeScreen.class);
+            startActivity(intent);
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

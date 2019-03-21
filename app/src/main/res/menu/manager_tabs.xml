@@ -29,14 +29,12 @@
             android:icon="@drawable/ic_staff"
             android:title="Staff" />
 
+
     </group>
 
     <item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+
 
             <!-- Icon declaration, implementation, and title for Email -->
             <item
@@ -44,6 +42,15 @@
                 android:icon="@drawable/ic_baseline_mail_24px"
                 android:title="Email Donor" />
         </menu>
+    </item>
+    <item android:title="Quick Navigation">
+        <menu>
+            <item
+                android:id="@+id/nav_home"
+                android:icon="@drawable/ic_home_black_24dp"
+                android:title="Home" />
+        </menu>
+
     </item>
 
 </menu>

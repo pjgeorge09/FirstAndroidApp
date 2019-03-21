@@ -58,24 +58,6 @@ public class Staff extends MainActivityManager
         profile5.setImageResource(R.drawable.girl3);
     }
 
-    /* Sets the back button to revert to the last screen. In the case that the drawer is open, it simply closes the drawer instead. */
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        // If drawer (tabs) are open, close them
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        }
-        // If drawer (tabs) are closed, revert to last activity via super.onBackPressed method
-        else {
-            Intent intent = new Intent(getApplicationContext(), ManagerHomeScreen.class);
-            startActivity(intent);
-            //super.onBackPressed();
-        }
-    }
-
-
-
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and
     does a screen transition based on received */
     @Override
@@ -105,9 +87,12 @@ public class Staff extends MainActivityManager
         // If ______ is selected by manager, go to ______
         else if (id == R.id.nav_email) {
         }
-        // If ______ is selected by manager, go to ______
-        else if (id == R.id.nav_send) {
+        // If home is selected by manager, go to home
+        else if (id == R.id.nav_home) {
+            Intent intent = new Intent(getApplicationContext(), ManagerHomeScreen.class);
+            startActivity(intent);
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
