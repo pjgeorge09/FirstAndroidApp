@@ -61,7 +61,7 @@ public class Staff extends MainActivityManager
         profile3 = (ImageView) findViewById(R.id.imageView4);
         profile4 = (ImageView) findViewById(R.id.imageView5);
         profile5 = (ImageView) findViewById(R.id.imageView6);
-        // Assigns profile .png picutres to variables.
+        // Assigns profile .png pictures to variables.
         profile1.setImageResource(R.drawable.girl1);
         profile2.setImageResource(R.drawable.boy);
         profile3.setImageResource(R.drawable.girl2);
