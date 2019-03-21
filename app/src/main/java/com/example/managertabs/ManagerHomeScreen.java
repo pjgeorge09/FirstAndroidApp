@@ -67,19 +67,26 @@ public class ManagerHomeScreen extends AppCompatActivity
 //
 //        //////
 
+
+        /* FOR BRYAN - We create an item, a map, that can receive ANY object (int, string etc)  */
         Map<String, Object> dataMap = new HashMap<>();
+        // Sample data
         dataMap.put("from", "person");
         dataMap.put("to", "person");
         dataMap.put("date", 12456);
+        //Initialize the database, it is linked to my android already
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        //Messages = rows in SQL. It's like a set. so maybe another example  "John Temporary"
         db.collection("messages")
                 .add(dataMap)
+                // ON SUCCESS
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d("FIREBASE_DATA_ADDED", "Document added with ID: " + documentReference.getId());
                     }
                 })
+                //ON FAILURE
         .addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
