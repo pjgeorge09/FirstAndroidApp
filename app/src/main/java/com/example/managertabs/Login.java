@@ -113,4 +113,26 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(com.example.managertabs.Login.this, WorkerHomeScreen.class);
         startActivity(intent);
     }
+
+// NOTE
+    //        ////// HOW TO ENCRYPT OUR PASSWORDS
+//        String newString = "y";
+//        MessageDigest digest;
+//        try {
+//            //Creating the hash using SHA256
+//            digest = MessageDigest.getInstance("SHA-256");
+//            // Encoding "y" to a byteArray
+//            byte[] byteArray = digest.digest(newString.getBytes(StandardCharsets.UTF_8));
+//            // Decoding back, this is what we store in SQL
+//            String tempPass = new String(byteArray, StandardCharsets.UTF_8);
+//            Log.i("Test", tempPass);
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
+//
+//        //////
+
+
+
+
 }

@@ -2,15 +2,26 @@ package com.example.managertabs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Staff extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,6 +67,36 @@ public class Staff extends MainActivityManager
         profile3.setImageResource(R.drawable.girl2);
         profile4.setImageResource(R.drawable.man);
         profile5.setImageResource(R.drawable.girl3);
+
+        //Initialize the database, it is linked to my android already
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        /* FOR BRYAN - We create an item, a map, that can receive ANY object (int, string etc)  */
+        Map<String, Object> worker = new HashMap<>();
+        // Sample data
+        worker.put("firstName", "Peter");
+        worker.put("lastName", "George");
+        worker.put("eid", 12456);
+
+        //Messages = rows in SQL. It's like a set. so maybe another example  "John Temporary"
+        db.collection("Employees")
+                .add(worker)
+                // ON SUCCESS
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("FIREBASE_DATA_ADDED", "Document added with ID: " + documentReference.getId());
+                    }
+                })
+                //ON FAILURE
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("FIREBASE_DATA_ERROR", "Document failed to add, exception backtrace: " + Arrays.toString(e.getStackTrace()));
+                    }
+                });
+
+
+
     }
 
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and
