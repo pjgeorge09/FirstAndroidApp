@@ -2,14 +2,33 @@ package com.example.managertabs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import android.view.MenuItem;
 
 public class ManagerHomeScreen extends MainActivityManager
+
+
         implements NavigationView.OnNavigationItemSelectedListener {
 
     /* onCreate method creates the screen */
@@ -33,6 +52,11 @@ public class ManagerHomeScreen extends MainActivityManager
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
+
     }
 
     /* Sets the back button to revert to the last screen. In the case that the drawer is open, it simply closes the drawer instead. */

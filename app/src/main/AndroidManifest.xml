@@ -54,6 +54,7 @@
             android:name=".WorkerHomeScreen"
             android:label="@string/worker"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
 
         <activity
