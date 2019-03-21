@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+
 public class Login extends AppCompatActivity {
 
     private EditText Email;
@@ -26,6 +28,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FirebaseApp.initializeApp(this);
 
         Email = (EditText)findViewById(R.id.etEmail1);
         Password = (EditText)findViewById(R.id.etPassword1);
