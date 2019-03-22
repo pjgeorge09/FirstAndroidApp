@@ -1,12 +1,13 @@
-package com.example.managertabs;
+package FireStoreMethods;
 
 import android.widget.TextView;
 
+import com.example.managertabs.Master;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-public class FirestoreMethods extends Master{
+public class FirestoreMethods extends Master {
 
 
    public String getItemLocation(DocumentReference anItem){
@@ -23,4 +24,6 @@ public class FirestoreMethods extends Master{
 
         }).toString();
     }
+
+
 }

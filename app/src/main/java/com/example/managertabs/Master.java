@@ -31,7 +31,7 @@ import java.util.List;
 
 public class Master extends AppCompatActivity {
     //I want these to be accessible from EVERYWHERE - Pete    temporary note
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference INVENTORY = db.collection("Inventory");
     CollectionReference EMPLOYEES = db.collection("Employees");
     ArrayList<DocumentReference> ITEM = new ArrayList<>();
@@ -48,6 +48,8 @@ public class Master extends AppCompatActivity {
         generateEmployeeDocuments(EMPLOYEES);
     }
 
+    // Delete method, its defined in FireStoreMethods.java
+    /*
     public String getItemLocation(DocumentReference anItem) {
         // THIS WORKS
 
@@ -60,6 +62,7 @@ public class Master extends AppCompatActivity {
 
         }).toString();
     }
+    */
 
     public void generateInventoryDocuments(CollectionReference someCollection) {
         someCollection

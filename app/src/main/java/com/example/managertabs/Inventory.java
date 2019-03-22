@@ -1,6 +1,5 @@
 package com.example.managertabs;
 
-import com.example.managertabs.FirestoreMethods;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,27 +7,19 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.local.QueryData;
-
-import org.w3c.dom.Text;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import FireStoreMethods.FirestoreMethods;
 
 public class Inventory extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,17 +47,24 @@ public class Inventory extends MainActivityManager
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        //Initialize the database, it is linked to my android already
 
+
+        //FOR PETE This line creates a FireStoreMethod object which can be used to call its methods
+        FirestoreMethods getFirestoreMethod = new FirestoreMethods();
+
+        //Initialize the database, it is linked to my android already
         /* FOR BRYAN - We create an item, a map, that can receive ANY object (int, string etc)  */
         Map<String, Object> item = new HashMap<>();
 
         // Sample data
+        //TODO make this an inferface
         item.put("item", "Green Beans");
-        item.put("Type", "Can"); //TODO make this an inferface
+        item.put("Type", "Can");
         item.put("Location", "A101");
         item.put("Quantity", 22);
         item.put("Threshold", 15);
+
+
         //Messages = rows in SQL. It's like a set. so maybe another example  "John Temporary"
         db.collection("Inventory").document("Green Beans")
                 .set(item)
@@ -85,10 +83,12 @@ public class Inventory extends MainActivityManager
                     }
                 });
 
-
-        //TODO TRYING TO FIGURE OUT HOW TO USE MY METHODS FROM FIRESTOREMETHODS.JAVA
-        String aString = getItemLocation(db.collection("Inventory").document("Green Beans"));
+        // Sets aString to the item location of Green Beans
+        String aString = getFirestoreMethod.getItemLocation(db.collection("Inventory").document("Green Beans"));
+        // Makes a TextView and sets it to textView2
+        // Casting here might be unnecessary?
         TextView tv = (TextView)findViewById(R.id.textView2);
+        // Sets the text of textView2 to the item location of Green Beans
         tv.setText(aString);
     }
 
