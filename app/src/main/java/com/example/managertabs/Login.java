@@ -11,10 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.FirebaseApp;
 
-public class Login extends AppCompatActivity {
+public class Login extends Master {
 
     private EditText Email;
     private EditText Password;
