@@ -24,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firestore.v1.StructuredQuery;
+import com.squareup.okhttp.internal.DiskLruCache;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,7 +34,10 @@ import java.util.List;
 public class Master extends AppCompatActivity {
     //I want these to be accessible from EVERYWHERE - Pete    temporary note
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference INVENTORY = db.collection("Inventory");
+    public CollectionReference INVENTORY = db.collection("Inventory");
+    public DocumentReference green_beans = INVENTORY.document("Green Beans");
+
+
     CollectionReference EMPLOYEES = db.collection("Employees");
     ArrayList<DocumentReference> ITEM = new ArrayList<>();
     ArrayList<DocumentReference> EMPLOYEE = new ArrayList<>();

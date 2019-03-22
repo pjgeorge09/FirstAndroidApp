@@ -58,38 +58,40 @@ public class Inventory extends MainActivityManager
 
         // Sample data
         //TODO make this an inferface
-        item.put("item", "Green Beans");
-        item.put("Type", "Can");
-        item.put("Location", "A101");
-        item.put("Quantity", 22);
-        item.put("Threshold", 15);
+//        item.put("item", "Green Beans");
+//        item.put("Type", "Can");
+//        item.put("Location", "A101");
+//        item.put("Quantity", 22);
+//        item.put("Threshold", 15);
 
 
         //Messages = rows in SQL. It's like a set. so maybe another example  "John Temporary"
-        db.collection("Inventory").document("Green Beans")
-                .set(item)
-                // ON SUCCESS
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void documentReference) {
-                        Log.d("FIREBASE_DATA_ADDED", "Document added with ID: ");
-                    }
-                })
-                //ON FAILURE
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("FIREBASE_DATA_ERROR", "Document failed to add, exception backtrace: " + Arrays.toString(e.getStackTrace()));
-                    }
-                });
+//        db.collection("Inventory").document("Green Beans")
+//                .set(item)
+//                // ON SUCCESS
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void documentReference) {
+//                        Log.d("FIREBASE_DATA_ADDED", "Document added with ID: ");
+//                    }
+//                })
+//                //ON FAILURE
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.w("FIREBASE_DATA_ERROR", "Document failed to add, exception backtrace: " + Arrays.toString(e.getStackTrace()));
+//                    }
+//                });
+
 
         // Sets aString to the item location of Green Beans
-        String aString = getFirestoreMethod.getItemLocation(db.collection("Inventory").document("Green Beans"));
+        String aString = getFirestoreMethod.getItemThreshold("Green Beans");
         // Makes a TextView and sets it to textView2
         // Casting here might be unnecessary?
         TextView tv = (TextView)findViewById(R.id.textView2);
         // Sets the text of textView2 to the item location of Green Beans
-        tv.setText(aString);
+        tv.setText("Hello");
+
     }
 
 
