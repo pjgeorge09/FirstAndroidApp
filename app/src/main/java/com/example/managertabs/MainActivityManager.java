@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivityManager extends AppCompatActivity {
+import com.google.firebase.firestore.FirebaseFirestore;
+
+public class MainActivityManager extends Master {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
     }
 
     /* Sets the back button to revert to the last screen. In the case that the drawer is open, it simply closes the drawer instead. */

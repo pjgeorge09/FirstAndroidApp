@@ -12,8 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivityWorker extends AppCompatActivity {
+import com.google.firebase.firestore.FirebaseFirestore;
 
+public class MainActivityWorker extends Master {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     /* onCreate method creates the screen */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
