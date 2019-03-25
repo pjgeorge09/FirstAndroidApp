@@ -40,4 +40,10 @@
     <!-- Not needed, used to clear warning message -->
     <string name="image2description">Profile Pic 1</string>
 
+
+    //card_view strings
+    <string name="date">Date: </string>
+    <string name="item">Item: </string>
+    <string name="quantity">Quantity: </string>
+    <string name="size">Size:</string>
 </resources>

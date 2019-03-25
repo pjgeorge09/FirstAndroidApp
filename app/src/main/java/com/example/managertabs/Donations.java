@@ -51,7 +51,7 @@ public class Donations extends AppCompatActivity implements NavigationView.OnNav
 
         }
         layoutManager= new LinearLayoutManager(this);
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
         adapter = new MainAdapter(TestData);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter );

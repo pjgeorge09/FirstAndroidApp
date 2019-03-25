@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "8692290864-0sne6guanlhpi5k6jpst9j84kddls9ok.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.managertabs",
+            "certificate_hash": "9e3ca6a252037d49b0ff73593299633118a66d49"
+          }
+        },
+        {
           "client_id": "8692290864-66e5u8ec57neb05smrvl9fsh303vpfd1.apps.googleusercontent.com",
           "client_type": 3
         }
