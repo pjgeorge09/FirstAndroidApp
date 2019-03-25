@@ -85,10 +85,11 @@ public class Inventory extends MainActivityManager
 
 
         // Sets aString to the item location of Green Beans
-        String aString = getFirestoreMethod.getItemThreshold("Green Beans");
+        //String aString = getFirestoreMethod.getItemThreshold("Green Beans");
         // Makes a TextView and sets it to textView2
         // Casting here might be unnecessary?
         TextView tv = (TextView)findViewById(R.id.textView2);
+
         // Sets the text of textView2 to the item location of Green Beans
         tv.setText("Hello");
 

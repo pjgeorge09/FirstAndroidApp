@@ -36,8 +36,6 @@ public class Master extends AppCompatActivity {
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
     public CollectionReference INVENTORY = db.collection("Inventory");
     public DocumentReference green_beans = INVENTORY.document("Green Beans");
-
-
     CollectionReference EMPLOYEES = db.collection("Employees");
     ArrayList<DocumentReference> ITEM = new ArrayList<>();
     ArrayList<DocumentReference> EMPLOYEE = new ArrayList<>();
@@ -51,7 +49,8 @@ public class Master extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         generateInventoryDocuments(INVENTORY);
         generateEmployeeDocuments(EMPLOYEES);
-    }
+
+        }
 
     // Delete method, its defined in FireStoreMethods.java
     /*
