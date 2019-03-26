@@ -96,7 +96,7 @@ public class Inventory extends MainActivityManager
         //Item item1 = new Item();
 
         // SET LOCATION FROM MASTER METHOD, CURRENTLY SET TO GREEN BEANS ONLY, MODIFIABLE
-        setLocation("Pete's Test");
+//        setLocation("Pete's Test");
         // THERE IS A ONE-SCREEN DELAY     TODO
         //ACTUALLY SETTING THE NEW REFERENCE NAME
         tv.setText(documentSnapshotTask.getResult().getString("Location"));

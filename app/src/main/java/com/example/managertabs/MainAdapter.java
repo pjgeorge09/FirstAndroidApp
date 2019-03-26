@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.DocumentReference;
+
 import java.util.ArrayList;
 
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     private ArrayList<String> TestData;
-
+    private ArrayList<DocumentReference> AllDocuments;
     public MainAdapter(ArrayList<String> testData) {
         TestData = testData;
     }

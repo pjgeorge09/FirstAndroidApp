@@ -29,17 +29,18 @@ import com.squareup.okhttp.internal.DiskLruCache;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Master extends AppCompatActivity {
     //I want these to be accessible from EVERYWHERE - Pete    temporary note
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    /*---------------------COLLECTION DECLARATIONS-----------------*/
     public CollectionReference INVENTORY = db.collection("Inventory");
-    CollectionReference EMPLOYEES = db.collection("Employees");
-    ArrayList<DocumentReference> ITEM = new ArrayList<>();
-    ArrayList<DocumentReference> EMPLOYEE = new ArrayList<>();
-
+    public CollectionReference DONATIONS = db.collection("Donations");
+    public CollectionReference EMPLOYEES = db.collection("Employees");
+//    public CollectionReference INVENTORY = db.collection("Inventory");
 
     Task<DocumentSnapshot> documentSnapshotTask = db.collection("Inventory").document("Green Beans").get();
 
@@ -50,8 +51,7 @@ public class Master extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);
-        generateInventoryDocuments(INVENTORY);
-        generateEmployeeDocuments(EMPLOYEES);
+
 
 
     }
@@ -72,48 +72,47 @@ public class Master extends AppCompatActivity {
     }
     */
 
-    public void generateInventoryDocuments(CollectionReference someCollection) {
-        someCollection
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                ITEM.add(document.getReference());
 
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-
-    }
-
-    public void generateEmployeeDocuments(CollectionReference someCollection) {
-        someCollection
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                EMPLOYEE.add(document.getReference());
-
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-
-    }
-    public void setLocation(String aString){
-        db.collection("Inventory").document("Green Beans").update(
-                "Location", aString
-
+    /* This method changes a FIELD.
+        @Param $1  = the COLLECTION NAME
+        @Param $2  = the DOCUMENT NAME
+        @Param $3  = the FIELD NAME
+        @Param $4  = the new information you want there
+        TODO LISTENER FOR IF FAIL*/
+    public void changeField(CollectionReference collection, String docName,String fieldName, String updatedInfo){
+//ex)   INVENTORY . "Green Beans" .
+        collection.document(docName).update(
+//ex cont)      "Location" ,  "A260A"
+                fieldName, updatedInfo
         );
 
     }
+
+    /* Creating a method to add entirely a new inventory item with null values    */
+    public void addNewItem(String documentName){
+        Map<String, Object> toAdd = new HashMap<>();
+        toAdd.put("Location", "____");
+        toAdd.put("Quantity", 0);
+        toAdd.put("Threshold", 1);
+        toAdd.put("Type", "____");
+        toAdd.put("item", "____");
+
+        // CONSIDER ADDING ONSUCCESS LISTENER
+        db.collection("Inventory").document(documentName)
+                .set(toAdd);
+
+    }
+
+    public void addNewWorker(String documentName){
+        Map<String, Object> toAdd = new HashMap<>();
+        toAdd.put("First Name", "____");
+        toAdd.put("Last Name", "____");
+        toAdd.put("Contact Number", "____");
+        toAdd.put("Email Address", "____");
+        toAdd.put("WorkerID", 00);
+
+    }
+
+
+
 }
