@@ -34,11 +34,14 @@ import java.util.List;
 public class Master extends AppCompatActivity {
     //I want these to be accessible from EVERYWHERE - Pete    temporary note
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     public CollectionReference INVENTORY = db.collection("Inventory");
-    public DocumentReference green_beans = INVENTORY.document("Green Beans");
     CollectionReference EMPLOYEES = db.collection("Employees");
     ArrayList<DocumentReference> ITEM = new ArrayList<>();
     ArrayList<DocumentReference> EMPLOYEE = new ArrayList<>();
+
+
+    Task<DocumentSnapshot> documentSnapshotTask = db.collection("Inventory").document("Green Beans").get();
 
     String TAG = "TAG";
 
@@ -50,7 +53,8 @@ public class Master extends AppCompatActivity {
         generateInventoryDocuments(INVENTORY);
         generateEmployeeDocuments(EMPLOYEES);
 
-        }
+
+    }
 
     // Delete method, its defined in FireStoreMethods.java
     /*
@@ -103,6 +107,13 @@ public class Master extends AppCompatActivity {
                         }
                     }
                 });
+
+    }
+    public void setLocation(String aString){
+        db.collection("Inventory").document("Green Beans").update(
+                "Location", aString
+
+        );
 
     }
 }

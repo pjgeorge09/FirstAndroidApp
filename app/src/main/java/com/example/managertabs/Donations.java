@@ -15,7 +15,7 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
-public class Donations extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Donations extends Master implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView recyclerView;
     private     RecyclerView.LayoutManager layoutManager;
     private  RecyclerView.Adapter adapter;
@@ -46,6 +46,7 @@ public class Donations extends AppCompatActivity implements NavigationView.OnNav
         recyclerView =(RecyclerView) findViewById(R.id.recycle_donation);
         //generates the test data
         TestData = new ArrayList<>();
+        int length = 0;
         for (int i=0; i<100; i++) {
             TestData.add("Donation" + i);
 

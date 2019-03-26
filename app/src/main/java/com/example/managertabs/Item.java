@@ -1,6 +1,19 @@
 package com.example.managertabs;
 
-public class Item {
+import android.support.annotation.NonNull;
+import android.util.Log;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Item extends Master{
 
     // FIELDS
     private String location;
@@ -8,12 +21,23 @@ public class Item {
     private int threshold;
     private String type;
     private String name;
+    private Map data;
+
+    private Map<String, Object> thisMap = new HashMap<>();
+
+    //private final Task<DocumentSnapshot> documentSnapshotTask = db.collection("Inventory").document("Green Beans").get();
+    String test = documentSnapshotTask.getResult().getString("Location");
 
 
-    // Getters and Setters
+
+
+
+
     public String getLocation(){
-        return location;
+        return documentSnapshotTask.getResult().getString("Location");
     }
+
+
     public int getQuantity() {
         return quantity;
     }
@@ -30,9 +54,7 @@ public class Item {
         return name;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+
 
     public void setName(String name) {
         this.name = name;

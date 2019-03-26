@@ -91,7 +91,15 @@ public class Inventory extends MainActivityManager
         TextView tv = (TextView)findViewById(R.id.textView2);
 
         // Sets the text of textView2 to the item location of Green Beans
-        tv.setText("Hello");
+        tv.setText(documentSnapshotTask.getResult().getString("Location"));
+        //tv.setText(documentSnapshotTask.getResult().get("Threshold").toString());
+        //Item item1 = new Item();
+
+        // SET LOCATION FROM MASTER METHOD, CURRENTLY SET TO GREEN BEANS ONLY, MODIFIABLE
+        setLocation("Pete's Test");
+        // THERE IS A ONE-SCREEN DELAY     TODO
+        //ACTUALLY SETTING THE NEW REFERENCE NAME
+        tv.setText(documentSnapshotTask.getResult().getString("Location"));
 
     }
 
