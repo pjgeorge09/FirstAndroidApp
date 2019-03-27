@@ -17,7 +17,7 @@ public class EmployeeCardView extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.content_employees);
+        setContentView(R.layout.cardview_employees);
         name = (TextView)findViewById(R.id.employee_name);
         email = (TextView)findViewById(R.id.employee_email);
         profilePicture = (ImageView)findViewById(R.id.profile_picture);

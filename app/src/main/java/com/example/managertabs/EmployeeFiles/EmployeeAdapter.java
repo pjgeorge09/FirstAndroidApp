@@ -1,6 +1,5 @@
 package com.example.managertabs.EmployeeFiles;
 
-import android.speech.RecognizerIntent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,7 +43,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
     @Override
     public EmployeeViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.content_employees, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cardview_employees, viewGroup, false);
         EmployeeViewHolder employeeViewHolder = new EmployeeViewHolder(v);
         return employeeViewHolder;
     }

@@ -37,7 +37,7 @@ public class EmployeeActivity extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
 
    private List<Employee> employees;
-   private RecyclerView rv;
+   private RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
 
     /* onCreate method creates the screen */
     @Override
@@ -62,7 +62,7 @@ public class EmployeeActivity extends MainActivityManager
         navigationView.setNavigationItemSelectedListener(this);
 
         // Declares recycler view object and sets size to be fixed
-        rv = (RecyclerView) findViewById(R.id.rv);
+        rv = (RecyclerView)findViewById(R.id.rv);
         rv.setHasFixedSize(true);
 
         // Declares the layout manager for our recycler view

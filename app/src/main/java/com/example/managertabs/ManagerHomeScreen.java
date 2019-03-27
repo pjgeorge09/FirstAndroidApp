@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.managertabs.EmployeeFiles.EmployeeActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
@@ -102,7 +103,7 @@ public class ManagerHomeScreen extends MainActivityManager
         }
         // If STAFF is selected by manager, go to Staff.class
         else if (id == R.id.nav_staff) {
-            Intent intent = new Intent(getApplicationContext(), Staff.class);
+            Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class);
             startActivity(intent);
         }
         // If ______ is selected by manager, go to ______
