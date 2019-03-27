@@ -1,5 +1,6 @@
 package com.example.managertabs;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,13 +8,22 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirestoreRegistrar;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,8 +31,14 @@ import java.util.Map;
 
 import FireStoreMethods.FirestoreMethods;
 
+
 public class Inventory extends MainActivityManager
+
+
+
+
         implements NavigationView.OnNavigationItemSelectedListener {
+
 
     /* onCreate method creates the screen */
     @Override
@@ -48,26 +64,27 @@ public class Inventory extends MainActivityManager
 
 
 
-
         //FOR PETE This line creates a FireStoreMethod object which can be used to call its methods
-        FirestoreMethods getFirestoreMethod = new FirestoreMethods();
+//        FirestoreMethods getFirestoreMethod = new FirestoreMethods();
+
+        //works
+        addNewItem("Spaghettios");
 
         //Initialize the database, it is linked to my android already
         /* FOR BRYAN - We create an item, a map, that can receive ANY object (int, string etc)  */
-        Map<String, Object> item = new HashMap<>();
-
-        // Sample data
-        //TODO make this an inferface
-//        item.put("item", "Green Beans");
-//        item.put("Type", "Can");
-//        item.put("Location", "A101");
-//        item.put("Quantity", 22);
-//        item.put("Threshold", 15);
-
-
-        //Messages = rows in SQL. It's like a set. so maybe another example  "John Temporary"
-//        db.collection("Inventory").document("Green Beans")
-//                .set(item)
+//        Map<String, Object> Soup = new HashMap<>();
+//
+//        // Sample data
+//        //TODO make this an inferface
+//        Soup.put("Type", "Can");
+//        Soup.put("Location", "S5");
+//        Soup.put("Quantity", 300);
+//        Soup.put("Threshold", 100);
+//
+//
+//        //Messages = rows in SQL. It's like a set. so maybe another example  "John Temporary"
+//        db.collection("Inventory").document("Soup")
+//                .set(Soup)
 //                // ON SUCCESS
 //                .addOnSuccessListener(new OnSuccessListener<Void>() {
 //                    @Override
@@ -84,25 +101,42 @@ public class Inventory extends MainActivityManager
 //                });
 
 
+//        public void changeField(CollectionReference collection, String docName,String fieldName, String updatedInfo){
+////ex)   INVENTORY . "Green Beans" .
+//            collection.document(docName).update(
+////ex cont)      "Location" ,  "A260A"
+//                    fieldName, updatedInfo
+//            );
+//        }
+
+        //Works
+        changeField(INVENTORY, "Tomatoes","Location","T117");
+
+
         // Sets aString to the item location of Green Beans
         //String aString = getFirestoreMethod.getItemThreshold("Green Beans");
         // Makes a TextView and sets it to textView2
         // Casting here might be unnecessary?
-        TextView tv = (TextView)findViewById(R.id.textView2);
-
-        // Sets the text of textView2 to the item location of Green Beans
-        tv.setText(documentSnapshotTask.getResult().getString("Location"));
-        //tv.setText(documentSnapshotTask.getResult().get("Threshold").toString());
-        //Item item1 = new Item();
-
-        // SET LOCATION FROM MASTER METHOD, CURRENTLY SET TO GREEN BEANS ONLY, MODIFIABLE
-//        setLocation("Pete's Test");
-        // THERE IS A ONE-SCREEN DELAY     TODO
-        //ACTUALLY SETTING THE NEW REFERENCE NAME
-        tv.setText(documentSnapshotTask.getResult().getString("Location"));
+//        TextView tv = (TextView)findViewById(R.id.textView2);
+//        // Sets the text of textView2 to the item location of Green Beans
+//        tv.setText(documentSnapshotTask.getResult().getString("Location"));
+//        //tv.setText(documentSnapshotTask.getResult().get("Threshold").toString());
+//        //Item item1 = new Item();
+//
+//        // SET LOCATION FROM MASTER METHOD, CURRENTLY SET TO GREEN BEANS ONLY, MODIFIABLE
+////        setLocation("Pete's Test");
+//        // THERE IS A ONE-SCREEN DELAY     TODO
+//        //ACTUALLY SETTING THE NEW REFERENCE NAME
+//        tv.setText(documentSnapshotTask.getResult().getString("Location"));
 
     }
 
+
+    //This works now. Button pulls data. Changes Inventory Screen Name to "Can" or whatever you want from database
+    public void changeName(View view){
+        TextView title = (TextView)findViewById(R.id.textView2);
+        title.setText(documentSnapshotTask.getResult().getString("Type"));
+    }
 
 
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and

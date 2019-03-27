@@ -2,20 +2,29 @@ package com.example.managertabs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
+import android.util.Log;
 import android.view.MenuItem;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 public class Donations extends Master implements NavigationView.OnNavigationItemSelectedListener {
+
+    public ArrayList<QueryDocumentSnapshot> AllDocuments;
+
+
     private RecyclerView recyclerView;
     private     RecyclerView.LayoutManager layoutManager;
     private  RecyclerView.Adapter adapter;
@@ -39,6 +48,25 @@ public class Donations extends Master implements NavigationView.OnNavigationItem
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        //Pete getting an ArrayList of all the documents
+        DONATIONS
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                AllDocuments.add(document);
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
+
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -53,9 +81,9 @@ public class Donations extends Master implements NavigationView.OnNavigationItem
         }
         layoutManager= new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);
-        adapter = new MainAdapter(TestData);
+        adapter = new MainAdapter(AllDocuments);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter );
+        recyclerView.setAdapter(adapter);
         }
 
 

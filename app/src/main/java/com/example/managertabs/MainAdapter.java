@@ -10,13 +10,15 @@ import android.widget.TextView;
 import com.google.firebase.firestore.DocumentReference;
 
 import java.util.ArrayList;
-
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
-    private ArrayList<String> TestData;
-    private ArrayList<DocumentReference> AllDocuments;
-    public MainAdapter(ArrayList<String> testData) {
-        TestData = testData;
+    private ArrayList<QueryDocumentSnapshot> TestData;
+
+    // TODO @Paul what does this do
+    public MainAdapter(ArrayList<QueryDocumentSnapshot> documentSnapshots) {
+        TestData = documentSnapshots;
+
     }
 
 
@@ -28,7 +30,7 @@ public MainAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewtype)
     }
 @Override
 public void onBindViewHolder(MainAdapter.ViewHolder holder, int position){
-holder.Title.setText(TestData.get(position));
+holder.Title.setText("temp");
 }
 
     @Override
@@ -43,6 +45,7 @@ holder.Title.setText(TestData.get(position));
         public ViewHolder(@NonNull View itemView) {
 
             super(itemView);
+
             //text box in row
             Title=itemView.findViewById(R.id.textView16);
 

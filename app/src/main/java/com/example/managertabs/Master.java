@@ -85,7 +85,6 @@ public class Master extends AppCompatActivity {
 //ex cont)      "Location" ,  "A260A"
                 fieldName, updatedInfo
         );
-
     }
 
     /* Creating a method to add entirely a new inventory item with null values    */
@@ -99,7 +98,13 @@ public class Master extends AppCompatActivity {
 
         // CONSIDER ADDING ONSUCCESS LISTENER
         db.collection("Inventory").document(documentName)
-                .set(toAdd);
+                .set(toAdd).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void documentReference) {
+                        Log.d("Firebase data added", "doc w ID :");
+                    }
+
+        });
 
     }
 
@@ -111,6 +116,7 @@ public class Master extends AppCompatActivity {
         toAdd.put("Email Address", "____");
         toAdd.put("WorkerID", 00);
 
+        db.collection("Employees").document(documentName).set(toAdd);
     }
 
 

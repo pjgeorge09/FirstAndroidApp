@@ -15,6 +15,7 @@ import java.util.Map;
 
 public class Item extends Master{
 
+
     // FIELDS
     private String location;
     private int quantity;
@@ -25,18 +26,32 @@ public class Item extends Master{
 
     private Map<String, Object> thisMap = new HashMap<>();
 
-    //private final Task<DocumentSnapshot> documentSnapshotTask = db.collection("Inventory").document("Green Beans").get();
-    String test = documentSnapshotTask.getResult().getString("Location");
 
 
+//    String test = documentSnapshotTask.getResult().getString("Location");
 
-
-
-
-    public String getLocation(){
-        return documentSnapshotTask.getResult().getString("Location");
+    public Item(String location, int quantity, int threshold, String type, String name) {
+        this.location = location;
+        this.quantity = quantity;
+        this.threshold = threshold;
+        this.type = type;
+        this.name = name;
     }
 
+    public Item() {
+    }
+
+// Peter's version
+//    public String getLocation(){
+//        return documentSnapshotTask.getResult().getString("Location");
+//    }
+
+
+    //PREMADE GET SETS SUPPOSEDLY UPDATE IN REAL TIME
+
+    public String getLocation() {
+        return location;
+    }
 
     public int getQuantity() {
         return quantity;
