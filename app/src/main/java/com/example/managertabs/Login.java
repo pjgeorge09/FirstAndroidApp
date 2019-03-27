@@ -1,8 +1,10 @@
 package com.example.managertabs;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
@@ -24,6 +30,7 @@ public class Login extends AppCompatActivity {
     private int counter = 5;
 
     private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
 
 
@@ -33,16 +40,24 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         FirebaseApp.initializeApp(this);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
         Email = (EditText)findViewById(R.id.etEmail1);
         Password = (EditText)findViewById(R.id.etPassword1);
         Login = (Button)findViewById(R.id.btnLogin1);
         Forgot = (TextView)findViewById(R.id.tvForgot);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
 
+        // Checks if a user is already logged in
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        /**
+        if(user != null) {
+            finish();
+            startActivity(new Intent(Login.this, ManagerHomeScreen.class));
+        }
+        */
 
-
+        // When user clicks Login
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +82,7 @@ public class Login extends AppCompatActivity {
      */
     private void validate(String userEmail, String userPassword) {
         //manager, manager goes to manager tab
+        /*
         if(userEmail.equals("manager") && userPassword.equals("manager")) {
             Intent intent = new Intent(com.example.managertabs.Login.this, ManagerHomeScreen.class);
             startActivity(intent);
@@ -77,7 +93,63 @@ public class Login extends AppCompatActivity {
             Intent intent1 = new Intent(com.example.managertabs.Login.this, WorkerHomeScreen.class);
             startActivity(intent1);
         }
+        */
+        progressDialog.setMessage("WORKING ON IT!");
+        progressDialog.show();
+
+        firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    progressDialog.dismiss();
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    String userID = user.getUid();
+                    // UID FOR MANAGER SEND TO MANAGER SCREEN
+                    if(userID.equals("O5bFoKnVsdMaDhc6DgOYKs2IxHL2")) {
+                        startActivity(new Intent(Login.this, ManagerHomeScreen.class));
+                    }
+                    // SEND TO EMPLOYEE
+                    else {
+                        startActivity(new Intent(Login.this, WorkerHomeScreen.class));
+                    }
+                }
+                else {
+                    counter--;
+                    progressDialog.dismiss();
+
+                    //Setting for Toast notification
+                    Context context = getApplicationContext();
+                    CharSequence numberOfIncorrect = "Number of attempts remaining: " + String.valueOf(counter);
+                    int duration = Toast.LENGTH_SHORT;
+
+                    //Implication of toast
+                    Toast.makeText(context, numberOfIncorrect, duration).show();
+
+                    //If use of all login
+                    if(counter == 0) {
+
+                        //Setting for toast notification for too many attempts
+                        Context context1 = getApplicationContext();
+                        CharSequence tooManyAttempts = "Too many incorrect attempts";
+                        int duration1 = Toast.LENGTH_SHORT;
+
+                        Toast.makeText(context1, tooManyAttempts, duration1).show();
+
+                        Login.setEnabled(false);
+                        Login.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Login.setEnabled(true);
+                            }
+                        }, 5000);
+
+                        counter = 5;
+                    }
+                }
+            }
+        });
         //counter for wrong attempts
+        /**
         else {
             counter--;
 
@@ -110,6 +182,7 @@ public class Login extends AppCompatActivity {
                 counter = 5;
             }
         }
+        */
     }
 
     /*
