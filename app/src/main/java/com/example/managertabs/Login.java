@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
 
@@ -22,6 +23,8 @@ public class Login extends AppCompatActivity {
     private TextView Forgot;
     private int counter = 5;
 
+    private FirebaseAuth firebaseAuth;
+
 
 
     @Override
@@ -30,10 +33,14 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         FirebaseApp.initializeApp(this);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         Email = (EditText)findViewById(R.id.etEmail1);
         Password = (EditText)findViewById(R.id.etPassword1);
         Login = (Button)findViewById(R.id.btnLogin1);
         Forgot = (TextView)findViewById(R.id.tvForgot);
+
+
 
 
         Login.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +117,7 @@ public class Login extends AppCompatActivity {
         Will link to SQL later
      */
     public void pressForgot(View v) {
-        Intent intent = new Intent(com.example.managertabs.Login.this, WorkerHomeScreen.class);
+        Intent intent = new Intent(com.example.managertabs.Login.this, ForgotPassword.class);
         startActivity(intent);
     }
 
