@@ -42,11 +42,12 @@ public class Master extends AppCompatActivity {
     public CollectionReference EMPLOYEES = db.collection("Employees");
     public CollectionReference OTHER = db.collection("Other");
 
-    Task<DocumentSnapshot> documentSnapshotTask = db.collection("Inventory").document("Green Beans").get();
-    //This one should be a constant field that gets updated.
-    Task<DocumentSnapshot> memoSnapshot = db.collection("Other").document("Message").get();
+        //THESE TASKS ARE ASSHOLES DO NOT USE THEM
+//    Task<DocumentSnapshot> documentSnapshotTask = db.collection("Inventory").document("Green Beans").get();
+//    //This one should be a constant field that gets updated.
+//    Task<DocumentSnapshot> memoSnapshot = db.collection("Other").document("Message").get() ;
     String TAG = "TAG";
-
+    final DocumentReference messageDocRef = OTHER.document("Message");
     //TODO Create ITEM class, create Array of ITEMS
 
     protected void onCreate(Bundle savedInstanceState) {

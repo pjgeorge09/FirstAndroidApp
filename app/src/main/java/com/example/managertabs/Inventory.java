@@ -1,6 +1,5 @@
 package com.example.managertabs;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,28 +7,17 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirestoreRegistrar;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import FireStoreMethods.FirestoreMethods;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Transaction;
 
 
 public class Inventory extends MainActivityManager
@@ -38,7 +26,7 @@ public class Inventory extends MainActivityManager
 
 
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    Item item = new Item();
 
     /* onCreate method creates the screen */
     @Override
@@ -108,9 +96,31 @@ public class Inventory extends MainActivityManager
 //                    fieldName, updatedInfo
 //            );
 //        }
-
+//        final Item item = new Item();
         //Works
         changeField(INVENTORY, "Tomatoes","Location","T117");
+
+        // TODO THIS IS THE WORKING THING. THE METHOD. tHIS TRANSACTION WILL BE OUR GETTERS
+        db.runTransaction(new Transaction.Function<String>(){
+            @Override
+            public String apply(Transaction transaction) throws FirebaseFirestoreException{
+                DocumentSnapshot snapshot = transaction.get(messageDocRef);
+                String newPop = snapshot.getString("Memo");
+                item.setName(newPop); //todo THIS IS A PRE INIT OBJECT
+                return newPop;
+            }
+        }).addOnSuccessListener(new OnSuccessListener<String>() {
+                                    @Override
+                                    public void onSuccess(String s) {
+                                        Log.d("Dick","Ass");
+                                    }
+                                }
+        ).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("string","string2");
+            }
+        });
 
 
         // Sets aString to the item location of Green Beans
@@ -135,7 +145,8 @@ public class Inventory extends MainActivityManager
     //This works now. Button pulls data. Changes Inventory Screen Name to "Can" or whatever you want from database
     public void changeName(View view){
         TextView title = (TextView)findViewById(R.id.textView2);
-        title.setText(documentSnapshotTask.getResult().getString("Type"));
+//        title.setText(documentSnapshotTask.getResult().getString("Type"));
+        title.setText(item.getName());
     }
 
 

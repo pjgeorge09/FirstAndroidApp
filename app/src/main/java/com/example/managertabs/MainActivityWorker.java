@@ -35,7 +35,7 @@ public class MainActivityWorker extends Master {
         else {
             Intent intent = new Intent(getApplicationContext(), WorkerHomeScreen.class);
             startActivity(intent);
-            //super.onBackPressed();
+//            super.onBackPressed();
         }
     }
 

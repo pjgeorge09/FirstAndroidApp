@@ -19,6 +19,8 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Transaction;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -38,6 +40,7 @@ public class ManagerHomeScreen extends MainActivityManager
 
         implements NavigationView.OnNavigationItemSelectedListener {
 
+     Other memo = new Other();
     // NEEDED DOCUMENTS HERE
     // Create snapshot to get text from the database
     //Task<DocumentSnapshot> messageSnapshot = OTHER.document("Message").get();
@@ -53,7 +56,8 @@ public class ManagerHomeScreen extends MainActivityManager
         // Creates the toolbar at the top of the screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        String memoString = memoSnapshot.getResult().getString("Memo");
+//        String memoString = memoSnapshot.getResult().getString("Memo");
+
         // Sets the navigation drawer to still be accessible by the toolbar button. This is the sliding part
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -67,8 +71,38 @@ public class ManagerHomeScreen extends MainActivityManager
 
         // OnScreenCreate, set the content of the Manager Home Screen to the contents currently in the database (FOR WORKER TOO)
         TextView textView = (TextView)findViewById(R.id.memoBox);
+
+
+        db.runTransaction(new Transaction.Function<String>(){
+            @Override
+            public String apply(Transaction transaction) throws FirebaseFirestoreException {
+                DocumentSnapshot snapshot = transaction.get(messageDocRef);
+                String newPop = snapshot.getString("Memo");
+                memo.setMessage(newPop); //todo THIS IS A PRE INIT OBJECT
+                return newPop;
+            }
+        }).addOnSuccessListener(new OnSuccessListener<String>() {
+                                    @Override
+                                    public void onSuccess(String s) {
+                                        Log.d("6","6");
+                                    }
+                                }
+        ).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("string","string2");
+            }
+        });
+
+
+
+
+
+
+
+
         // update to the current memo
-        textView.setText(memoString);
+        textView.setText(memo.getMessage());
 
 
 
@@ -91,7 +125,7 @@ public class ManagerHomeScreen extends MainActivityManager
             // The below code clears the stack so the activity cannot be reached. (Security bug cleared) (I.E. ERASE STACK MEMORY)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            //super.onBackPressed();
+//            super.onBackPressed();
         }
     }
 

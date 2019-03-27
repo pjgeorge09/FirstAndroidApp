@@ -26,7 +26,7 @@ public class WorkerHomeScreen extends MainActivityWorker
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String memoString = memoSnapshot.getResult().getString("Memo");
+//        String memoString = memoSnapshot.getResult().getString("Memo");
 
         // Sets the navigation drawer to still be accessible by the toolbar button. This is the sliding part
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -40,7 +40,7 @@ public class WorkerHomeScreen extends MainActivityWorker
         navigationView.setNavigationItemSelectedListener(this);
 
         TextView textView = (TextView)findViewById(R.id.memoWorker);
-        textView.setText(memoString);
+//        textView.setText(memoString);
 
     }
 

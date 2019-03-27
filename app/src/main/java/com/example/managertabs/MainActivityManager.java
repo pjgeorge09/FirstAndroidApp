@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.api.Context;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivityManager extends Master {
@@ -16,7 +18,6 @@ public class MainActivityManager extends Master {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
     }
 
     /* Sets the back button to revert to the last screen. In the case that the drawer is open, it simply closes the drawer instead. */
@@ -34,7 +35,7 @@ public class MainActivityManager extends Master {
             Intent intent = new Intent(getApplicationContext(), ManagerHomeScreen.class);
             finish();
             startActivity(intent);
-            //super.onBackPressed();
+//            super.onBackPressed();
         }
     }
 
