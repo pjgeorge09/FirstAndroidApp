@@ -24,7 +24,7 @@
             android:label="@string/title_activity_worker_inventory"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Staff"
+            android:name=".EmployeeFiles.EmployeeActivity"
             android:label="@string/title_activity_staff"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

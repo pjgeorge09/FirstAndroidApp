@@ -1,6 +1,8 @@
-package com.example.managertabs;
+package com.example.managertabs.EmployeeFiles;
 
 import android.graphics.drawable.Drawable;
+
+import com.example.managertabs.Master;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import java.util.HashMap;
@@ -18,12 +20,12 @@ public class Employee extends Master {
     private String password;
     private int securityQuestions;
     private String securityAnswer;
-    private Drawable profilePicture;
+    private int profilePicture;
 
     // Default constructor
     public Employee(int uid, String firstName, String lastName, String emailAddress,
                     String homeAddress, String birthDate, String password, int securityQuestions,
-                    String securityAnswer, Drawable profilePicture){
+                    String securityAnswer, int profilePicture){
 
         this.uid = uid;
         this.firstName = firstName;
@@ -37,6 +39,14 @@ public class Employee extends Master {
         this.profilePicture = profilePicture;
     }
 
+ // TEST CONSTRUCTOR
+    public Employee(String firstName, String lastName, String emailAddress, int profilePicture){
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.profilePicture = profilePicture;
+    }
 
        /* This method changes a FIELD.
         @Param $1  = the COLLECTION NAME
@@ -118,7 +128,7 @@ public class Employee extends Master {
         return this.securityAnswer;
     }
 
-    public Drawable getProfilePicture(){
+    public int getProfilePicture(){
         return this.profilePicture;
     }
 
@@ -159,7 +169,7 @@ public class Employee extends Master {
         this.securityAnswer = securityAnswer;
     }
 
-    public void setProfilePicture(Drawable profilePicture){
+    public void setProfilePicture(int profilePicture){
         this.profilePicture = profilePicture;
     }
 }
