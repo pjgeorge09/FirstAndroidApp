@@ -40,7 +40,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
-        TextView Date;
+           TextView Date;
         TextView Item;
         TextView Quantity;
         TextView Size;
