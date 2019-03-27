@@ -1,19 +1,18 @@
 package com.example.managertabs;
-
+// object for the Donations DAta
 public class Donations_Data {
     private String Date;
     private String Item;
-    private String Quantity;
+    private int Quantity;
     private String Size;
 
-    public Donations_Data() {
-    }
 
-    public Donations_Data(String date, String item, String quantity, String size) {
-        Date = date;
-        Item = item;
-        Quantity = quantity;
-        Size = size;
+
+    public Donations_Data(String date, String item, int quantity, String size) {
+        this.Date = date;
+        this.Item = item;
+        this.Quantity = quantity;
+        this.Size = size;
     }
 
     public String getDate() {
@@ -32,11 +31,11 @@ public class Donations_Data {
         Item = item;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return Quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         Quantity = quantity;
     }
 

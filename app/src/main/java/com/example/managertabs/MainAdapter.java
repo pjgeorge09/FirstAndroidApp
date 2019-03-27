@@ -1,6 +1,7 @@
 package com.example.managertabs;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,38 +12,47 @@ import java.util.ArrayList;
 
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
-    private ArrayList<String> TestData;
-
-    public MainAdapter(ArrayList<String> testData) {
-        TestData = testData;
+    ArrayList<Donations_Data> testdata;
+    public MainAdapter(ArrayList<Donations_Data> testData) {
+        this.testdata = testData;
     }
 
-
+//Creates Custom ViewHolder
     @Override
-public MainAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewtype){
-//row
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false);
-        return new ViewHolder(v);
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view, viewGroup, false);
+        ViewHolder pvh = new ViewHolder(v);
+        return pvh;
     }
-@Override
-public void onBindViewHolder(MainAdapter.ViewHolder holder, int position){
-holder.Title.setText(TestData.get(position));
-}
+    //specify contents of each item
+    @Override
+    public void onBindViewHolder(MainAdapter.ViewHolder holder, int position){
+        holder.Title.setText(TestData.get(position));
+        ViewHolder.Date.setText(testdata.get(position).Date);
+    }
 
     @Override
     public int getItemCount() {
         //number of data values
-        return TestData.size();
+        return testdata.size();
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView Title;
+        CardView cardView;
+        TextView Date;
+        TextView Item;
+        TextView Quantity;
+        TextView Size;
         public ViewHolder(@NonNull View itemView) {
-
             super(itemView);
             //text box in row
-            Title=itemView.findViewById(R.id.textView16);
+            cardView = (CardView)itemView.findViewById(R.id.CV_donation);
+            Date= (TextView)itemView.findViewById(R.id.Date);
+            Item= (TextView)itemView.findViewById(R.id.Item);
+            Quantity= (TextView)itemView.findViewById(R.id.Quantity);
+            Size= (TextView)itemView.findViewById(R.id.Size);
+
 
         }
     }
