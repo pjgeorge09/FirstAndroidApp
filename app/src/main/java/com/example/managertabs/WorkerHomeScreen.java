@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class WorkerHomeScreen extends MainActivityWorker
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +26,8 @@ public class WorkerHomeScreen extends MainActivityWorker
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        String memoString = memoSnapshot.getResult().getString("Memo");
+
         // Sets the navigation drawer to still be accessible by the toolbar button. This is the sliding part
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -35,6 +38,10 @@ public class WorkerHomeScreen extends MainActivityWorker
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        TextView textView = (TextView)findViewById(R.id.memoWorker);
+        textView.setText(memoString);
+
     }
 
     /* Sets the back button to revert to the last screen. In the case that the drawer is open, it simply closes the drawer instead. */

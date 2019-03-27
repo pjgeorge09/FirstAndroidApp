@@ -40,10 +40,11 @@ public class Master extends AppCompatActivity {
     public CollectionReference INVENTORY = db.collection("Inventory");
     public CollectionReference DONATIONS = db.collection("Donations");
     public CollectionReference EMPLOYEES = db.collection("Employees");
-//    public CollectionReference INVENTORY = db.collection("Inventory");
+    public CollectionReference OTHER = db.collection("Other");
 
     Task<DocumentSnapshot> documentSnapshotTask = db.collection("Inventory").document("Green Beans").get();
-
+    //This one should be a constant field that gets updated.
+    Task<DocumentSnapshot> memoSnapshot = db.collection("Other").document("Message").get();
     String TAG = "TAG";
 
     //TODO Create ITEM class, create Array of ITEMS

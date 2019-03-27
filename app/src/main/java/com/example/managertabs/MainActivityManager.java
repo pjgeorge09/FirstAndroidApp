@@ -23,13 +23,16 @@ public class MainActivityManager extends Master {
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         // If drawer (tabs) are open, close them
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
+
         // If drawer (tabs) are closed, revert to last activity via super.onBackPressed method
         else {
             Intent intent = new Intent(getApplicationContext(), ManagerHomeScreen.class);
+            finish();
             startActivity(intent);
             //super.onBackPressed();
         }

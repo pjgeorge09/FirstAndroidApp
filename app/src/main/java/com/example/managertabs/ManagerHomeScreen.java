@@ -14,8 +14,10 @@ import android.view.MenuItem;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.nio.charset.StandardCharsets;
@@ -25,11 +27,21 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class ManagerHomeScreen extends MainActivityManager
 
 
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    // NEEDED DOCUMENTS HERE
+    // Create snapshot to get text from the database
+    //Task<DocumentSnapshot> messageSnapshot = OTHER.document("Message").get();
+
 
     /* onCreate method creates the screen */
     @Override
@@ -41,7 +53,7 @@ public class ManagerHomeScreen extends MainActivityManager
         // Creates the toolbar at the top of the screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        String memoString = memoSnapshot.getResult().getString("Memo");
         // Sets the navigation drawer to still be accessible by the toolbar button. This is the sliding part
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -52,6 +64,11 @@ public class ManagerHomeScreen extends MainActivityManager
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // OnScreenCreate, set the content of the Manager Home Screen to the contents currently in the database (FOR WORKER TOO)
+        TextView textView = (TextView)findViewById(R.id.memoBox);
+        // update to the current memo
+        textView.setText(memoString);
 
 
 
@@ -118,4 +135,18 @@ public class ManagerHomeScreen extends MainActivityManager
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    /* A method to update in the database what the memo should be set to */
+    public void updateMemo(View view){
+
+        //Pull the TextView object from content_manager_home.xml
+       //TextView textView = (TextView)findViewById(R.id.memoBox);
+        EditText editText = (EditText)findViewById(R.id.memoBox);
+        // Must convert from Object --> String
+        String memo = editText.getText().toString();
+        // Master changeField method updates this field (PERMANENT NAME / FIELD POINTER)
+        changeField(OTHER, "Message","Memo", memo);
+        // DO NOT UPDATE SCREEN, will try to pull and push to database at same time = error crash
+    }
+
 }
