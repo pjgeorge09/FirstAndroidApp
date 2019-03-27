@@ -47,13 +47,14 @@ public class Donations extends AppCompatActivity implements NavigationView.OnNav
 // REcycle STUFf
         recyclerView =(RecyclerView) findViewById(R.id.recycle_donation);
         //generates the test data
-        TestData = new ArrayList<>();
+       /* TestData = new ArrayList<>();
         for (int i=0; i<100; i++) {
             TestData.add("Donation" + i);
 
-        }
+        }*/
+       //Test data cardView
         ProperData = new ArrayList<>();
-        for(int i=0; i<25; i++){
+        for(int i=0; i<5; i++){
             ProperData.add(new Donations_Data("03/22/1901","Beans",500, "Small"));
             ProperData.add(new Donations_Data("03/21/1904","Peas",500, "Medium"));
             ProperData.add(new Donations_Data("03/13/1903","Green Peas",500, "Large"));
