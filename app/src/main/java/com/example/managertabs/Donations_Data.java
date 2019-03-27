@@ -1,10 +1,10 @@
 package com.example.managertabs;
 // object for the Donations DAta
 public class Donations_Data {
-    private String Date;
-    private String Item;
-    private int Quantity;
-    private String Size;
+    String Date;
+    String Item;
+    int Quantity;
+    String Size;
 
 
 

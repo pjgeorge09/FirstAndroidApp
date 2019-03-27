@@ -27,8 +27,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     //specify contents of each item
     @Override
     public void onBindViewHolder(MainAdapter.ViewHolder holder, int position){
-        holder.Title.setText(TestData.get(position));
-        ViewHolder.Date.setText(testdata.get(position).Date);
+      //  holder.Title.setText(TestData.get(position));
+        holder.Date.setText(testdata.get(position).Date);
+        holder.Item.setText(testdata.get(position).Item);
+        holder.Quantity.setText(testdata.get(position).Quantity);
+        holder.Size.setText(testdata.get(position).Size);
+
     }
 
     @Override
@@ -38,15 +42,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
-           TextView Date;
+        TextView Date;
         TextView Item;
         TextView Quantity;
         TextView Size;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            //text box in row
+            //text box in row   
             cardView = (CardView)itemView.findViewById(R.id.CV_donation);
             Date= (TextView)itemView.findViewById(R.id.Date);
             Item= (TextView)itemView.findViewById(R.id.Item);
