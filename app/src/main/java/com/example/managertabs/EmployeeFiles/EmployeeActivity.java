@@ -33,11 +33,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EmployeeActivity extends MainActivityManager
+public class EmployeeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
    private List<Employee> employees;
-   private RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
+   private RecyclerView rv;
+   private EmployeeAdapter employeeAdapter;
 
     /* onCreate method creates the screen */
     @Override
@@ -62,7 +63,7 @@ public class EmployeeActivity extends MainActivityManager
         navigationView.setNavigationItemSelectedListener(this);
 
         // Declares recycler view object and sets size to be fixed
-        rv = (RecyclerView)findViewById(R.id.rv);
+        rv = (RecyclerView) findViewById(R.id.rv);
         rv.setHasFixedSize(true);
 
         // Declares the layout manager for our recycler view
@@ -72,7 +73,10 @@ public class EmployeeActivity extends MainActivityManager
 
         // Initializes data as well as our adapter
         initializeData();
-        initializeAdapter();
+
+        employeeAdapter = new EmployeeAdapter(employees);
+
+        rv.setAdapter(employeeAdapter);
 
     }
 
@@ -89,10 +93,6 @@ public class EmployeeActivity extends MainActivityManager
                     R.drawable.girl1));
         }
 
-        private void initializeAdapter() {
-        EmployeeAdapter adapter = new EmployeeAdapter(employees);
-        rv.setAdapter(adapter);
-        }
 
 
 

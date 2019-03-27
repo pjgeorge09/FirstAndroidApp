@@ -8,6 +8,44 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_picture"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/employee_name"
+                android:layout_toRightOf="@+id/profile_picture"
+                android:layout_alignParentTop="true"
+                android:textSize="30sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/employee_email"
+                android:layout_toRightOf="@+id/profile_picture"
+                android:layout_below="@+id/employee_name"
+                />
+
+        </RelativeLayout>
+
+    <include
+        layout="@layout/content_employees"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <include
         layout="@layout/cardview_employees"
         android:layout_width="match_parent"
