@@ -17,10 +17,12 @@ import java.util.ArrayList;
 
 public class Donations extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView recyclerView;
-    private     RecyclerView.LayoutManager layoutManager;
-    private  RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter adapter;
     //test data
     private ArrayList<String> TestData;
+    //Formal Test Data wtih Object
+    ArrayList<>
     /* onCreate method creates the screen */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,7 @@ public class Donations extends AppCompatActivity implements NavigationView.OnNav
         recyclerView.setHasFixedSize(false);
         adapter = new MainAdapter(TestData);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter );
+        recyclerView.setAdapter(adapter);
         }
 
 
