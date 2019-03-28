@@ -6,17 +6,15 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.managertabs.MainActivityWorker;
 import com.example.managertabs.R;
 import com.example.managertabs.WorkerHomeScreen;
-import com.example.managertabs.WorkerInventory;
+import com.example.managertabs.Inventory.WorkerInventory;
 
 import java.util.ArrayList;
 import java.util.List;

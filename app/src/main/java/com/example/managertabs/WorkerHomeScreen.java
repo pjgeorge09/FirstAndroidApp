@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.managertabs.Donation.WorkerDonations;
+import com.example.managertabs.Inventory.WorkerInventory;
 
 public class WorkerHomeScreen extends MainActivityWorker
         implements NavigationView.OnNavigationItemSelectedListener {

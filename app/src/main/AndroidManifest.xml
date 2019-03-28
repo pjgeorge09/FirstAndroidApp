@@ -20,7 +20,7 @@
             android:label="@string/title_activity_worker_donations"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".WorkerInventory"
+            android:name=".Inventory.WorkerInventory"
             android:label="@string/title_activity_worker_inventory"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -36,7 +36,7 @@
             android:label="@string/title_activity_donations"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Inventory"
+            android:name=".Inventory.Inventory"
             android:label="@string/title_activity_manager_inventory"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

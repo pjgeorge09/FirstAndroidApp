@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.managertabs.Donation.WorkerDonations;
+import com.example.managertabs.Inventory.WorkerInventory;
 
 public class MainActivityWorker extends AppCompatActivity {
 

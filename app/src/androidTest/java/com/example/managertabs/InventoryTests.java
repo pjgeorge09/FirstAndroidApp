@@ -7,6 +7,7 @@ package com.example.managertabs;
         import android.view.Gravity;
 
         import com.example.managertabs.Donation.DonationsActivity;
+        import com.example.managertabs.Inventory.Inventory;
 
         import org.junit.Rule;
         import org.junit.runner.RunWith;

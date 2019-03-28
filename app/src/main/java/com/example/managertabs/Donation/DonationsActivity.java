@@ -11,10 +11,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import com.example.managertabs.Donors;
-import com.example.managertabs.Inventory;
+import com.example.managertabs.Inventory.Inventory;
 import com.example.managertabs.ManagerHomeScreen;
 import com.example.managertabs.R;
 import com.example.managertabs.Staff;

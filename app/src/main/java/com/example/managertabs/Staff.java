@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.example.managertabs.Donation.DonationsActivity;
+import com.example.managertabs.Inventory.Inventory;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;

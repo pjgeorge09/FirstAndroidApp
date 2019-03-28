@@ -1,4 +1,4 @@
-package com.example.managertabs;
+package com.example.managertabs.Inventory;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.managertabs.Donation.DonationsActivity;
+import com.example.managertabs.Donors;
+import com.example.managertabs.MainActivityManager;
+import com.example.managertabs.ManagerHomeScreen;
+import com.example.managertabs.R;
+import com.example.managertabs.Staff;
 
 public class Inventory extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
