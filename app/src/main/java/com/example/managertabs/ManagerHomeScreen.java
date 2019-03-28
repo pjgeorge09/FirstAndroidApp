@@ -2,19 +2,26 @@ package com.example.managertabs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Transaction;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -24,12 +31,24 @@ import java.util.HashMap;
 import java.util.Map;
 import android.view.MenuItem;
 import com.example.managertabs.Donation.DonationsActivity;
-import com.example.managertabs.Inventory.Inventory;
+import com.example.managertabs.Inventory;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class ManagerHomeScreen extends MainActivityManager
 
 
         implements NavigationView.OnNavigationItemSelectedListener {
+
+     Other memo = new Other();
+     TextView textView;
+    // NEEDED DOCUMENTS HERE
+    // Create snapshot to get text from the database
+    //Task<DocumentSnapshot> messageSnapshot = OTHER.document("Message").get();
+
 
     /* onCreate method creates the screen */
     @Override
@@ -41,6 +60,7 @@ public class ManagerHomeScreen extends MainActivityManager
         // Creates the toolbar at the top of the screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+//        String memoString = memoSnapshot.getResult().getString("Memo");
 
         // Sets the navigation drawer to still be accessible by the toolbar button. This is the sliding part
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -52,6 +72,57 @@ public class ManagerHomeScreen extends MainActivityManager
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // OnScreenCreate, set the content of the Manager Home Screen to the contents currently in the database (FOR WORKER TOO)
+        textView = (TextView)findViewById(R.id.memoBox);
+
+
+        db.runTransaction(new Transaction.Function<String>(){
+            @Override
+            public String apply(Transaction transaction) throws FirebaseFirestoreException {
+                DocumentSnapshot snapshot = transaction.get(messageDocRef);
+                String newPop = snapshot.getString("Memo");
+                memo.setMemo(snapshot.getString("Memo"));
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //update textview here
+                        textView.setText(memo.getMemo());
+                    }
+                },1000);
+//                memo.setMessage(newPop); //todo THIS IS A PRE INIT OBJECT
+                return newPop;
+            }
+        }).addOnSuccessListener(new OnSuccessListener<String>() {
+                                    @Override
+                                    public void onSuccess(String s) {
+                                        Log.d("6","6");
+                                    }
+                                }
+        ).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("string","string2");
+            }
+        });
+
+        //777777
+
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //update textview here
+                textView.setText(memo.getMemo());
+            }
+        },1000);
+
+
+
+
+        // update to the current memo
+
 
 
 
@@ -74,7 +145,7 @@ public class ManagerHomeScreen extends MainActivityManager
             // The below code clears the stack so the activity cannot be reached. (Security bug cleared) (I.E. ERASE STACK MEMORY)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            //super.onBackPressed();
+//            super.onBackPressed();
         }
     }
 
@@ -118,4 +189,18 @@ public class ManagerHomeScreen extends MainActivityManager
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    /* A method to update in the database what the memo should be set to */
+    public void updateMemo(View view){
+
+        //Pull the TextView object from content_manager_home.xml
+       //TextView textView = (TextView)findViewById(R.id.memoBox);
+        EditText editText = (EditText)findViewById(R.id.memoBox);
+        // Must convert from Object --> String
+        String memo = editText.getText().toString();
+        // Master changeField method updates this field (PERMANENT NAME / FIELD POINTER)
+        changeField(OTHER, "Message","Memo", memo);
+        // DO NOT UPDATE SCREEN, will try to pull and push to database at same time = error crash
+    }
+
 }

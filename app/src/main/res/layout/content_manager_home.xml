@@ -8,14 +8,28 @@
     tools:context=".ManagerHomeScreen"
     tools:showIn="@layout/activity_manager_home">
 
-    <TextView
-        android:id="@+id/textView16"
+    <EditText
+        android:id="@+id/memoBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
         android:text="MANAGER LAYOUT\n \n \n What kind of info\nshould we put here?\nMaybe memos, etc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/UpdateMemo"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="updateMemo"
+        android:text="Update"
+        app:layout_constraintEnd_toStartOf="@+id/memoBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/memoBox" />
 
 </android.support.constraint.ConstraintLayout>

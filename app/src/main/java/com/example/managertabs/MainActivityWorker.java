@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.example.managertabs.Donation.WorkerDonations;
-import com.example.managertabs.Inventory.WorkerInventory;
+import com.example.managertabs.WorkerInventory;
 
 public class MainActivityWorker extends Master {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -33,7 +33,7 @@ public class MainActivityWorker extends Master {
         else {
             Intent intent = new Intent(getApplicationContext(), WorkerHomeScreen.class);
             startActivity(intent);
-            //super.onBackPressed();
+//            super.onBackPressed();
         }
     }
 

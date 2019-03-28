@@ -37,23 +37,24 @@ public class Master extends AppCompatActivity {
     //I want these to be accessible from EVERYWHERE - Pete    temporary note
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
     /*---------------------COLLECTION DECLARATIONS-----------------*/
-    public CollectionReference INVENTORY = db.collection("Inventory");
+    public final CollectionReference INVENTORY = db.collection("Inventory");
     public CollectionReference DONATIONS = db.collection("Donations");
     public CollectionReference EMPLOYEES = db.collection("Employees");
-//    public CollectionReference INVENTORY = db.collection("Inventory");
+    public CollectionReference OTHER = db.collection("Other");
 
-    Task<DocumentSnapshot> documentSnapshotTask = db.collection("Inventory").document("Green Beans").get();
-
+        //THESE TASKS ARE ASSHOLES DO NOT USE THEM
+//    Task<DocumentSnapshot> documentSnapshotTask = db.collection("Inventory").document("Green Beans").get();
+//    //This one should be a constant field that gets updated.
+//    Task<DocumentSnapshot> memoSnapshot = db.collection("Other").document("Message").get() ;
     String TAG = "TAG";
+    final DocumentReference messageDocRef = OTHER.document("Message");
+
 
     //TODO Create ITEM class, create Array of ITEMS
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);
-
-
-
     }
 
     // Delete method, its defined in FireStoreMethods.java
@@ -85,7 +86,6 @@ public class Master extends AppCompatActivity {
 //ex cont)      "Location" ,  "A260A"
                 fieldName, updatedInfo
         );
-
     }
 
     /* Creating a method to add entirely a new inventory item with null values    */
@@ -99,7 +99,13 @@ public class Master extends AppCompatActivity {
 
         // CONSIDER ADDING ONSUCCESS LISTENER
         db.collection("Inventory").document(documentName)
-                .set(toAdd);
+                .set(toAdd).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void documentReference) {
+                        Log.d("Firebase data added", "doc w ID :");
+                    }
+
+        });
 
     }
 
@@ -111,6 +117,7 @@ public class Master extends AppCompatActivity {
         toAdd.put("Email Address", "____");
         toAdd.put("WorkerID", 00);
 
+        db.collection("Employees").document(documentName).set(toAdd);
     }
 
 

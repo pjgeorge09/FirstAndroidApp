@@ -4,16 +4,25 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Transaction;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Item extends Master{
+
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     // FIELDS
     private String location;
@@ -25,16 +34,32 @@ public class Item extends Master{
 
     private Map<String, Object> thisMap = new HashMap<>();
 
-    //private final Task<DocumentSnapshot> documentSnapshotTask = db.collection("Inventory").document("Green Beans").get();
-    String test = documentSnapshotTask.getResult().getString("Location");
 
 
+//    String test = documentSnapshotTask.getResult().getString("Location");
+
+    public Item(String location, int quantity, int threshold, String type, String name) {
+        this.location = location;
+        this.quantity = quantity;
+        this.threshold = threshold;
+        this.type = type;
+        this.name = name;
+    }
+
+    public Item() {
+    }
+
+// Peter's version
+//    public String getLocation(){
+//        return documentSnapshotTask.getResult().getString("Location");
+//    }
 
 
+    //PREMADE GET SETS SUPPOSEDLY UPDATE IN REAL TIME
 
+    public String getLocation() {
 
-    public String getLocation(){
-        return documentSnapshotTask.getResult().getString("Location");
+        return location;
     }
 
 

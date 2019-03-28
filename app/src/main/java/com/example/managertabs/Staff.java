@@ -14,8 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.managertabs.Donation.Donation;
 import com.example.managertabs.Donation.DonationsActivity;
-import com.example.managertabs.Inventory.Inventory;
+import com.example.managertabs.Inventory;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -123,16 +124,19 @@ public class Staff extends MainActivityManager
         // If INVENTORY is selected by manager, go to Inventory.class
         if (id == R.id.nav_inventory) {
             Intent intent = new Intent(getApplicationContext(), Inventory.class);
+            finish();
             startActivity(intent);
         }
         // If DONATIONS is selected by manager, go to DonationsActivity.class
         else if (id == R.id.nav_donations) {
-            Intent intent = new Intent(getApplicationContext(), DonationsActivity.class);
+            Intent intent = new Intent(getApplicationContext(), Donation.class);
+            finish();
             startActivity(intent);
         }
         // If DONORS is selected by manager, Donors.class
         else if (id == R.id.nav_donors) {
             Intent intent = new Intent(getApplicationContext(), Donors.class);
+            finish();
             startActivity(intent);
         }
         // If STAFF is selected by manager, go to Staff.class
@@ -145,6 +149,7 @@ public class Staff extends MainActivityManager
         // If home is selected by manager, go to home
         else if (id == R.id.nav_home) {
             Intent intent = new Intent(getApplicationContext(), ManagerHomeScreen.class);
+            finish();
             startActivity(intent);
         }
 

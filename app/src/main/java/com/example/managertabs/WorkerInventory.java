@@ -1,4 +1,4 @@
-package com.example.managertabs.Inventory;
+package com.example.managertabs;
 
 import android.content.Intent;
 import android.os.Bundle;

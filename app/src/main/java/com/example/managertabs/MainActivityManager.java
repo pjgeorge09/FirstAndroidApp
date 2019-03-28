@@ -9,31 +9,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
+import com.google.api.Context;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.example.managertabs.Donation.DonationsActivity;
-import com.example.managertabs.Inventory.Inventory;
+import com.example.managertabs.Inventory;
 
 public class MainActivityManager extends Master {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
     }
 
     /* Sets the back button to revert to the last screen. In the case that the drawer is open, it simply closes the drawer instead. */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         // If drawer (tabs) are open, close them
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
+
         // If drawer (tabs) are closed, revert to last activity via super.onBackPressed method
         else {
             Intent intent = new Intent(getApplicationContext(), ManagerHomeScreen.class);
+            finish();
             startActivity(intent);
-            //super.onBackPressed();
+//            super.onBackPressed();
         }
     }
 

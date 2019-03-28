@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import com.example.managertabs.MainActivityWorker;
 import com.example.managertabs.R;
 import com.example.managertabs.WorkerHomeScreen;
-import com.example.managertabs.Inventory.WorkerInventory;
+import com.example.managertabs.WorkerInventory;
 
 import java.util.ArrayList;
 import java.util.List;
