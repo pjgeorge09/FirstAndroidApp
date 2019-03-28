@@ -37,7 +37,7 @@ public class Master extends AppCompatActivity {
     //I want these to be accessible from EVERYWHERE - Pete    temporary note
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
     /*---------------------COLLECTION DECLARATIONS-----------------*/
-    public CollectionReference INVENTORY = db.collection("Inventory");
+    public final CollectionReference INVENTORY = db.collection("Inventory");
     public CollectionReference DONATIONS = db.collection("Donations");
     public CollectionReference EMPLOYEES = db.collection("Employees");
     public CollectionReference OTHER = db.collection("Other");
@@ -48,14 +48,13 @@ public class Master extends AppCompatActivity {
 //    Task<DocumentSnapshot> memoSnapshot = db.collection("Other").document("Message").get() ;
     String TAG = "TAG";
     final DocumentReference messageDocRef = OTHER.document("Message");
+
+
     //TODO Create ITEM class, create Array of ITEMS
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);
-
-
-
     }
 
     // Delete method, its defined in FireStoreMethods.java

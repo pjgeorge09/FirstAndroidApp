@@ -16,8 +16,12 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.MetadataChanges;
 import com.google.firebase.firestore.Transaction;
+
+import javax.annotation.Nullable;
 
 
 public class Inventory extends MainActivityManager
@@ -68,7 +72,7 @@ public class Inventory extends MainActivityManager
 //        Soup.put("Location", "S5");
 //        Soup.put("Quantity", 300);
 //        Soup.put("Threshold", 100);
-//
+
 //
 //        //Messages = rows in SQL. It's like a set. so maybe another example  "John Temporary"
 //        db.collection("Inventory").document("Soup")
@@ -104,9 +108,15 @@ public class Inventory extends MainActivityManager
         db.runTransaction(new Transaction.Function<String>(){
             @Override
             public String apply(Transaction transaction) throws FirebaseFirestoreException{
-                DocumentSnapshot snapshot = transaction.get(messageDocRef);
+                DocumentSnapshot snapshot = transaction.get(INVENTORY.document("Canned Tuna"));
+//                item = snapshot.toObject(Item.class);
+                item.setName(snapshot.getString("item"));
+                item.setLocation(snapshot.getString("Location"));
+                item.setQuantity((int)snapshot.get("Quantity"));
+                item.setThreshold((int)snapshot.get("Threshold"));
+                item.setType(snapshot.getString("Type"));
                 String newPop = snapshot.getString("Memo");
-                item.setName(newPop); //todo THIS IS A PRE INIT OBJECT
+//                item.setName(newPop); //todo THIS IS A PRE INIT OBJECT
                 return newPop;
             }
         }).addOnSuccessListener(new OnSuccessListener<String>() {
@@ -121,6 +131,9 @@ public class Inventory extends MainActivityManager
                 Log.w("string","string2");
             }
         });
+
+
+
 
 
         // Sets aString to the item location of Green Beans
@@ -144,9 +157,42 @@ public class Inventory extends MainActivityManager
 
     //This works now. Button pulls data. Changes Inventory Screen Name to "Can" or whatever you want from database
     public void changeName(View view){
+        messageDocRef.addSnapshotListener(MetadataChanges.INCLUDE, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                // ON EVENT UPDATE ITEM
+                db.runTransaction(new Transaction.Function<String>(){
+                    @Override
+                    public String apply(Transaction transaction) throws FirebaseFirestoreException{
+                        DocumentSnapshot snapshot = transaction.get(INVENTORY.document("Canned Tuna"));
+//                item = snapshot.toObject(Item.class);
+                        item.setName(snapshot.getString("item"));
+                        item.setLocation(snapshot.getString("Location"));
+                        item.setQuantity((int)snapshot.get("Quantity"));
+                        item.setThreshold((int)snapshot.get("Threshold"));
+                        item.setType(snapshot.getString("Type"));
+                        String newPop = snapshot.getString("Memo");
+
+//                item.setName(newPop); //todo THIS IS A PRE INIT OBJECT
+                        return newPop;
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<String>() {
+                                            @Override
+                                            public void onSuccess(String s) {
+                                                Log.d("Dick","Ass");
+                                            }
+                                        }
+                ).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("string","string2");
+                    }
+                });
+            }
+        });
         TextView title = (TextView)findViewById(R.id.textView2);
 //        title.setText(documentSnapshotTask.getResult().getString("Type"));
-        title.setText(item.getName());
+        title.setText(item.getLocation());
     }
 
 

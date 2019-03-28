@@ -2,23 +2,23 @@ package com.example.managertabs;
 
 public class Other extends Master{
 
-    private String message;
+    private String memo;
 
     public Other(){
 
     }
 
-    public Other(String aMessage){
-        this.message = aMessage;
+    public Other(String aMemo){
+        this.memo = aMemo;
     }
 
 
-    public String getMessage() {
-        return message;
+    public String getMemo() {
+        return memo;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMemo(String aMemo) {
+        this.memo = aMemo;
     }
 
 }

@@ -78,7 +78,8 @@ public class ManagerHomeScreen extends MainActivityManager
             public String apply(Transaction transaction) throws FirebaseFirestoreException {
                 DocumentSnapshot snapshot = transaction.get(messageDocRef);
                 String newPop = snapshot.getString("Memo");
-                memo.setMessage(newPop); //todo THIS IS A PRE INIT OBJECT
+                memo.setMemo(snapshot.getString("Memo"));
+//                memo.setMessage(newPop); //todo THIS IS A PRE INIT OBJECT
                 return newPop;
             }
         }).addOnSuccessListener(new OnSuccessListener<String>() {
@@ -102,7 +103,7 @@ public class ManagerHomeScreen extends MainActivityManager
 
 
         // update to the current memo
-        textView.setText(memo.getMessage());
+        textView.setText(memo.getMemo());
 
 
 

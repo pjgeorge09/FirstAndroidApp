@@ -20,6 +20,10 @@ import java.util.Map;
 public class Item extends Master{
 
 
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     // FIELDS
     private String location;
     private int quantity;
@@ -58,19 +62,6 @@ public class Item extends Master{
         return location;
     }
 
-    public void setAsItem(String name, final Item item2){
-
-
-//        DocumentReference docRef = db.collection("Inventory").document(name);
-//        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                item2.setName("hello");
-//                item2.setQuantity(documentSnapshot.getString("Quantity"));
-//                Item item = documentSnapshot.toObject(Item.class);
-//            }
-//        });
-    }
 
     public int getQuantity() {
         return quantity;
