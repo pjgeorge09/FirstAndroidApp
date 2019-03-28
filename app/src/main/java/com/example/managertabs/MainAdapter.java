@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     ArrayList<Donations_Data> ProperData;
-    public MainAdapter(ArrayList<Donations_Data> testData) {
-        this.ProperData = testData;
+    public MainAdapter(ArrayList<Donations_Data> ProperData) {
+        this.ProperData = ProperData;
     }
 
 //Creates Custom ViewHolder
@@ -40,6 +40,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
         //number of data values
         return ProperData.size();
     }
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -48,7 +52,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
         TextView Item;
         TextView Quantity;
         TextView Size;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             //text box in row
             cardView = (CardView)itemView.findViewById(R.id.CV_donation);

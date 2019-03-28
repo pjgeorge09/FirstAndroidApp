@@ -22,7 +22,7 @@ public class Donations extends AppCompatActivity implements NavigationView.OnNav
     //test data
     private ArrayList<String> TestData;
     //Formal Test Data wtih Object
-    ArrayList<Donations_Data> ProperData;
+    private ArrayList<Donations_Data> ProperData;
     /* onCreate method creates the screen */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +54,8 @@ public class Donations extends AppCompatActivity implements NavigationView.OnNav
         }*/
        //Test data cardView
         ProperData = new ArrayList<>();
-        for(int i=0; i<5; i++){
-            ProperData.add(new Donations_Data("03/22/1901","Beans",500, "Small"));
-            ProperData.add(new Donations_Data("03/21/1904","Peas",500, "Medium"));
-            ProperData.add(new Donations_Data("03/13/1903","Green Peas",500, "Large"));
-            ProperData.add(new Donations_Data("03/01/1902","Canned Tomtatoes",500, "Small"));
-        }
+
+        test();
         layoutManager= new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(false);
         adapter = new MainAdapter(ProperData);
@@ -67,7 +63,12 @@ public class Donations extends AppCompatActivity implements NavigationView.OnNav
         recyclerView.setAdapter(adapter);
         }
 
-
+    private void test(){
+        ProperData.add(new Donations_Data("03/22/1901", "Beans", 500, "Small"));
+        ProperData.add(new Donations_Data("03/21/1904", "Peas", 500, "Medium"));
+        ProperData.add(new Donations_Data("03/13/1903", "Green Peas", 500, "Large"));
+        ProperData.add(new Donations_Data("03/01/1902", "Canned Tomtatoes", 500, "Small"));
+    }
 
 
 
