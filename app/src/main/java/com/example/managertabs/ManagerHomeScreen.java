@@ -2,6 +2,7 @@ package com.example.managertabs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -41,6 +42,7 @@ public class ManagerHomeScreen extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
 
      Other memo = new Other();
+     TextView textView;
     // NEEDED DOCUMENTS HERE
     // Create snapshot to get text from the database
     //Task<DocumentSnapshot> messageSnapshot = OTHER.document("Message").get();
@@ -70,7 +72,7 @@ public class ManagerHomeScreen extends MainActivityManager
         navigationView.setNavigationItemSelectedListener(this);
 
         // OnScreenCreate, set the content of the Manager Home Screen to the contents currently in the database (FOR WORKER TOO)
-        TextView textView = (TextView)findViewById(R.id.memoBox);
+        textView = (TextView)findViewById(R.id.memoBox);
 
 
         db.runTransaction(new Transaction.Function<String>(){
@@ -79,6 +81,13 @@ public class ManagerHomeScreen extends MainActivityManager
                 DocumentSnapshot snapshot = transaction.get(messageDocRef);
                 String newPop = snapshot.getString("Memo");
                 memo.setMemo(snapshot.getString("Memo"));
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //update textview here
+                        textView.setText(memo.getMemo());
+                    }
+                },1);
 //                memo.setMessage(newPop); //todo THIS IS A PRE INIT OBJECT
                 return newPop;
             }
@@ -97,13 +106,19 @@ public class ManagerHomeScreen extends MainActivityManager
 
 
 
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //update textview here
+                textView.setText(memo.getMemo());
+            }
+        },1);
 
 
 
 
         // update to the current memo
-        textView.setText(memo.getMemo());
+
 
 
 
