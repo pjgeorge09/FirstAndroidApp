@@ -3,12 +3,12 @@ package com.example.managertabs.Donation;
 public class Donation {
     String Date;
     String Item;
-    int Quantity;
+    String Quantity;
     String Size;
 
 
 
-    public Donation(String date, String item, int quantity, String size) {
+    public Donation(String date, String item, String quantity, String size) {
         this.Date = date;
         this.Item = item;
         this.Quantity = quantity;
@@ -31,11 +31,11 @@ public class Donation {
         Item = item;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return Quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         Quantity = quantity;
     }
 

@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.example.managertabs.R;
 
-import static com.example.managertabs.R.layout.card_view;
+import static com.example.managertabs.R.layout.donations_card_view;
 
 
 public class DonationCardView extends Activity {
@@ -18,7 +18,7 @@ public class DonationCardView extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(card_view);
+        setContentView(donations_card_view);
         Date = (TextView)findViewById(R.id.Date);
         Item = (TextView)findViewById(R.id.Item);
         Quantity = (TextView)findViewById(R.id.Quantity);

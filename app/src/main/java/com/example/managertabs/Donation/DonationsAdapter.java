@@ -10,24 +10,29 @@ import android.widget.TextView;
 import com.example.managertabs.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.ViewHolder>{
-    ArrayList<Donation> ProperData;
-    public DonationsAdapter(ArrayList<Donation> ProperData) {
+public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.DonationViewHolder>{
+
+    List<Donation> ProperData;
+
+    public DonationsAdapter(List<Donation> ProperData) {
         this.ProperData = ProperData;
     }
 
-//Creates Custom ViewHolder
+    //Creates Custom ViewHolder
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view, viewGroup, false);
-        ViewHolder pvh = new ViewHolder(v);
+    public DonationViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.donations_card_view, viewGroup, false);
+        DonationViewHolder pvh = new DonationViewHolder(v);
         return pvh;
     }
+
+
     //specify contents of each item
     @Override
-    public void onBindViewHolder(DonationsAdapter.ViewHolder holder, int position){
+    public void onBindViewHolder(DonationViewHolder holder, int position){
       //  holder.Title.setText(TestData.get(position));
         holder.Date.setText(ProperData.get(position).Date);
         holder.Item.setText(ProperData.get(position).Item);
@@ -47,13 +52,13 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.View
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class DonationViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         TextView Date;
         TextView Item;
         TextView Quantity;
         TextView Size;
-        public ViewHolder(View itemView) {
+        public DonationViewHolder(View itemView) {
             super(itemView);
             //text box in row
             cardView = (CardView)itemView.findViewById(R.id.CV_donation);

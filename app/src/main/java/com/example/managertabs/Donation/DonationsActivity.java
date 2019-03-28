@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import com.example.managertabs.Donors;
 import com.example.managertabs.Inventory;
@@ -19,15 +20,25 @@ import com.example.managertabs.R;
 import com.example.managertabs.Staff;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class DonationsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class DonationsActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+
     private RecyclerView recyclerView;
+    private List<Donation> donations;
+    private DonationsAdapter donationsAdapter;
+
+    /* Unsure if needed, should be declared elsewhere?
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
+
     //test data
     private ArrayList<String> TestData;
     //Formal Test Data wtih Object
     private ArrayList<Donation> ProperData;
+    */
+
     /* onCreate method creates the screen */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,30 +60,32 @@ public class DonationsActivity extends AppCompatActivity implements NavigationVi
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-// REcycle STUFf
+
+        // Recycle Stuff
         recyclerView =(RecyclerView) findViewById(R.id.recycle_donation);
+
+        // Not sure if necessary, possibly delete
+        recyclerView.setHasFixedSize(true);
+
         //generates the test data
-       /* TestData = new ArrayList<>();
-        for (int i=0; i<100; i++) {
-            TestData.add("Donation" + i);
 
-        }*/
        //Test data cardView
-        ProperData = new ArrayList<>();
+        donations = new ArrayList<>();
 
-        test();
-        layoutManager= new LinearLayoutManager(this);
-        recyclerView.setHasFixedSize(false);
-        adapter = new DonationsAdapter(ProperData);
+        initializeData();
+
+
+        LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+        donationsAdapter = new DonationsAdapter(donations);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(donationsAdapter);
         }
 
-    private void test(){
-        ProperData.add(new Donation("03/22/1901", "Beans", 500, "Small"));
-        ProperData.add(new Donation("03/21/1904", "Peas", 500, "Medium"));
-        ProperData.add(new Donation("03/13/1903", "Green Peas", 500, "Large"));
-        ProperData.add(new Donation("03/01/1902", "Canned Tomtatoes", 500, "Small"));
+    private void initializeData(){
+        donations.add(new Donation("03/22/1901", "Beans", "500", "Small"));
+        donations.add(new Donation("03/21/1904", "Peas", "500", "Medium"));
+        donations.add(new Donation("03/13/1903", "Green Peas", "500", "Large"));
+        donations.add(new Donation("03/01/1902", "Canned Tomtatoes", "500", "Small"));
     }
 
 
@@ -116,8 +129,4 @@ public class DonationsActivity extends AppCompatActivity implements NavigationVi
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-    //Fill with test Data   Date, Item, Quantity, Size
-
 }
