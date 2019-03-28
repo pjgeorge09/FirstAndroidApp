@@ -16,9 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.example.managertabs.Donations;
+import com.example.managertabs.Donation.Donation;
 import com.example.managertabs.Donors;
-import com.example.managertabs.Inventory;
+import com.example.managertabs.Inventory.Inventory;
 import com.example.managertabs.MainActivityManager;
 import com.example.managertabs.ManagerHomeScreen;
 import com.example.managertabs.R;
@@ -144,7 +144,7 @@ public class EmployeeActivity extends AppCompatActivity
         }
         // If DONATIONS is selected by manager, go to Donations.class
         else if (id == R.id.nav_donations) {
-            Intent intent = new Intent(getApplicationContext(), Donations.class);
+            Intent intent = new Intent(getApplicationContext(), Donation.class);
             startActivity(intent);
         }
         // If DONORS is selected by manager, Donors.class
