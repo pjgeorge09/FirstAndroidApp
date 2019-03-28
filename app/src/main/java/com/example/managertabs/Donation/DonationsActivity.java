@@ -25,9 +25,7 @@ import java.util.List;
 public class DonationsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private RecyclerView recyclerView;
-    private List<Donation> donations;
-    private DonationsAdapter donationsAdapter;
+
 
     /* Unsure if needed, should be declared elsewhere?
     private RecyclerView.LayoutManager layoutManager;
@@ -88,7 +86,9 @@ public class DonationsActivity extends AppCompatActivity
         donations.add(new Donation("03/01/1902", "Canned Tomtatoes", "500", "Small"));
     }
 
-
+    private RecyclerView recyclerView;
+    private List<Donation> donations;
+    private DonationsAdapter donationsAdapter;
 
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and
     does a screen transition based on received */
