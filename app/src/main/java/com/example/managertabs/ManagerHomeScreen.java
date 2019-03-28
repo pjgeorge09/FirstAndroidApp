@@ -87,7 +87,7 @@ public class ManagerHomeScreen extends MainActivityManager
                         //update textview here
                         textView.setText(memo.getMemo());
                     }
-                },1);
+                },10);
 //                memo.setMessage(newPop); //todo THIS IS A PRE INIT OBJECT
                 return newPop;
             }
@@ -104,6 +104,8 @@ public class ManagerHomeScreen extends MainActivityManager
             }
         });
 
+        //777777
+
 
 
         new Handler().postDelayed(new Runnable() {
@@ -112,7 +114,7 @@ public class ManagerHomeScreen extends MainActivityManager
                 //update textview here
                 textView.setText(memo.getMemo());
             }
-        },1);
+        },10);
 
 
 
