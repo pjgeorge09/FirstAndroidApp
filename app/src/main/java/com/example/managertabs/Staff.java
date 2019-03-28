@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,6 +34,9 @@ public class Staff extends MainActivityManager
         private ImageView profile3;
         private ImageView profile4;
         private ImageView profile5;
+
+        // Button declaration for adding worker
+        private Button addWorkButton;
 
     /* onCreate method creates the screen */
     @Override
@@ -67,6 +72,8 @@ public class Staff extends MainActivityManager
         profile3.setImageResource(R.drawable.girl2);
         profile4.setImageResource(R.drawable.man);
         profile5.setImageResource(R.drawable.girl3);
+        // Set Button variables to button layout
+        addWorkButton = findViewById(R.id.btnAddWork);
 
         //Initialize the database, it is linked to my android already
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -95,7 +102,14 @@ public class Staff extends MainActivityManager
                     }
                 });
 
-
+        // Created listener for Add Worker button to bring new activity
+        addWorkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Staff.this, AddWorker.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
