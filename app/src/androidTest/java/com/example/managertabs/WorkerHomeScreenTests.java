@@ -3,9 +3,11 @@ package com.example.managertabs;
 import android.support.test.espresso.contrib.DrawerActions;
 import android.support.test.espresso.contrib.NavigationViewActions;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.test.rule.ActivityTestRule;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.view.Gravity;
+
+import com.example.managertabs.Donation.WorkerDonations;
+import com.example.managertabs.Inventory.WorkerInventory;
 
 import org.junit.Rule;
 import org.junit.runner.RunWith;
@@ -14,9 +16,6 @@ import org.junit.Test;
 import static android.support.test.espresso.intent.Intents.*;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.*;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;

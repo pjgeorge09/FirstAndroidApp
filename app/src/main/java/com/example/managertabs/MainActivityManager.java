@@ -10,9 +10,10 @@ import android.view.MenuItem;
 
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.managertabs.Donation.DonationsActivity;
+import com.example.managertabs.Inventory.Inventory;
 
 public class MainActivityManager extends Master {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -77,9 +78,9 @@ public class MainActivityManager extends Master {
             Intent intent = new Intent(getApplicationContext(), Inventory.class);
             startActivity(intent);
         }
-        // If DONATIONS is selected by manager, go to Donations.class
+        // If DONATIONS is selected by manager, go to DonationsActivity.class
         else if (id == R.id.nav_donations) {
-            Intent intent = new Intent(getApplicationContext(), Donations.class);
+            Intent intent = new Intent(getApplicationContext(), DonationsActivity.class);
             startActivity(intent);
         }
         // If DONORS is selected by manager, Donors.class

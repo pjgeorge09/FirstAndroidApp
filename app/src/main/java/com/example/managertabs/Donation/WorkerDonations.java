@@ -1,4 +1,4 @@
-package com.example.managertabs;
+package com.example.managertabs.Donation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,10 +6,18 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.managertabs.MainActivityWorker;
+import com.example.managertabs.R;
+import com.example.managertabs.WorkerHomeScreen;
+import com.example.managertabs.Inventory.WorkerInventory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorkerDonations extends MainActivityWorker
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,7 +43,37 @@ public class WorkerDonations extends MainActivityWorker
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Recycle Stuff
+        recyclerView =(RecyclerView) findViewById(R.id.recycle_donation);
+
+        // Not sure if necessary, possibly delete
+        recyclerView.setHasFixedSize(true);
+
+        //generates the test data
+
+        //Test data cardView
+        donations = new ArrayList<>();
+
+        initializeData();
+
+
+        LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+        donationsAdapter = new DonationsAdapter(donations);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(donationsAdapter);
     }
+
+    private void initializeData(){
+        donations.add(new Donation("03/22/1901", "Beans", "500", "Small"));
+        donations.add(new Donation("03/21/1904", "Peas", "500", "Medium"));
+        donations.add(new Donation("03/13/1903", "Green Peas", "500", "Large"));
+        donations.add(new Donation("03/01/1902", "Canned Tomtatoes", "500", "Small"));
+    }
+
+    private RecyclerView recyclerView;
+    private List<Donation> donations;
+    private DonationsAdapter donationsAdapter;
 
 
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and

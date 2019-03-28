@@ -1,4 +1,4 @@
-package com.example.managertabs;
+package com.example.managertabs.Inventory;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +20,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import FireStoreMethods.FirestoreMethods;
+
+import com.example.managertabs.Donation.DonationsActivity;
+import com.example.managertabs.Donors;
+import com.example.managertabs.MainActivityManager;
+import com.example.managertabs.ManagerHomeScreen;
+import com.example.managertabs.R;
+import com.example.managertabs.Staff;
 
 public class Inventory extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,62 +52,6 @@ public class Inventory extends MainActivityManager
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-
-
-        //FOR PETE This line creates a FireStoreMethod object which can be used to call its methods
-        FirestoreMethods getFirestoreMethod = new FirestoreMethods();
-
-        //Initialize the database, it is linked to my android already
-        /* FOR BRYAN - We create an item, a map, that can receive ANY object (int, string etc)  */
-        Map<String, Object> item = new HashMap<>();
-
-        // Sample data
-        //TODO make this an inferface
-//        item.put("item", "Green Beans");
-//        item.put("Type", "Can");
-//        item.put("Location", "A101");
-//        item.put("Quantity", 22);
-//        item.put("Threshold", 15);
-
-
-        //Messages = rows in SQL. It's like a set. so maybe another example  "John Temporary"
-//        db.collection("Inventory").document("Green Beans")
-//                .set(item)
-//                // ON SUCCESS
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void documentReference) {
-//                        Log.d("FIREBASE_DATA_ADDED", "Document added with ID: ");
-//                    }
-//                })
-//                //ON FAILURE
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w("FIREBASE_DATA_ERROR", "Document failed to add, exception backtrace: " + Arrays.toString(e.getStackTrace()));
-//                    }
-//                });
-
-
-        // Sets aString to the item location of Green Beans
-        //String aString = getFirestoreMethod.getItemThreshold("Green Beans");
-        // Makes a TextView and sets it to textView2
-        // Casting here might be unnecessary?
-        TextView tv = (TextView)findViewById(R.id.textView2);
-
-        // Sets the text of textView2 to the item location of Green Beans
-        tv.setText(documentSnapshotTask.getResult().getString("Location"));
-        //tv.setText(documentSnapshotTask.getResult().get("Threshold").toString());
-        //Item item1 = new Item();
-
-        // SET LOCATION FROM MASTER METHOD, CURRENTLY SET TO GREEN BEANS ONLY, MODIFIABLE
-//        setLocation("Pete's Test");
-        // THERE IS A ONE-SCREEN DELAY     TODO
-        //ACTUALLY SETTING THE NEW REFERENCE NAME
-        tv.setText(documentSnapshotTask.getResult().getString("Location"));
-
     }
 
 
@@ -116,9 +67,9 @@ public class Inventory extends MainActivityManager
         if (id == R.id.nav_inventory) {
             //DO NOTHING
         }
-        // If DONATIONS is selected by manager, go to Donations.class
+        // If DONATIONS is selected by manager, go to DonationsActivity.class
         else if (id == R.id.nav_donations) {
-            Intent intent = new Intent(getApplicationContext(), Donations.class);
+            Intent intent = new Intent(getApplicationContext(), DonationsActivity.class);
             startActivity(intent);
         }
         // If DONORS is selected by manager, Donors.class

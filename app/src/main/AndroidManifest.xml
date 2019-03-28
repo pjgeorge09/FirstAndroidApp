@@ -17,11 +17,11 @@
         <activity android:name=".MainActivityWorker" />
         <activity android:name=".MainActivityManager" />
         <activity
-            android:name=".WorkerDonations"
+            android:name=".Donation.WorkerDonations"
             android:label="@string/title_activity_worker_donations"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".WorkerInventory"
+            android:name=".Inventory.WorkerInventory"
             android:label="@string/title_activity_worker_inventory"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -33,11 +33,11 @@
             android:label="@string/title_activity_donors"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Donations"
+            android:name=".Donation.DonationsActivity"
             android:label="@string/title_activity_donations"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Inventory"
+            android:name=".Inventory.Inventory"
             android:label="@string/title_activity_manager_inventory"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

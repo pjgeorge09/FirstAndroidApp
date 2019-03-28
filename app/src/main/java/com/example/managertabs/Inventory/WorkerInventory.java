@@ -1,4 +1,4 @@
-package com.example.managertabs;
+package com.example.managertabs.Inventory;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,10 +6,13 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.managertabs.Donation.WorkerDonations;
+import com.example.managertabs.MainActivityWorker;
+import com.example.managertabs.R;
+import com.example.managertabs.WorkerHomeScreen;
 
 public class WorkerInventory extends MainActivityWorker
         implements NavigationView.OnNavigationItemSelectedListener {
