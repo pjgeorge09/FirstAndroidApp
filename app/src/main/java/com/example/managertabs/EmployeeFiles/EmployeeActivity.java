@@ -83,14 +83,14 @@ public class EmployeeActivity extends AppCompatActivity
 
         private void initializeData() {
             employees = new ArrayList<>();
-            employees.add(new Employee("John", "Temporary", "JohnTemporary@gmail.com",
-                    R.drawable.boy));
+            employees.add(new Employee(9, "John", "Temporary", "JohnTemporary@gmail.com",
+                    "2468 Cary St. Richmond, VA 23220", "03/03/03", "badPassword", R.drawable.boy));
 
-            employees.add(new Employee("Bryan", "Hilldrup", "hilldrupbf@vcu.edu",
-                    R.drawable.man));
+            employees.add(new Employee(10, "Bryan", "Hilldrup", "hilldrupbf@vcu.edu",
+                    "12345 Main St. Richmond, VA 23220", "07/07/07", "TemporaryPasswrod", R.drawable.man));
 
-            employees.add(new Employee("Peter", "George", "petergeorge@vcu.edu",
-                    R.drawable.girl1));
+            employees.add(new Employee(11, "Peter", "George", "petergeorge@vcu.edu",
+                    "9889 Broad St. Richmond, Va 23220", "12/31/00", "hunter02", R.drawable.girl1));
         }
 
 

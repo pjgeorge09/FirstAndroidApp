@@ -12,6 +12,8 @@ public class EmployeeCardView extends Activity {
     TextView name;
     TextView email;
     ImageView profilePicture;
+    TextView homeAddress;
+    TextView birthDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,5 +23,7 @@ public class EmployeeCardView extends Activity {
         name = (TextView)findViewById(R.id.employee_name);
         email = (TextView)findViewById(R.id.employee_email);
         profilePicture = (ImageView)findViewById(R.id.profile_picture);
+        homeAddress = (TextView)findViewById(R.id.home_address);
+        birthDate = (TextView)findViewById(R.id.birth_date);
     }
 }

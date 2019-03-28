@@ -24,8 +24,7 @@ public class Employee extends Master {
 
     // Default constructor
     public Employee(int uid, String firstName, String lastName, String emailAddress,
-                    String homeAddress, String birthDate, String password, int securityQuestions,
-                    String securityAnswer, int profilePicture){
+                    String homeAddress, String birthDate, String password, int profilePicture){
 
         this.uid = uid;
         this.firstName = firstName;
@@ -34,10 +33,9 @@ public class Employee extends Master {
         this.homeAddress = homeAddress;
         this.birthDate = birthDate;
         this.password = password;
-        this.securityQuestions = securityQuestions;
-        this.securityAnswer = securityAnswer;
         this.profilePicture = profilePicture;
     }
+
 
  // TEST CONSTRUCTOR
     public Employee(String firstName, String lastName, String emailAddress, int profilePicture){
@@ -120,14 +118,6 @@ public class Employee extends Master {
         return this.password;
     }
 
-    public int getSecurityQuestions(){
-        return this.securityQuestions;
-    }
-
-    public String getSecurityAnswer(){
-        return this.securityAnswer;
-    }
-
     public int getProfilePicture(){
         return this.profilePicture;
     }
@@ -159,14 +149,6 @@ public class Employee extends Master {
 
     public void setPassword(String password){
         this.password = password;
-    }
-
-    public void setSecurityQuestions(int securityQuestions){
-        this.securityQuestions = securityQuestions;
-    }
-
-    public void setSecurityAnswer(String securityAnswer){
-        this.securityAnswer = securityAnswer;
     }
 
     public void setProfilePicture(int profilePicture){
