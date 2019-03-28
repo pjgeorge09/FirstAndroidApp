@@ -6,7 +6,10 @@ public class Donation {
     String Quantity;
     String Size;
 
+public  Donation()
+{
 
+}
 
     public Donation(String date, String item, String quantity, String size) {
         this.Date = date;

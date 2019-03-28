@@ -34,10 +34,10 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.Dona
     @Override
     public void onBindViewHolder(DonationViewHolder holder, int position){
       //  holder.Title.setText(TestData.get(position));
-        holder.Date.setText(ProperData.get(position).Date);
-        holder.Item.setText(ProperData.get(position).Item);
-        holder.Quantity.setText(ProperData.get(position).Quantity);
-        holder.Size.setText(ProperData.get(position).Size);
+        holder.Date.setText("Date: "+ ProperData.get(position).Date);
+        holder.Item.setText("Item: "+ProperData.get(position).Item);
+        holder.Quantity.setText("Quantity: "+ProperData.get(position).Quantity);
+        holder.Size.setText("Size: "+ProperData.get(position).Size);
 
     }
 
