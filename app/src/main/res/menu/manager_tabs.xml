@@ -11,7 +11,7 @@
             android:icon="@drawable/ic_baseline_storage_24px"
             android:title="Inventory" />
 
-        <!-- Icon declaration, implementation, and title for Donations -->
+        <!-- Icon declaration, implementation, and title for DonationsActivity -->
         <item
             android:id="@+id/nav_donations"
             android:icon="@drawable/ic_heart"

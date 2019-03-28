@@ -1,4 +1,4 @@
-package com.example.managertabs;
+package com.example.managertabs.Donation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,19 +10,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.managertabs.Donors;
+import com.example.managertabs.Inventory;
+import com.example.managertabs.ManagerHomeScreen;
+import com.example.managertabs.R;
+import com.example.managertabs.Staff;
 
 import java.util.ArrayList;
 
-public class Donations extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class DonationsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
     //test data
     private ArrayList<String> TestData;
     //Formal Test Data wtih Object
-    private ArrayList<Donations_Data> ProperData;
+    private ArrayList<Donation> ProperData;
     /* onCreate method creates the screen */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +63,16 @@ public class Donations extends AppCompatActivity implements NavigationView.OnNav
         test();
         layoutManager= new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(false);
-        adapter = new MainAdapter(ProperData);
+        adapter = new DonationsAdapter(ProperData);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         }
 
     private void test(){
-        ProperData.add(new Donations_Data("03/22/1901", "Beans", 500, "Small"));
-        ProperData.add(new Donations_Data("03/21/1904", "Peas", 500, "Medium"));
-        ProperData.add(new Donations_Data("03/13/1903", "Green Peas", 500, "Large"));
-        ProperData.add(new Donations_Data("03/01/1902", "Canned Tomtatoes", 500, "Small"));
+        ProperData.add(new Donation("03/22/1901", "Beans", 500, "Small"));
+        ProperData.add(new Donation("03/21/1904", "Peas", 500, "Medium"));
+        ProperData.add(new Donation("03/13/1903", "Green Peas", 500, "Large"));
+        ProperData.add(new Donation("03/01/1902", "Canned Tomtatoes", 500, "Small"));
     }
 
 
@@ -84,7 +89,7 @@ public class Donations extends AppCompatActivity implements NavigationView.OnNav
             Intent intent = new Intent(getApplicationContext(), Inventory.class);
             startActivity(intent);
         }
-        // If DONATIONS is selected by manager, go to Donations.class
+        // If DONATIONS is selected by manager, go to DonationsActivity.class
         else if (id == R.id.nav_donations) {
             //DO NOTHING
         }

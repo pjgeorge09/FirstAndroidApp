@@ -1,6 +1,6 @@
-package com.example.managertabs;
-// object for the Donations DAta
-public class Donations_Data {
+package com.example.managertabs.Donation;
+// object for the DonationsActivity DAta
+public class Donation {
     String Date;
     String Item;
     int Quantity;
@@ -8,7 +8,7 @@ public class Donations_Data {
 
 
 
-    public Donations_Data(String date, String item, int quantity, String size) {
+    public Donation(String date, String item, int quantity, String size) {
         this.Date = date;
         this.Item = item;
         this.Quantity = quantity;

@@ -6,10 +6,10 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.managertabs.Donation.DonationsActivity;
 
 public class Donors extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,9 +51,9 @@ public class Donors extends MainActivityManager
             Intent intent = new Intent(getApplicationContext(), Inventory.class);
             startActivity(intent);
         }
-        // If DONATIONS is selected by manager, go to Donations.class
+        // If DONATIONS is selected by manager, go to DonationsActivity.class
         else if (id == R.id.nav_donations) {
-            Intent intent = new Intent(getApplicationContext(), Donations.class);
+            Intent intent = new Intent(getApplicationContext(), DonationsActivity.class);
             startActivity(intent);
         }
         // If DONORS is selected by manager, Donors.class

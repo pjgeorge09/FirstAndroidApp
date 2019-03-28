@@ -16,7 +16,7 @@
         <activity android:name=".MainActivityWorker"></activity>
         <activity android:name=".MainActivityManager" />
         <activity
-            android:name=".WorkerDonations"
+            android:name=".Donation.WorkerDonations"
             android:label="@string/title_activity_worker_donations"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -32,7 +32,7 @@
             android:label="@string/title_activity_donors"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Donations"
+            android:name=".Donation.DonationsActivity"
             android:label="@string/title_activity_donations"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

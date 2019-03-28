@@ -1,6 +1,5 @@
-package com.example.managertabs;
+package com.example.managertabs.Donation;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.managertabs.R;
+
 import java.util.ArrayList;
 
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
-    ArrayList<Donations_Data> ProperData;
-    public MainAdapter(ArrayList<Donations_Data> ProperData) {
+public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.ViewHolder>{
+    ArrayList<Donation> ProperData;
+    public DonationsAdapter(ArrayList<Donation> ProperData) {
         this.ProperData = ProperData;
     }
 
@@ -26,7 +27,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     }
     //specify contents of each item
     @Override
-    public void onBindViewHolder(MainAdapter.ViewHolder holder, int position){
+    public void onBindViewHolder(DonationsAdapter.ViewHolder holder, int position){
       //  holder.Title.setText(TestData.get(position));
         holder.Date.setText(ProperData.get(position).Date);
         holder.Item.setText(ProperData.get(position).Item);

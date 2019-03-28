@@ -1,13 +1,15 @@
-package com.example.managertabs;
+package com.example.managertabs.Donation;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.managertabs.R;
+
 import static com.example.managertabs.R.layout.card_view;
 
 
-public class donorcardview extends Activity {
+public class DonationCardView extends Activity {
     TextView Date;
     TextView Item;
     TextView Quantity;
