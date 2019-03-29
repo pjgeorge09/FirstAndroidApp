@@ -11,43 +11,23 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Transaction;
-
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import android.view.MenuItem;
 import com.example.managertabs.Donation.DonationsActivity;
-import com.example.managertabs.Inventory;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class ManagerHomeScreen extends MainActivityManager
-
-
         implements NavigationView.OnNavigationItemSelectedListener {
 
+     //Manipulatable objects from anywhere in this class that can be altered over-and-over again (Memo might change 5 times while on screen, only one object
      Other memo = new Other();
      TextView textView;
-    // NEEDED DOCUMENTS HERE
-    // Create snapshot to get text from the database
-    //Task<DocumentSnapshot> messageSnapshot = OTHER.document("Message").get();
 
 
     /* onCreate method creates the screen */
@@ -77,12 +57,23 @@ public class ManagerHomeScreen extends MainActivityManager
         textView = (TextView)findViewById(R.id.memoBox);
 
 
+        /* runTransaction method is a method to get data from the database and pass the info TO VARIABLES */
         db.runTransaction(new Transaction.Function<String>(){
             @Override
             public String apply(Transaction transaction) throws FirebaseFirestoreException {
+                //Critical setup. Set to messageDocRef from Master but CAN BE ANY DOCUMENT. ex) db.collection("Inventory").document("Corn");
                 DocumentSnapshot snapshot = transaction.get(messageDocRef);
+                // newPop is ultimately irrelevant as we are passing data to the static variables at the top.
+                // todo change to void instead of return String if possible
                 String newPop = snapshot.getString("Memo");
+                // Other item class .setMemo method --> DocumentSnapshot method .getString(FieldName) KEY VALUE. Pass it a string field name, get string value
                 memo.setMemo(snapshot.getString("Memo"));
+                /* Handler method waits for data to finish being gotten from the internet
+                 * If no handler, and only partial data, it will abort the operation with no onfail listener
+                  * https://stackoverflow.com/questions/35734963/update-a-textview-in-real-time-using-a-for
+                  *
+                  * BASICALLY this tells the computer to wait 1 second before updating the textView.
+                  * This handler is doing nothing right now until this RunTransaction is updated with the liveListener*/
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -90,26 +81,30 @@ public class ManagerHomeScreen extends MainActivityManager
                         textView.setText(memo.getMemo());
                     }
                 },1000);
-//                memo.setMessage(newPop); //todo THIS IS A PRE INIT OBJECT
+                // Irrelevant return, affects nothing atm
                 return newPop;
             }
+            //Standard S/F Listeners.
         }).addOnSuccessListener(new OnSuccessListener<String>() {
                                     @Override
                                     public void onSuccess(String s) {
-                                        Log.d("6","6");
+                                        Log.d("Create Memo Status"," Succeeded");
                                     }
                                 }
         ).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w("string","string2");
+                Log.w("Create Memo Status", " Failed utterly and miserably.");
             }
         });
 
-        //777777
 
 
-
+        /* Handler method waits for data to finish being gotten from the internet
+         * If no handler, and only partial data, it will abort the operation with no onfail listener
+         * https://stackoverflow.com/questions/35734963/update-a-textview-in-real-time-using-a-for
+         * DO NOT SET LESS THAN 1000 MILLIS
+         * BASICALLY this tells the computer to wait 1 second before updating the textView.*/
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -118,17 +113,7 @@ public class ManagerHomeScreen extends MainActivityManager
             }
         },1000);
 
-
-
-
-        // update to the current memo
-
-
-
-
-
-
-    }
+    }//End OnCreate
 
     /* Sets the back button to revert to the last screen. In the case that the drawer is open, it simply closes the drawer instead. */
     @Override
@@ -194,13 +179,11 @@ public class ManagerHomeScreen extends MainActivityManager
     public void updateMemo(View view){
 
         //Pull the TextView object from content_manager_home.xml
-       //TextView textView = (TextView)findViewById(R.id.memoBox);
         EditText editText = (EditText)findViewById(R.id.memoBox);
         // Must convert from Object --> String
-        String memo = editText.getText().toString();
-        // Master changeField method updates this field (PERMANENT NAME / FIELD POINTER)
-        changeField(OTHER, "Message","Memo", memo);
-        // DO NOT UPDATE SCREEN, will try to pull and push to database at same time = error crash
+        String update = editText.getText().toString();
+        // Master.java changeField method updates this field (PERMANENT NAME / FIELD POINTER)
+        changeField(OTHER, "Message","Memo", update);
     }
 
 }
