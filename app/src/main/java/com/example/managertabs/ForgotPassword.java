@@ -43,17 +43,18 @@ public class ForgotPassword extends AppCompatActivity {
                     Toast.makeText(ForgotPassword.this, "Enter registered Email", Toast.LENGTH_SHORT).show();
                 }
                 else {
-
+                    //Method to send email through auth
                     mAuth.sendPasswordResetEmail(userEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         // If the process is completed
                         public void onComplete(@NonNull Task<Void> task) {
+                            // if email is found in database
                             if(task.isSuccessful()) {
                                 Toast.makeText(ForgotPassword.this, "Password reset email sent", Toast.LENGTH_SHORT).show();
                                 finish();
                                 startActivity(new Intent(ForgotPassword.this, Login.class));
                             }
-
+                            //if data is found in fire base
                             else {
                                 Toast.makeText(ForgotPassword.this, "Invalid Email", Toast.LENGTH_SHORT).show();
                             }

@@ -44,17 +44,12 @@ public class Login extends Master {
         Login = (Button)findViewById(R.id.btnLogin1);
         Forgot = (TextView)findViewById(R.id.tvForgot);
 
+        // link to firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
 
         // Checks if a user is already logged in
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        /**
-        if(user != null) {
-            finish();
-            startActivity(new Intent(Login.this, ManagerHomeScreen.class));
-        }
-        */
 
         // When user clicks Login
         Login.setOnClickListener(new View.OnClickListener() {
@@ -80,31 +75,22 @@ public class Login extends Master {
         Needs to direct to correct page (manager or users) if valid login
      */
     private void validate(String userEmail, String userPassword) {
-        //manager, manager goes to manager tab
-        /*
-        if(userEmail.equals("manager") && userPassword.equals("manager")) {
-            Intent intent = new Intent(com.example.managertabs.Login.this, ManagerHomeScreen.class);
-            startActivity(intent);
-        }
-
-        //worker, worker goes to worker tab
-        else if(userEmail.equals("worker") && userPassword.equals("worker")){
-            Intent intent1 = new Intent(com.example.managertabs.Login.this, WorkerHomeScreen.class);
-            startActivity(intent1);
-        }
-        */
+        //Dialog to show when login is reading data from database
         progressDialog.setMessage("WORKING ON IT!");
         progressDialog.show();
 
+        //Signin
         firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                //If data is read from firebase
                 if(task.isSuccessful()) {
+                    //remove dialog
                     progressDialog.dismiss();
                     FirebaseUser user = firebaseAuth.getCurrentUser();
                     String userID = user.getUid();
                     // UID FOR MANAGER SEND TO MANAGER SCREEN
-                    if(userID.equals("O5bFoKnVsdMaDhc6DgOYKs2IxHL2")) {
+                    if(userID.equals("udWXeYDnJnQo1ZuV9eYloBdOfUM2")) {
                         startActivity(new Intent(Login.this, ManagerHomeScreen.class));
                     }
                     // SEND TO EMPLOYEE
@@ -147,47 +133,10 @@ public class Login extends Master {
                 }
             }
         });
-        //counter for wrong attempts
-        /**
-        else {
-            counter--;
 
-            //Setting for Toast notification
-            Context context = getApplicationContext();
-            CharSequence numberOfIncorrect = "Number of attempts remaining: " + String.valueOf(counter);
-            int duration = Toast.LENGTH_SHORT;
-
-            //Implication of toast
-            Toast.makeText(context, numberOfIncorrect, duration).show();
-
-            //If use of all login
-            if(counter == 0) {
-
-                //Setting for toast notification for too many attempts
-                Context context1 = getApplicationContext();
-                CharSequence tooManyAttempts = "Too many incorrect attempts";
-                int duration1 = Toast.LENGTH_SHORT;
-
-                Toast.makeText(context1, tooManyAttempts, duration1).show();
-
-                Login.setEnabled(false);
-                Login.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Login.setEnabled(true);
-                    }
-                }, 5000);
-
-                counter = 5;
-            }
-        }
-        */
     }
 
-    /*
-        Forgotten user or name or password button
-        Will link to SQL later
-     */
+
     public void pressForgot(View v) {
         Intent intent = new Intent(com.example.managertabs.Login.this, ForgotPassword.class);
         startActivity(intent);
