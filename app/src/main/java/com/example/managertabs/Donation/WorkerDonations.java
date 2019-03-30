@@ -78,7 +78,7 @@ public class WorkerDonations extends MainActivityWorker
     //declarations for above
     private RecyclerView recyclerView;
     private List<Donation> donations;
-    private DonationsAdapter donationsAdapter;
+    private DonationsAdapter donationsAdapter;  
 
 
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and
