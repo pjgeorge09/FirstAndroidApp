@@ -1,28 +1,6 @@
 package com.example.managertabs;
 
-import android.support.annotation.NonNull;
-import android.util.Log;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Transaction;
-
-import java.util.HashMap;
-import java.util.Map;
-
-public class Item extends Master{
-
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
+public class Item{
 
     // FIELDS
     private String location;
@@ -30,14 +8,8 @@ public class Item extends Master{
     private int threshold;
     private String type;
     private String name;
-    private Map data;
 
-    private Map<String, Object> thisMap = new HashMap<>();
-
-
-
-//    String test = documentSnapshotTask.getResult().getString("Location");
-
+    //Standard parameterized constructor
     public Item(String location, int quantity, int threshold, String type, String name) {
         this.location = location;
         this.quantity = quantity;
@@ -46,16 +18,13 @@ public class Item extends Master{
         this.name = name;
     }
 
+    //default constructor
     public Item() {
     }
 
-// Peter's version
-//    public String getLocation(){
-//        return documentSnapshotTask.getResult().getString("Location");
-//    }
 
 
-    //PREMADE GET SETS SUPPOSEDLY UPDATE IN REAL TIME
+    //Standard
 
     public String getLocation() {
 
@@ -95,6 +64,10 @@ public class Item extends Master{
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
 }

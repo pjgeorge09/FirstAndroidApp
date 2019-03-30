@@ -34,12 +34,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// NOTE: Many unnecessary imports, talk to group and make sure about the non-needed ones.
+
+/**
+ * Class to manage the activity for the Employee page
+ */
 public class EmployeeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-   private List<Employee> employees;
-   private RecyclerView rv;
-   private EmployeeAdapter employeeAdapter;
+    // Private variables
+    // Employee list holds a list of employee objects
+    //
+    private List<Employee> employees;
+    private RecyclerView rv;
+    private EmployeeAdapter employeeAdapter;
 
     /* onCreate method creates the screen */
     @Override
@@ -72,26 +80,30 @@ public class EmployeeActivity extends AppCompatActivity
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(linearLayoutManager);
 
-        // Initializes data as well as our adapter
+        // Calls method to add employees to the employee list
         initializeData();
 
+        // Initialization of our employee adapter
         employeeAdapter = new EmployeeAdapter(employees);
 
+        // Sets the adapter to the recycler view
         rv.setAdapter(employeeAdapter);
 
     }
 
 
+        // Initializes employee list as an ArrayList and adds hardcoded employee objects to it
+        // Data initialized is hard coded and needs to be changed to data pulled from database
         private void initializeData() {
             employees = new ArrayList<>();
             employees.add(new Employee(9, "John", "Temporary", "JohnTemporary@gmail.com",
-                    "2468 Cary St. Richmond, VA 23220", "03/03/03", "badPassword", R.drawable.boy));
+                    "2468 Cary St. Richmond, VA 23220", "03/03/03", R.drawable.boy));
 
             employees.add(new Employee(10, "Bryan", "Hilldrup", "hilldrupbf@vcu.edu",
-                    "12345 Main St. Richmond, VA 23220", "07/07/07", "TemporaryPasswrod", R.drawable.man));
+                    "12345 Main St. Richmond, VA 23220", "07/07/07", R.drawable.man));
 
             employees.add(new Employee(11, "Peter", "George", "petergeorge@vcu.edu",
-                    "9889 Broad St. Richmond, Va 23220", "12/31/00", "hunter02", R.drawable.girl1));
+                    "9889 Broad St. Richmond, Va 23220", "12/31/00", R.drawable.girl1));
         }
 
 
@@ -153,7 +165,7 @@ public class EmployeeActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), Donors.class);
             startActivity(intent);
         }
-        // If STAFF is selected by manager, go to Staff.class
+        // If STAFF is selected by manager, go to EmployeeActivity.class
         else if (id == R.id.nav_staff) {
             //DO NOTHING
         }

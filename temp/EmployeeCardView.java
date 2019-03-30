@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.managertabs.R;
 
+// Class to encapsulate a card view
 public class EmployeeCardView extends Activity {
 
     TextView name;

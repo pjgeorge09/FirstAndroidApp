@@ -36,17 +36,13 @@ import java.util.Map;
 public class Master extends AppCompatActivity {
     //I want these to be accessible from EVERYWHERE - Pete    temporary note
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     /*---------------------COLLECTION DECLARATIONS-----------------*/
     public final CollectionReference INVENTORY = db.collection("Inventory");
     public CollectionReference DONATIONS = db.collection("Donations");
     public CollectionReference EMPLOYEES = db.collection("Employees");
     public CollectionReference OTHER = db.collection("Other");
 
-        //THESE TASKS ARE ASSHOLES DO NOT USE THEM
-//    Task<DocumentSnapshot> documentSnapshotTask = db.collection("Inventory").document("Green Beans").get();
-//    //This one should be a constant field that gets updated.
-//    Task<DocumentSnapshot> memoSnapshot = db.collection("Other").document("Message").get() ;
-    String TAG = "TAG";
     final DocumentReference messageDocRef = OTHER.document("Message");
 
 
@@ -57,28 +53,12 @@ public class Master extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
     }
 
-    // Delete method, its defined in FireStoreMethods.java
-    /*
-    public String getItemLocation(DocumentReference anItem) {
-        // THIS WORKS
-
-        DocumentReference docRef = db.collection("Inventory").document("Green Beans");
-        return docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String location = documentSnapshot.get("Location").toString();
-            }
-
-        }).toString();
-    }
-    */
-
 
     /* This method changes a FIELD.
-        @Param $1  = the COLLECTION NAME
-        @Param $2  = the DOCUMENT NAME
-        @Param $3  = the FIELD NAME
-        @Param $4  = the new information you want there
+        @Arg $1  = the COLLECTION NAME
+        @Arg $2  = the DOCUMENT NAME
+        @Arg $3  = the FIELD NAME
+        @Arg $4  = the new information you want there
         TODO LISTENER FOR IF FAIL*/
     public void changeField(CollectionReference collection, String docName,String fieldName, String updatedInfo){
 //ex)   INVENTORY . "Green Beans" .
@@ -88,36 +68,53 @@ public class Master extends AppCompatActivity {
         );
     }
 
-    /* Creating a method to add entirely a new inventory item with null values    */
+    /* Creating a method to add entirely a new inventory item with null values
+      * @Arg documentName = This gives the Document a readable name instead of the terrible hash values Firestore auto assigns in the database */
     public void addNewItem(String documentName){
+
+        //Create a map object of EXACTLY <String, Object> = HashMap (Best speed)
         Map<String, Object> toAdd = new HashMap<>();
+        //Set null values (Not necessarily needed but helps)
         toAdd.put("Location", "____");
         toAdd.put("Quantity", 0);
         toAdd.put("Threshold", 1);
         toAdd.put("Type", "____");
         toAdd.put("item", "____");
 
-        // CONSIDER ADDING ONSUCCESS LISTENER
         db.collection("Inventory").document(documentName)
+                // .set(toAdd) adds it to the database
                 .set(toAdd).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void documentReference) {
+                        // Decently-written Log. Should implement this everywhere tbh
                         Log.d("Firebase data added", "doc w ID :");
                     }
-
-        });
-
+                });
     }
 
+    /* Method to create a new worker with null value fields at first
+     * @Arg documentName = This gives the Document a readable name instead of the terrible hash values Firestore auto assigns in the database
+     * Example: addNewWorker("Sarah Cole")      Document name = Sarah Cole*/
     public void addNewWorker(String documentName){
+
+        //Create a map object of EXACTLY <String, Object> = HashMap (Best speed)
         Map<String, Object> toAdd = new HashMap<>();
+        //Set null values (Not necessarily needed but helps)
         toAdd.put("First Name", "____");
         toAdd.put("Last Name", "____");
         toAdd.put("Contact Number", "____");
         toAdd.put("Email Address", "____");
         toAdd.put("WorkerID", 00);
-
-        db.collection("Employees").document(documentName).set(toAdd);
+        //
+        db.collection("Employees").document(documentName)
+                // .set(toAdd) adds it to the database
+                .set(toAdd).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void documentReference) {
+                // Decently-written Log. Should implement this everywhere tbh
+                Log.d("Firebase Employee added", "doc w ID :" );
+            }
+        });
     }
 
 
