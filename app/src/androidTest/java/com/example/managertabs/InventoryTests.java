@@ -7,7 +7,8 @@ package com.example.managertabs;
         import android.view.Gravity;
 
         import com.example.managertabs.Donation.DonationsActivity;
-        import com.example.managertabs.Inventory.Inventory;
+        import com.example.managertabs.EmployeeFiles.EmployeeActivity;
+        import com.example.managertabs.Inventory;
 
         import org.junit.Rule;
         import org.junit.runner.RunWith;
@@ -91,6 +92,6 @@ public class InventoryTests{
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_staff));
 
         // Checks to see that the correct screen is opened
-        intended(hasComponent(Staff.class.getName()));
+        intended(hasComponent(EmployeeActivity.class.getName()));
     }
 }
