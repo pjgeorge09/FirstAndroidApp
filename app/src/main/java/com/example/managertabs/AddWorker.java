@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.managertabs.EmployeeFiles.EmployeeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -50,7 +51,7 @@ public class AddWorker extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(AddWorker.this, "New employee added", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(AddWorker.this, Staff.class));
+                            startActivity(new Intent(AddWorker.this, EmployeeActivity.class));
                         }
                         else {
                             Toast.makeText(AddWorker.this, "Employee could not be added", Toast.LENGTH_SHORT).show();

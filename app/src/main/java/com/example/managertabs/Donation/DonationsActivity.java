@@ -13,10 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.managertabs.Donors;
+import com.example.managertabs.EmployeeFiles.EmployeeActivity;
 import com.example.managertabs.Inventory;
 import com.example.managertabs.ManagerHomeScreen;
 import com.example.managertabs.R;
-import com.example.managertabs.Staff;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,9 +118,9 @@ public class Donations extends Master implements NavigationView.OnNavigationItem
             Intent intent = new Intent(getApplicationContext(), Donors.class);
             startActivity(intent);
         }
-        // If STAFF is selected by manager, go to Staff.class
+        // If STAFF is selected by manager, go to EmployeeActivity.class
         else if (id == R.id.nav_staff) {
-            Intent intent = new Intent(getApplicationContext(), Staff.class);
+            Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class);
             startActivity(intent);
         }
         // If ______ is selected by manager, go to ______
