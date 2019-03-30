@@ -12,8 +12,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
-import com.example.managertabs.Donation.Donation;
 import com.example.managertabs.Donation.DonationsActivity;
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,17 +21,13 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.MetadataChanges;
 import com.google.firebase.firestore.Transaction;
-
 import javax.annotation.Nullable;
 
 
-public class Inventory extends MainActivityManager
-
-
-
-
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Inventory extends MainActivityManager implements NavigationView.OnNavigationItemSelectedListener {
+    //Create the item you will be manipulating here
     Item item = new Item();
+
 
     /* onCreate method creates the screen */
     @Override
@@ -57,75 +51,39 @@ public class Inventory extends MainActivityManager
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
-        //FOR PETE This line creates a FireStoreMethod object which can be used to call its methods
-//        FirestoreMethods getFirestoreMethod = new FirestoreMethods();
-
-        //works
+        // Calls addNewItem method from Master class (Generic item creation, sets values to stock blanks)
         addNewItem("Spaghettios");
 
-        //Initialize the database, it is linked to my android already
-        /* FOR BRYAN - We create an item, a map, that can receive ANY object (int, string etc)  */
-//        Map<String, Object> Soup = new HashMap<>();
-//
-//        // Sample data
-//        //TODO make this an inferface
-//        Soup.put("Type", "Can");
-//        Soup.put("Location", "S5");
-//        Soup.put("Quantity", 300);
-//        Soup.put("Threshold", 100);
-
-//
-//        //Messages = rows in SQL. It's like a set. so maybe another example  "John Temporary"
-//        db.collection("Inventory").document("Soup")
-//                .set(Soup)
-//                // ON SUCCESS
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void documentReference) {
-//                        Log.d("FIREBASE_DATA_ADDED", "Document added with ID: ");
-//                    }
-//                })
-//                //ON FAILURE
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w("FIREBASE_DATA_ERROR", "Document failed to add, exception backtrace: " + Arrays.toString(e.getStackTrace()));
-//                    }
-//                });
-
-
-//        public void changeField(CollectionReference collection, String docName,String fieldName, String updatedInfo){
-////ex)   INVENTORY . "Green Beans" .
-//            collection.document(docName).update(
-////ex cont)      "Location" ,  "A260A"
-//                    fieldName, updatedInfo
-//            );
-//        }
-//        final Item item = new Item();
-        //Works
+        // Calls changeField method from Master class (Sets ANY Field data to whatever you set here. Needs tested for NUMBERS)
         changeField(INVENTORY, "Tomatoes","Location","T117");
 
-        // TODO THIS IS THE WORKING THING. THE METHOD. tHIS TRANSACTION WILL BE OUR GETTERS
+        // TODO THIS IS THE WORKING THING. THE METHOD. THIS TRANSACTION WILL BE OUR GETTERS
+        // db = database.   runTransaction is the method of getting data from database into variables
+        // TODO ===> https://firebase.google.com/docs/firestore/manage-data/transactions
         db.runTransaction(new Transaction.Function<String>(){
             @Override
             public String apply(Transaction transaction) throws FirebaseFirestoreException{
-                DocumentSnapshot snapshot = transaction.get(INVENTORY.document("Canned Tuna"));
-//                item = snapshot.toObject(Item.class);
+                /* IMPORTANT: This DocumentSnapshot is the item that pulls. This way you can get data from ANYWHERE in the Database.
+                 *               <name>     transaction.get(COLLECTION . DOCUMENT("NAME GOES HERE")    */
+                DocumentSnapshot snapshot = transaction.get(INVENTORY.document("Canned Tuna"));  //currently set to Canned Tuna needs changed TODO
+                // Using Item Class setters, and DocumentSnapshot's "Get String Method"
+                // Get String method is a KEY VALUE PAIR. You pass it the Field name and it returns the string
                 item.setName(snapshot.getString("item"));
                 item.setLocation(snapshot.getString("Location"));
+                // Supposedly works with non-string values with get method (REQUIRES CASTING THOUGH)
                 item.setQuantity((int)snapshot.get("Quantity"));
                 item.setThreshold((int)snapshot.get("Threshold"));
                 item.setType(snapshot.getString("Type"));
+                //Method gets angry if you change it from String so this line is actually useless. Try setting as void again when get time
                 String newPop = snapshot.getString("Memo");
-//                item.setName(newPop); //todo THIS IS A PRE INIT OBJECT
+                // Returns to no-where, irrelevant but needed statement
                 return newPop;
             }
+            // Listeners just add to the log, but I don't have them printing anything helpful. TODO Make better log messages like "Failed at", getLineFault()
         }).addOnSuccessListener(new OnSuccessListener<String>() {
                                     @Override
                                     public void onSuccess(String s) {
-                                        Log.d("Dick","Ass");
+                                        Log.d("Log","Log");
                                     }
                                 }
         ).addOnFailureListener(new OnFailureListener() {
@@ -135,54 +93,43 @@ public class Inventory extends MainActivityManager
             }
         });
 
-
-
-
-
-        // Sets aString to the item location of Green Beans
-        //String aString = getFirestoreMethod.getItemThreshold("Green Beans");
-        // Makes a TextView and sets it to textView2
-        // Casting here might be unnecessary?
-//        TextView tv = (TextView)findViewById(R.id.textView2);
-//        // Sets the text of textView2 to the item location of Green Beans
-//        tv.setText(documentSnapshotTask.getResult().getString("Location"));
-//        //tv.setText(documentSnapshotTask.getResult().get("Threshold").toString());
-//        //Item item1 = new Item();
-//
-//        // SET LOCATION FROM MASTER METHOD, CURRENTLY SET TO GREEN BEANS ONLY, MODIFIABLE
-////        setLocation("Pete's Test");
-//        // THERE IS A ONE-SCREEN DELAY     TODO
-//        //ACTUALLY SETTING THE NEW REFERENCE NAME
-//        tv.setText(documentSnapshotTask.getResult().getString("Location"));
-
     }
 
 
     //This works now. Button pulls data. Changes Inventory Screen Name to "Can" or whatever you want from database
     public void changeName(View view){
+
+        //live update
+        //Currently uses messageDocRef, but it just needs a final variable to manipulate so the initial value of messageDocRef is IRRELEVANT
+        // TODO ===> https://firebase.google.com/docs/firestore/query-data/listen
         messageDocRef.addSnapshotListener(MetadataChanges.INCLUDE, new EventListener<DocumentSnapshot>() {
+            // On some EVENT (some bit of data changes in the database) do the following actions
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                // ON EVENT UPDATE ITEM
+                // Actions being done below (Run new transaction, update Item object class info, then reapply to screen)
                 db.runTransaction(new Transaction.Function<String>(){
                     @Override
                     public String apply(Transaction transaction) throws FirebaseFirestoreException{
+                        /* IMPORTANT: This DocumentSnapshot is the item that pulls. This way you can get data from ANYWHERE in the Database.
+                         *               <name>     transaction.get(COLLECTION . DOCUMENT("NAME GOES HERE")    */
                         DocumentSnapshot snapshot = transaction.get(INVENTORY.document("Canned Tuna"));
-//                item = snapshot.toObject(Item.class);
+                        // Using Item Class setters, and DocumentSnapshot's "Get String Method"
+                        // Get String method is a KEY VALUE PAIR. You pass it the Field name and it returns the string
                         item.setName(snapshot.getString("item"));
                         item.setLocation(snapshot.getString("Location"));
+                        // Supposedly works with non-string values with get method (REQUIRES CASTING THOUGH)
                         item.setQuantity((int)snapshot.get("Quantity"));
                         item.setThreshold((int)snapshot.get("Threshold"));
                         item.setType(snapshot.getString("Type"));
+                        // Irrelevant but required, does nothing hurts nothing. Maybe void later if possible
                         String newPop = snapshot.getString("Memo");
-
-//                item.setName(newPop); //todo THIS IS A PRE INIT OBJECT
                         return newPop;
                     }
+                    // Listeners just add to the log, but I don't have them printing anything helpful. TODO Make better log messages like "Failed at", getLineFault()
                 }).addOnSuccessListener(new OnSuccessListener<String>() {
                                             @Override
                                             public void onSuccess(String s) {
-                                                Log.d("Dick","Ass");
+                                                Log.d("Log","Log");
                                             }
                                         }
                 ).addOnFailureListener(new OnFailureListener() {
@@ -193,8 +140,9 @@ public class Inventory extends MainActivityManager
                 });
             }
         });
+
+        // Create new TextView object based on whatever text box you want to change
         TextView title = (TextView)findViewById(R.id.textView2);
-//        title.setText(documentSnapshotTask.getResult().getString("Type"));
         title.setText(item.getLocation());
     }
 

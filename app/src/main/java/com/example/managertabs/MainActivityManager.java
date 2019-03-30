@@ -3,22 +3,17 @@ package com.example.managertabs;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
-import com.google.api.Context;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.example.managertabs.Donation.DonationsActivity;
-import com.example.managertabs.Inventory;
 
 public class MainActivityManager extends Master {
+
+    // I am pretty sure we don't need this
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
     }
 

@@ -13,13 +13,13 @@ import com.example.managertabs.Donation.WorkerDonations;
 import com.example.managertabs.WorkerInventory;
 
 public class MainActivityWorker extends Master {
+    //I don't think this is actually needed here, just call the INVENTORY, WORKERS, etc instead from master
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     /* onCreate method creates the screen */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
 
     /* Sets the back button to revert to the last screen. In the case that the drawer is open, it simply closes the drawer instead. */
     @Override
@@ -33,7 +33,6 @@ public class MainActivityWorker extends Master {
         else {
             Intent intent = new Intent(getApplicationContext(), WorkerHomeScreen.class);
             startActivity(intent);
-//            super.onBackPressed();
         }
     }
 
