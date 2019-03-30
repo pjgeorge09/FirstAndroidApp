@@ -66,10 +66,12 @@ public class Donations extends Master implements NavigationView.OnNavigationItem
         navigationView.setNavigationItemSelectedListener(this);
 
         // Recycle Stuff
+
+        //links the java to the recycler view
         recyclerView =(RecyclerView) findViewById(R.id.recycle_donation);
 
 
-        // Not sure if necessary, possibly delete
+        // Says if the recycler has fixed size probably should set to false if we are going to be adding item otherwise leave @ true to improve preformance
         recyclerView.setHasFixedSize(true);
 
         //generates the test data
@@ -79,20 +81,23 @@ public class Donations extends Master implements NavigationView.OnNavigationItem
 
         initializeData();
 
-
+//Using prepackage layout manager
         LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+        //creates a new donations adapter object and passes it the test data donations array
         donationsAdapter = new DonationsAdapter(donations);
+        //links the recycler view to the layout manager
         recyclerView.setLayoutManager(layoutManager);
+        //links the recyclerview to the donations adapter
         recyclerView.setAdapter(donationsAdapter);
         }
-
+//fills the donations array with test data
     private void initializeData(){
         donations.add(new Donation("03/22/1901", "Beans", "500", "Small"));
         donations.add(new Donation("03/21/1904", "Peas", "500", "Medium"));
         donations.add(new Donation("03/13/1903", "Green Peas", "500", "Large"));
         donations.add(new Donation("03/01/1902", "Canned Tomtatoes", "500", "Small"));
     }
-
+//declarations for above
     private RecyclerView recyclerView;
     private List<Donation> donations;
     private DonationsAdapter donationsAdapter;
