@@ -1,13 +1,13 @@
 package com.example.managertabs.EmployeeFiles;
 
-import android.graphics.drawable.Drawable;
-
 import com.example.managertabs.Master;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import java.util.HashMap;
 import java.util.Map;
+// FOLLOWING IMPORT CAN BE DELETED WHEN ADD METHODS ARE MOVED
+import com.google.firebase.firestore.CollectionReference;
 
+// CLASS DOES NOT NEED TO EXTEND MASTER
+// extends Master CAN BE DELETED WHEN THREE ADD METHODS ARE MOVED OUT OF CLASS
 public class Employee extends Master {
 
     // Class variables
@@ -17,14 +17,11 @@ public class Employee extends Master {
     private String emailAddress;
     private String homeAddress;
     private String birthDate;
-    private String password;
-    private int securityQuestions;
-    private String securityAnswer;
     private int profilePicture;
 
     // Default constructor
     public Employee(int uid, String firstName, String lastName, String emailAddress,
-                    String homeAddress, String birthDate, String password, int profilePicture){
+                    String homeAddress, String birthDate, int profilePicture){
 
         this.uid = uid;
         this.firstName = firstName;
@@ -32,19 +29,10 @@ public class Employee extends Master {
         this.emailAddress = emailAddress;
         this.homeAddress = homeAddress;
         this.birthDate = birthDate;
-        this.password = password;
         this.profilePicture = profilePicture;
     }
 
-
- // TEST CONSTRUCTOR
-    public Employee(String firstName, String lastName, String emailAddress, int profilePicture){
-
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailAddress = emailAddress;
-        this.profilePicture = profilePicture;
-    }
+    // FOLLOWING THREE METHODS NEED TO BE MOVED OUT OF EMPLOYEE CLASS
 
        /* This method changes a FIELD.
         @Param $1  = the COLLECTION NAME
@@ -62,6 +50,7 @@ public class Employee extends Master {
     }
 
     /* Creating a method to add entirely a new inventory item with null values    */
+    // PROBABLY NOT NEEDED FOR THIS CLASS
     public void addNewItem(String documentName){
         Map<String, Object> toAdd = new HashMap<>();
         toAdd.put("Location", "____");
@@ -76,6 +65,7 @@ public class Employee extends Master {
 
     }
 
+    // Method to add new worker, PROBABLY NOT NEEDED IN THIS CLASS
     public void addNewWorker(String documentName){
         Map<String, Object> toAdd = new HashMap<>();
         toAdd.put("First Name", "____");
@@ -114,10 +104,6 @@ public class Employee extends Master {
         return this.birthDate;
     }
 
-    public String getPassword(){
-        return this.password;
-    }
-
     public int getProfilePicture(){
         return this.profilePicture;
     }
@@ -145,10 +131,6 @@ public class Employee extends Master {
 
     public void setBirthDate(String birthDate){
         this.birthDate = birthDate;
-    }
-
-    public void setPassword(String password){
-        this.password = password;
     }
 
     public void setProfilePicture(int profilePicture){

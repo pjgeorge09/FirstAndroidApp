@@ -7,7 +7,9 @@ import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.view.Gravity;
 
 import com.example.managertabs.Donation.DonationsActivity;
-import com.example.managertabs.Inventory.Inventory;
+import com.example.managertabs.EmployeeFiles.Employee;
+import com.example.managertabs.EmployeeFiles.EmployeeActivity;
+import com.example.managertabs.Inventory;
 
 import org.junit.Rule;
 import org.junit.runner.RunWith;
@@ -27,8 +29,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class StaffTests{
     // Sets the startup screen for this test file to the staff screen
     @Rule
-    public IntentsTestRule<Staff> staffIntentsTestRule
-            = new IntentsTestRule<>(Staff.class, true, true);
+    public IntentsTestRule<EmployeeActivity> staffIntentsTestRule
+            = new IntentsTestRule<>(EmployeeActivity.class, true, true);
 
     // Tests navigation from the staff screen to the inventory screen
     @Test
@@ -91,6 +93,6 @@ public class StaffTests{
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_staff));
 
         // Checks to see that the correct screen is opened
-        intended(hasComponent(Staff.class.getName()));
+        intended(hasComponent(EmployeeActivity.class.getName()));
     }
 }

@@ -7,7 +7,7 @@ import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.view.Gravity;
 
 import com.example.managertabs.Donation.WorkerDonations;
-import com.example.managertabs.Inventory.WorkerInventory;
+import com.example.managertabs.WorkerInventory;
 
 import org.junit.Rule;
 import org.junit.runner.RunWith;

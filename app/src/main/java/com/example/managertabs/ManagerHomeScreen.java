@@ -156,7 +156,7 @@ public class ManagerHomeScreen extends MainActivityManager
             Intent intent = new Intent(getApplicationContext(), Donors.class);
             startActivity(intent);
         }
-        // If STAFF is selected by manager, go to Staff.class
+        // If STAFF is selected by manager, go to EmployeeActivity.class
         else if (id == R.id.nav_staff) {
             Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class);
             startActivity(intent);
