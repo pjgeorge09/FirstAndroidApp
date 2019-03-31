@@ -10,11 +10,13 @@ import static com.example.managertabs.R.layout.donations_card_view;
 
 
 public class DonationCardView extends Activity {
+    //TextView variables
     TextView Date;
     TextView Item;
     TextView Quantity;
     TextView Size;
     @Override
+    //allows each the text views in the card view to be set to the appropiate field
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

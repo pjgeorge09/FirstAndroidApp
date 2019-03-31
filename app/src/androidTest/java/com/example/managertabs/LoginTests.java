@@ -37,7 +37,11 @@ public class LoginTests {
     @Test
     public void testLoginManager(){
         // Inputs "manager" into the email field
+<<<<<<< HEAD
+        onView(withId(R.id.etEmail1)).perform(typeText("abc@gmail.com"));
+=======
         onView(withId(R.id.etEmail1)).perform(typeText("averyrrector@gmail.com"));
+>>>>>>> 82bfdb1cde43d9758ae17de4c452515d95796db7
 
         // Inputs "manager" into the password field and closes the keyboard
         onView(withId(R.id.etPassword1)).perform(typeText("123456"),
@@ -54,7 +58,11 @@ public class LoginTests {
     @Test
     public void testLoginWorker(){
         // Inputs "worker" into the email field
+<<<<<<< HEAD
+        onView(withId(R.id.etEmail1)).perform(typeText("gullerpj@vcu.edu"));
+=======
         onView(withId(R.id.etEmail1)).perform(typeText("abc@gmail.com"));
+>>>>>>> 82bfdb1cde43d9758ae17de4c452515d95796db7
 
         // Inputs "worker" into the password field
         onView(withId(R.id.etPassword1)).perform(typeText("123456"),

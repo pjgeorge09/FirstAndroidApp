@@ -44,7 +44,7 @@ public class AddWorker extends AppCompatActivity {
 
                 /**
                  * WANT  TO ADD BOXES THAT WILL PUT NEW USER IN AUTH (WHICH IT ALREADY DOES)
-                 * AND WANT TO ADD HOME ADRESS, FIRSTNAME AND LAST NAME (MAYBE PHONE) THAT WILL PUT EMPLOYEE INTO DATABASE ALSO 
+                 * AND WANT TO ADD HOME ADRESS, FIRSTNAME AND LAST NAME (MAYBE PHONE) THAT WILL PUT EMPLOYEE INTO DATABASE ALSO
                  */
                 firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
