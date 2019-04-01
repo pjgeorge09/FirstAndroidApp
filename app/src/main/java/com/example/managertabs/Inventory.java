@@ -2,6 +2,7 @@ package com.example.managertabs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,6 +28,17 @@ import javax.annotation.Nullable;
 public class Inventory extends MainActivityManager implements NavigationView.OnNavigationItemSelectedListener {
     //Create the item you will be manipulating here
     Item item = new Item();
+    // Handler and Runnable needed on every screen that has constant update requests.
+    private Handler handler = new Handler();
+    private Runnable runner = new Runnable() {
+        @Override
+        public void run() {
+            //Constant updates go here
+            //TODO Can call Master methods here to update based on text box
+            //Constant updates go above this line
+            handler.postDelayed(this,1000); //Set to update every second.
+        }
+    };
 
 
     /* onCreate method creates the screen */
@@ -52,10 +64,10 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
         navigationView.setNavigationItemSelectedListener(this);
 
         // Calls addNewItem method from Master class (Generic item creation, sets values to stock blanks)
-        addNewItem("Spaghettios");
+//        addNewItem("Spaghettios");
 
         // Calls changeField method from Master class (Sets ANY Field data to whatever you set here. Needs tested for NUMBERS)
-        changeField(INVENTORY, "Tomatoes","Location","T117");
+//        changeField(INVENTORY, "Tomatoes","Location","T117");
 
         // TODO THIS IS THE WORKING THING. THE METHOD. THIS TRANSACTION WILL BE OUR GETTERS
         // db = database.   runTransaction is the method of getting data from database into variables

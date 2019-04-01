@@ -44,7 +44,7 @@ public class Master extends AppCompatActivity {
     public CollectionReference OTHER = db.collection("Other");
 
     final DocumentReference messageDocRef = OTHER.document("Message");
-
+    final DocumentReference cornDocRef = INVENTORY.document("Corn");
 
     //TODO Create ITEM class, create Array of ITEMS
 
