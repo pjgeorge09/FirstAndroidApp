@@ -51,7 +51,8 @@ public class EmployeeActivity extends Master
     // Private variables
     // Employee list holds a list of employee objects
     //
-    private List<Employee> employees;
+    static ArrayList<Employee> employees = new ArrayList<>();
+    Employee tempEmployee = new Employee();
     private RecyclerView rv;
     private EmployeeAdapter employeeAdapter;
 
@@ -64,7 +65,7 @@ public class EmployeeActivity extends Master
 
 
             //Rerun stuff goes above this line
-            handler.postDelayed(this, 10000); //Currently set to update every 10 seconds
+            handler.postDelayed(this, 15000); //Currently set to update every 10 seconds
         }
     };
 
@@ -98,10 +99,23 @@ public class EmployeeActivity extends Master
         // Linear layout chosen for this view
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(linearLayoutManager);
-
         // Calls method to add employees to the employee list
+//        employees = new ArrayList<>();
+
+        // This handler might not be needed with postdelay added
+                                 new Handler().postDelayed(new Runnable() {
+                                     @Override
+                                     public void run() {
+                                         //update textview here
+                                         generateEmployees();
+                                     }
+                                 }, 1000);
         initializeData();
 
+
+
+
+//        handler.postDelayed(runner,1000);
         // Initialization of our employee adapter
         employeeAdapter = new EmployeeAdapter(employees);
 
@@ -116,8 +130,8 @@ public class EmployeeActivity extends Master
         // Data initialized is hard coded and needs to be changed to data pulled from database
         private void initializeData() {
 
-            employees = new ArrayList<>();
-            generateEmployees(employees);
+//            employees = new ArrayList
+
 //            employees.add(new Employee(9, "John", "Temporary", "JohnTemporary@gmail.com",
 //                    "2468 Cary St. Richmond, VA 23220", "03/03/03", R.drawable.boy));
 //
@@ -206,7 +220,7 @@ public class EmployeeActivity extends Master
         return true;
     }
 
-    public void generateEmployees(final List<Employee> someEmployees){
+    public void generateEmployees(){
         EMPLOYEES
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -219,15 +233,28 @@ public class EmployeeActivity extends Master
                                 String localEmail = document.getString("Email");
                                 String localUID = document.getString("uid");
                                 String localCN = document.getString("ContactNumber");
-                                Employee newEmployee = new Employee(localUID,localFN,localLN,localEmail,localCN);
-//                                newEmployee.setFirstName(document.getString("First Name"));
-//                                newEmployee.setLastName(document.getString("Last Name"));
-//                                newEmployee.setEmailAddress(document.getString("Email"));
-//                                newEmployee.setUid(document.getString("uid"));
-//                                newEmployee.setContactNumber(document.getString("Contact Number"));
+//                                Employee newEmployee = new Employee(localUID,localFN,localLN,localEmail,localCN);
+//                                tempEmployee.setFirstName(document.getString("First Name"));
+//                                tempEmployee.setLastName(document.getString("Last Name"));
+//                                tempEmployee.setEmailAddress(document.getString("Email"));
+//                                tempEmployee.setUid(document.getString("uid"));
+//                                tempEmployee.setContactNumber(document.getString("Contact Number"));
 
-                                someEmployees.add(newEmployee);
+                                employees.add(new Employee(localUID,localFN,localLN,localEmail,localCN));
                                 Log.d("Temp Tag", document.getId() + " => " + document.getData());
+//                                if(employees.get(0) != null){
+//                                    Log.d("Test", "EMPDATA " + employees.get(0).getFirstName());
+//                                }
+//                                else { Log.d("Test", "Failed"); }
+//                                if(employees.size() > 0){
+//                                    Log.d("Test", "EMPDATA " + employees.get(0).getFirstName());
+//                                }
+//                                else { Log.d("Test", "Failed"); }
+//                                if(employees.size() > 0){
+//                                    Log.d("Test", "EMPDATA " + employees.get(0).getFirstName());
+//                                }
+//                                else { Log.d("Test", "Failed"); }
+
                             }
                         } else {
                             Log.d("Abandon Operation", "Error getting documents: ", task.getException());
