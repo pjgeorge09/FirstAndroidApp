@@ -1,13 +1,13 @@
 package com.example.managertabs;
-
+//object for the inventory tab
 public class inventoryData {
-    private  String inventoryCategory;
-    private  String inventoryExpire;
-    private  String inventoryItem;
-    private String inventorySize;
-    private String inventoryLocation;
-    private  String inventoryQuantity;
-    private  String inventoryMin_Threshold;
+    String inventoryCategory;
+    String inventoryExpire;
+    String inventoryItem;
+    String inventorySize;
+    String inventoryLocation;
+    String inventoryQuantity;
+    String inventoryMin_Threshold;
 
     public inventoryData(String inventoryCategory, String inventoryExpire, String inventoryItem, String inventorySize, String inventoryLocation, String inventoryQuantity, String inventoryMin_Threshold) {
         this.inventoryCategory = inventoryCategory;

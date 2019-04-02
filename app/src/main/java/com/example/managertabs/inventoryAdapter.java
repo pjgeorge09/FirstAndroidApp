@@ -31,11 +31,13 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
     @Override
     public void onBindViewHolder(InventoryViewHolder holder, int position){
         //passes the data to the text views
-        holder.Date.setText("Date: "+ ProperData.get(position).Date);
-        holder.Item.setText("Item: "+ProperData.get(position).Item);
-        holder.Quantity.setText("Quantity: "+ProperData.get(position).Quantity);
-        holder.Size.setText("Size: "+ProperData.get(position).Size);
-
+        holder.Category.setText("Category: "+ ProperData.get(position).inventoryCategory);
+        holder.Expire.setText("Expire: "+ProperData.get(position).inventoryExpire);
+        holder.Item.setText("Item: "+ProperData.get(position).inventoryItem);
+        holder.Location.setText("Location: "+ProperData.get(position).inventoryLocation);
+        holder.Quantity.setText("Quantity: "+ProperData.get(position).inventoryQuantity);
+        holder.Size.setText("Size: "+ProperData.get(position).inventorySize);
+        holder.Min_Threshold.setText("Minimum Threshold: "+ProperData.get(position).inventoryMin_Threshold);
     }
 
     @Override
@@ -54,15 +56,18 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
     //custom view holder class
     public static class InventoryViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
-        TextView Date;
+        TextView Category;
+        TextView Expire;
         TextView Item;
+        TextView Location;
         TextView Quantity;
         TextView Size;
+        TextView Min_Threshold;
         //links the card view and textboxes to the view holder
         public InventoryViewHolder(View itemView) {
             super(itemView);
 
-            cardView = (CardView)itemView.findViewById(R.id.CV_donation);
+            cardView = (CardView)itemView.findViewById(R.id.inventory);
             //text box in row
             Date= (TextView)itemView.findViewById(R.id.Date);
             Item= (TextView)itemView.findViewById(R.id.Item);
