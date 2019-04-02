@@ -37,8 +37,7 @@ public class ManagerHomeScreen extends MainActivityManager
          @Override
          public void run() {
              {
-                 //update textview here
-                 textView.setText(memo.getMemo());
+
                  //Set listener on live update
                  messageDocRef.addSnapshotListener(MetadataChanges.INCLUDE, new EventListener<DocumentSnapshot>() {
                      // On some EVENT (some bit of data changes in the database) do the following actions
@@ -55,14 +54,14 @@ public class ManagerHomeScreen extends MainActivityManager
                                  // Get String method is a KEY VALUE PAIR. You pass it the Field name and it returns the string
 //                        item.setName(snapshot.getString("item"));
                                  memo.setMemo(snapshot.getString("Memo"));
-
-                                 new Handler().postDelayed(new Runnable() {
-                                     @Override
-                                     public void run() {
-                                         //update textview here
-                                         textView.setText(memo.getMemo());
-                                     }
-                                 }, 1000);
+//                                 // This handler might not be needed with postdelay added
+//                                 new Handler().postDelayed(new Runnable() {
+//                                     @Override
+//                                     public void run() {
+//                                         //update textview here
+//                                         textView.setText(memo.getMemo());
+//                                     }
+//                                 }, 1000);
 
                                  // Irrelevant but required, does nothing hurts nothing. Maybe void later if possible
                                  String newPop = snapshot.getString("Memo");
@@ -83,7 +82,12 @@ public class ManagerHomeScreen extends MainActivityManager
                          });
                      }
                  });
+                 // This is inefficient here. Use to update non-clickable data such as two boxes one with current inventory one with update TODO
                  handler.postDelayed(this, 10000); //Currently set to update every 10 seconds
+                 //update textview here
+                 if(memo.getMemo() != null) {
+                     textView.setText(memo.getMemo());
+                 }
              }
          }
      };
@@ -113,7 +117,7 @@ public class ManagerHomeScreen extends MainActivityManager
 
         // OnScreenCreate, set the content of the Manager Home Screen to the contents currently in the database (FOR WORKER TOO)
         textView = (TextView)findViewById(R.id.memoBox);
-
+        textView.setText("Loading...");
 //
 //        /* runTransaction method is a method to get data from the database and pass the info TO VARIABLES */
 //        db.runTransaction(new Transaction.Function<String>(){

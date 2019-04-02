@@ -2,6 +2,7 @@ package com.example.managertabs.EmployeeFiles;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,11 +23,16 @@ import com.example.managertabs.Donors;
 import com.example.managertabs.Inventory;
 import com.example.managertabs.MainActivityManager;
 import com.example.managertabs.ManagerHomeScreen;
+import com.example.managertabs.Master;
 import com.example.managertabs.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,7 +45,7 @@ import java.util.Map;
 /**
  * Class to manage the activity for the Employee page
  */
-public class EmployeeActivity extends AppCompatActivity
+public class EmployeeActivity extends Master
         implements NavigationView.OnNavigationItemSelectedListener {
 
     // Private variables
@@ -48,6 +54,19 @@ public class EmployeeActivity extends AppCompatActivity
     private List<Employee> employees;
     private RecyclerView rv;
     private EmployeeAdapter employeeAdapter;
+
+    //Handler/Runnable for listeners
+    private Handler handler = new Handler();
+    private Runnable runner = new Runnable() {
+        @Override
+        public void run() {
+            // Rerun stuff goes below this line
+
+
+            //Rerun stuff goes above this line
+            handler.postDelayed(this, 10000); //Currently set to update every 10 seconds
+        }
+    };
 
     /* onCreate method creates the screen */
     @Override
@@ -88,22 +107,25 @@ public class EmployeeActivity extends AppCompatActivity
 
         // Sets the adapter to the recycler view
         rv.setAdapter(employeeAdapter);
-
+        // todo addNewEmployee method works as below perfectly, and in real time
+//        addNewEmployee("103", "103", "Paul","Guller","Paul@gmail.com","804-555-3456");
     }
 
 
         // Initializes employee list as an ArrayList and adds hardcoded employee objects to it
         // Data initialized is hard coded and needs to be changed to data pulled from database
         private void initializeData() {
+
             employees = new ArrayList<>();
-            employees.add(new Employee(9, "John", "Temporary", "JohnTemporary@gmail.com",
-                    "2468 Cary St. Richmond, VA 23220", "03/03/03", R.drawable.boy));
-
-            employees.add(new Employee(10, "Bryan", "Hilldrup", "hilldrupbf@vcu.edu",
-                    "12345 Main St. Richmond, VA 23220", "07/07/07", R.drawable.man));
-
-            employees.add(new Employee(11, "Peter", "George", "petergeorge@vcu.edu",
-                    "9889 Broad St. Richmond, Va 23220", "12/31/00", R.drawable.girl1));
+            generateEmployees(employees);
+//            employees.add(new Employee(9, "John", "Temporary", "JohnTemporary@gmail.com",
+//                    "2468 Cary St. Richmond, VA 23220", "03/03/03", R.drawable.boy));
+//
+//            employees.add(new Employee(10, "Bryan", "Hilldrup", "hilldrupbf@vcu.edu",
+//                    "12345 Main St. Richmond, VA 23220", "07/07/07", R.drawable.man));
+//
+//            employees.add(new Employee(11, "Peter", "George", "petergeorge@vcu.edu",
+//                    "9889 Broad St. Richmond, Va 23220", "12/31/00", R.drawable.girl1));
         }
 
 
@@ -182,5 +204,35 @@ public class EmployeeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void generateEmployees(final List<Employee> someEmployees){
+        EMPLOYEES
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String localFN = document.getString("First Name");
+                                String localLN = document.getString("Last Name");
+                                String localEmail = document.getString("Email");
+                                String localUID = document.getString("uid");
+                                String localCN = document.getString("ContactNumber");
+                                Employee newEmployee = new Employee(localUID,localFN,localLN,localEmail,localCN);
+//                                newEmployee.setFirstName(document.getString("First Name"));
+//                                newEmployee.setLastName(document.getString("Last Name"));
+//                                newEmployee.setEmailAddress(document.getString("Email"));
+//                                newEmployee.setUid(document.getString("uid"));
+//                                newEmployee.setContactNumber(document.getString("Contact Number"));
+
+                                someEmployees.add(newEmployee);
+                                Log.d("Temp Tag", document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d("Abandon Operation", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 }

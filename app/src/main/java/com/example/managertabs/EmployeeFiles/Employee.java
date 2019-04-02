@@ -1,9 +1,12 @@
 package com.example.managertabs.EmployeeFiles;
 
+import android.util.Log;
+
 import com.example.managertabs.Master;
 import java.util.HashMap;
 import java.util.Map;
 // FOLLOWING IMPORT CAN BE DELETED WHEN ADD METHODS ARE MOVED
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 
 // CLASS DOES NOT NEED TO EXTEND MASTER
@@ -11,26 +14,50 @@ import com.google.firebase.firestore.CollectionReference;
 public class Employee extends Master {
 
     // Class variables
-    private int uid;
+    private String uid;
     private String firstName;
     private String lastName;
     private String emailAddress;
-    private String homeAddress;
-    private String birthDate;
+    private String contactNumber;
+
+
     private int profilePicture;
 
-    // Default constructor
-    public Employee(int uid, String firstName, String lastName, String emailAddress,
+    public Employee(){
+
+        /*
+        toAdd.put("First Name", "____");
+        toAdd.put("Last Name", "____");
+        toAdd.put("Contact Number", "____");
+        toAdd.put("Email Address", "____");
+        toAdd.put("WorkerID", 00);
+         */
+    }
+
+    // Parameterized constructor
+    public Employee(String uid, String firstName, String lastName, String emailAddress,
                     String homeAddress, String birthDate, int profilePicture){
 
         this.uid = uid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
-        this.homeAddress = homeAddress;
-        this.birthDate = birthDate;
+        this.contactNumber = homeAddress;
         this.profilePicture = profilePicture;
     }
+
+    // Parameterized constructor
+    public Employee(String uid, String firstName, String lastName, String emailAddress,
+                    String aContactNumber){
+
+        this.uid = uid;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.contactNumber = aContactNumber;
+    }
+
+
 
     // FOLLOWING THREE METHODS NEED TO BE MOVED OUT OF EMPLOYEE CLASS
 
@@ -49,38 +76,8 @@ public class Employee extends Master {
 
     }
 
-    /* Creating a method to add entirely a new inventory item with null values    */
-    // PROBABLY NOT NEEDED FOR THIS CLASS
-    public void addNewItem(String documentName){
-        Map<String, Object> toAdd = new HashMap<>();
-        toAdd.put("Location", "____");
-        toAdd.put("Quantity", 0);
-        toAdd.put("Threshold", 1);
-        toAdd.put("Type", "____");
-        toAdd.put("item", "____");
-
-        // CONSIDER ADDING ONSUCCESS LISTENER
-        db.collection("Inventory").document(documentName)
-                .set(toAdd);
-
-    }
-
-    // Method to add new worker, PROBABLY NOT NEEDED IN THIS CLASS
-    public void addNewWorker(String documentName){
-        Map<String, Object> toAdd = new HashMap<>();
-        toAdd.put("First Name", "____");
-        toAdd.put("Last Name", "____");
-        toAdd.put("Contact Number", "____");
-        toAdd.put("Email Address", "____");
-        toAdd.put("WorkerID", 00);
-
-    }
-
-
-
-
     // Getter methods
-    public int getUid(){
+    public String getUid(){
         return this.uid;
     }
 
@@ -96,12 +93,8 @@ public class Employee extends Master {
         return this.emailAddress;
     }
 
-    public String getHomeAddress(){
-        return this.homeAddress;
-    }
-
-    public String getBirthDate(){
-        return this.birthDate;
+    public String getContactNumber(){
+        return this.contactNumber;
     }
 
     public int getProfilePicture(){
@@ -109,7 +102,7 @@ public class Employee extends Master {
     }
 
     // Setter methods
-    public void setUid(int uid){
+    public void setUid(String uid){
         this.uid = uid;
     }
 
@@ -125,15 +118,13 @@ public class Employee extends Master {
         this.emailAddress = emailAddress;
     }
 
-    public void setHomeAddress(String homeAddress){
-        this.homeAddress = homeAddress;
-    }
-
-    public void setBirthDate(String birthDate){
-        this.birthDate = birthDate;
+    public void setContactNumber(String contactNumber){
+        this.contactNumber = contactNumber;
     }
 
     public void setProfilePicture(int profilePicture){
         this.profilePicture = profilePicture;
     }
+
+
 }
