@@ -52,6 +52,7 @@ public class EmployeeActivity extends Master
     // Employee list holds a list of employee objects
     //
     static ArrayList<Employee> employees = new ArrayList<>();
+    static Boolean added = false;
     Employee tempEmployee = new Employee();
     private RecyclerView rv;
     private EmployeeAdapter employeeAdapter;
@@ -103,13 +104,19 @@ public class EmployeeActivity extends Master
 //        employees = new ArrayList<>();
 
         // This handler might not be needed with postdelay added
-                                 new Handler().postDelayed(new Runnable() {
-                                     @Override
-                                     public void run() {
-                                         //update textview here
-                                         generateEmployees();
-                                     }
-                                 }, 1000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //update textview here
+                if(!added) {
+                    generateEmployees();
+                    added = true;
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                }
+            }
+        }, 1000);
         initializeData();
 
 
