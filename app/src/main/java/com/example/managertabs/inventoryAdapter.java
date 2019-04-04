@@ -67,12 +67,16 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
         public InventoryViewHolder(View itemView) {
             super(itemView);
 
-            cardView = (CardView)itemView.findViewById(R.id.inventory);
+            cardView = (CardView)itemView.findViewById(R.id.CV_inventory);
             //text box in row
-            Date= (TextView)itemView.findViewById(R.id.Date);
-            Item= (TextView)itemView.findViewById(R.id.Item);
-            Quantity= (TextView)itemView.findViewById(R.id.Quantity);
-            Size= (TextView)itemView.findViewById(R.id.Size);
+
+            Category= (TextView)itemView.findViewById(R.id.Inventory_Category);
+            Expire= (TextView)itemView.findViewById(R.id.Inventory_Expire);
+            Item= (TextView)itemView.findViewById(R.id.Inventory_Item);
+            Location=(TextView)itemView.findViewById(R.id.Inventory_Loacation);
+            Quantity= (TextView)itemView.findViewById(R.id.Inventory_Quantity);
+            Size= (TextView)itemView.findViewById(R.id.Inventory_Size);
+            Min_Threshold= (TextView)itemView.findViewById(R.id.Inventory_Min);
 
 
         }
