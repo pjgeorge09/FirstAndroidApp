@@ -113,7 +113,12 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
         //generates the test data
 
         //Test data cardView
-        inventory = new ArrayList<>();
+        List<inventoryData> inventory = new ArrayList<>();
+
+            inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
+        inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
+
+        inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
 
 
 
@@ -130,7 +135,6 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
 
     //declarations for above
     private RecyclerView recyclerView;
-    private List<inventoryData> inventory;
     private inventoryAdapter inventoryAdapter;
 
 

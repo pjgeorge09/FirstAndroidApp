@@ -21,7 +21,7 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
     @Override
     //links the view holder to the to its card view xml alllows it to generate all the rows
     public InventoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.donations_card_view, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.inventory_card_view, viewGroup, false);
         InventoryViewHolder pvh = new InventoryViewHolder(v);
         return pvh;
     }
