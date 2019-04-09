@@ -32,6 +32,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Transaction;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -39,15 +40,31 @@ import javax.annotation.Nullable;
 
 public class Inventory extends MainActivityManager implements NavigationView.OnNavigationItemSelectedListener {
     Item item = new Item();
+    LinearLayoutManager layoutManager= new LinearLayoutManager(this);
     // Private variables
     // Employee list holds a list of employee objects
     //
     static ArrayList<inventoryData> items = new ArrayList<>();
     static Boolean added = false;
-    inventoryData tempData = new inventoryData();
     //Handler/Runnable for listeners
     private Handler handler = new Handler();
+    private Runnable runner = new Runnable() {
+        @Override
+        public void run() {
+            // Rerun stuff goes below this line
 
+            //creates a new donations adapter object and passes it the test data donations array
+            inventoryAdapter = new inventoryAdapter(items);
+            //links the recycler view to the layout manager
+            recyclerView.setLayoutManager(layoutManager);
+            //links the recyclerview to the donations adapter
+            recyclerView.setAdapter(inventoryAdapter);
+
+
+            //Rerun stuff goes above this line
+            handler.postDelayed(this, 5000); //Currently set to update every 10 seconds
+        }
+    };
     /* onCreate method creates the screen */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +86,6 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        // Calls addNewItem method from Master class (Generic item creation, sets values to stock blanks)
-//        addNewItem("Spaghettios");
 
         // Calls changeField method from Master class (Sets ANY Field data to whatever you set here. Needs tested for NUMBERS)
 //        changeField(INVENTORY, "Tomatoes","Location","T117");
@@ -143,21 +157,23 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
                 //update textview here
                 if(!added) {
                     generateInventory();
-
-
+                    Collections.sort(items);
                 }
             }
-        },10000);
+        },1000);
+        Collections.sort(items);
 
+//        //creates a new donations adapter object and passes it the test data donations array
+//        inventoryAdapter = new inventoryAdapter(items);
+//        //links the recycler view to the layout manager
+//        recyclerView.setLayoutManager(layoutManager);
+//        //links the recyclerview to the donations adapter
+//        recyclerView.setAdapter(inventoryAdapter);
 
-        //creates a new donations adapter object and passes it the test data donations array
-        inventoryAdapter = new inventoryAdapter(items);
-        //links the recycler view to the layout manager
-        recyclerView.setLayoutManager(layoutManager);
-        //links the recyclerview to the donations adapter
-        recyclerView.setAdapter(inventoryAdapter);
+        handler.postDelayed(runner,1000);
 
     }
+
 
     //declarations for above
     private RecyclerView recyclerView;

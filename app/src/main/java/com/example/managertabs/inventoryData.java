@@ -1,6 +1,8 @@
 package com.example.managertabs;
+
+import java.util.Comparator;
 //object for the inventory tab
-public class inventoryData {
+public class inventoryData implements Comparable {
     String inventoryCategory;
     String inventoryExpire;
     String inventoryItem;
@@ -24,14 +26,6 @@ public class inventoryData {
         this.inventoryMin_Threshold = inventoryMin_Threshold;
     }
 
-    public inventoryData(String inventoryCategory, String inventoryExpire, String inventoryDateRecived, String inventoryLocation, String inventoryQuantity, String inventoryMin_Threshold) {
-        this.inventoryCategory = inventoryCategory;
-        this.inventoryExpire = inventoryExpire;
-        this.inventoryDateRecived = inventoryDateRecived;
-        this.inventoryLocation = inventoryLocation;
-        this.inventoryQuantity = inventoryQuantity;
-        this.inventoryMin_Threshold = inventoryMin_Threshold;
-    }
 
     public String getInventoryCategory() {
         return inventoryCategory;
@@ -90,5 +84,32 @@ public class inventoryData {
 
 
     }
+
+    @Override
+    public int compareTo(Object object) {
+        String compareField = ((inventoryData)object).getInventoryLocation();
+        return 0;
+    }
+
+    /*Comparator for sorting the list by LOCATION*/
+    public static Comparator<inventoryData> locationComparator = new Comparator<inventoryData>() {
+        public int compare(inventoryData s1, inventoryData s2) {
+            String item1 = s1.getInventoryLocation().toUpperCase();
+            String item2 = s2.getInventoryLocation().toUpperCase();
+
+            //ascending order
+            return item1.compareTo(item2);
+
+            //descending order
+            //return StudentName2.compareTo(StudentName1);
+        }};
+
+    @Override
+    public String toString() {
+        String toString = this.inventoryItem + " ";
+        return toString;
+    }
+
+
 }
 
