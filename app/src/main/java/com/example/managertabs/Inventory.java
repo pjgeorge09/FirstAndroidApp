@@ -8,12 +8,15 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import com.example.managertabs.Donation.DonationsActivity;
+import com.example.managertabs.Donation.DonationsAdapter;
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,6 +25,10 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.MetadataChanges;
 import com.google.firebase.firestore.Transaction;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 
@@ -105,7 +112,43 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
             }
         });
 
+
+        // Recycle Stuff
+
+        //links the java to the recycler view
+        recyclerView =(RecyclerView) findViewById(R.id.manager_inventory);
+
+
+        // Says if the recycler has fixed size probably should set to false if we are going to be adding item otherwise leave @ true to improve preformance
+        recyclerView.setHasFixedSize(true);
+
+        //generates the test data
+
+        //Test data cardView
+        List<inventoryData> inventory = new ArrayList<>();
+
+            inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
+        inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
+
+        inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
+
+
+
+//Using prepackage layout manager
+        LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+        //creates a new donations adapter object and passes it the test data donations array
+        inventoryAdapter = new inventoryAdapter(inventory);
+        //links the recycler view to the layout manager
+        recyclerView.setLayoutManager(layoutManager);
+        //links the recyclerview to the donations adapter
+        recyclerView.setAdapter(inventoryAdapter);
+
     }
+
+    //declarations for above
+    private RecyclerView recyclerView;
+    private inventoryAdapter inventoryAdapter;
+
 
 
     //This works now. Button pulls data. Changes Inventory Screen Name to "Can" or whatever you want from database
