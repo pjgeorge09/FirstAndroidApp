@@ -45,7 +45,7 @@ import java.util.Map;
 /**
  * Class to manage the activity for the Employee page
  */
-public class EmployeeActivity extends Master
+public class EmployeeActivity extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
 
     // Private variables
@@ -111,12 +111,10 @@ public class EmployeeActivity extends Master
                 if(!added) {
                     generateEmployees();
                     added = true;
-                    Intent intent = getIntent();
-                    finish();
-                    startActivity(intent);
+
                 }
             }
-        }, 1000);
+        },0);
         initializeData();
 
 
@@ -130,6 +128,10 @@ public class EmployeeActivity extends Master
         rv.setAdapter(employeeAdapter);
         // todo addNewEmployee method works as below perfectly, and in real time
 //        addNewEmployee("103", "103", "Paul","Guller","Paul@gmail.com","804-555-3456");
+
+
+
+
     }
 
 
@@ -227,6 +229,7 @@ public class EmployeeActivity extends Master
         return true;
     }
 
+    /* Method to populate the ArrayList with employee objects in NO PARTICULAR ORDER (Maybe autosorted by order online) */
     public void generateEmployees(){
         EMPLOYEES
                 .get()
@@ -239,7 +242,7 @@ public class EmployeeActivity extends Master
                                 String localLN = document.getString("Last Name");
                                 String localEmail = document.getString("Email");
                                 String localUID = document.getString("uid");
-                                String localCN = document.getString("ContactNumber");
+                                String localCN = document.getString("Contact Number");
 //                                Employee newEmployee = new Employee(localUID,localFN,localLN,localEmail,localCN);
 //                                tempEmployee.setFirstName(document.getString("First Name"));
 //                                tempEmployee.setLastName(document.getString("Last Name"));
@@ -249,18 +252,6 @@ public class EmployeeActivity extends Master
 
                                 employees.add(new Employee(localUID,localFN,localLN,localEmail,localCN));
                                 Log.d("Temp Tag", document.getId() + " => " + document.getData());
-//                                if(employees.get(0) != null){
-//                                    Log.d("Test", "EMPDATA " + employees.get(0).getFirstName());
-//                                }
-//                                else { Log.d("Test", "Failed"); }
-//                                if(employees.size() > 0){
-//                                    Log.d("Test", "EMPDATA " + employees.get(0).getFirstName());
-//                                }
-//                                else { Log.d("Test", "Failed"); }
-//                                if(employees.size() > 0){
-//                                    Log.d("Test", "EMPDATA " + employees.get(0).getFirstName());
-//                                }
-//                                else { Log.d("Test", "Failed"); }
 
                             }
                         } else {
