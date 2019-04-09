@@ -89,8 +89,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
         employeeViewHolder.name.setText(employees.get(i).getFirstName() + " " + employees.get(i).getLastName());
         employeeViewHolder.email.setText(employees.get(i).getEmailAddress());
         employeeViewHolder.profilePicture.setImageResource(employees.get(i).getProfilePicture());
-        employeeViewHolder.homeAddress.setText(employees.get(i).getHomeAddress());
-        employeeViewHolder.birthDate.setText(employees.get(i).getBirthDate());
+        employeeViewHolder.homeAddress.setText(employees.get(i).getContactNumber());
 
 
         // Check if view is expanded and uses a ternary operation to set the view accordingly

@@ -44,7 +44,7 @@ public class Master extends AppCompatActivity {
     public CollectionReference OTHER = db.collection("Other");
 
     final DocumentReference messageDocRef = OTHER.document("Message");
-
+    final DocumentReference cornDocRef = INVENTORY.document("Corn");
 
     //TODO Create ITEM class, create Array of ITEMS
 
@@ -95,7 +95,7 @@ public class Master extends AppCompatActivity {
     /* Method to create a new worker with null value fields at first
      * @Arg documentName = This gives the Document a readable name instead of the terrible hash values Firestore auto assigns in the database
      * Example: addNewWorker("Sarah Cole")      Document name = Sarah Cole*/
-    public void addNewWorker(String documentName){
+    public void addNewWorkerUtil(String documentName){
 
         //Create a map object of EXACTLY <String, Object> = HashMap (Best speed)
         Map<String, Object> toAdd = new HashMap<>();
@@ -103,8 +103,8 @@ public class Master extends AppCompatActivity {
         toAdd.put("First Name", "____");
         toAdd.put("Last Name", "____");
         toAdd.put("Contact Number", "____");
-        toAdd.put("Email Address", "____");
-        toAdd.put("WorkerID", 00);
+        toAdd.put("Email", "____");
+        toAdd.put("uid", 00);
         //
         db.collection("Employees").document(documentName)
                 // .set(toAdd) adds it to the database
@@ -116,6 +116,21 @@ public class Master extends AppCompatActivity {
             }
         });
     }
+
+    public void addNewEmployee(String documentName, String aUID, String aFirstName, String aLastName,
+                               String anEmail, String aContactNumber){
+        // Name the document so it is not some zd83g8ba8s84df garbage
+        addNewWorkerUtil(documentName);
+
+
+        changeField(EMPLOYEES, documentName,"First Name", aFirstName);
+        changeField(EMPLOYEES, documentName,"Last Name", aLastName);
+        changeField(EMPLOYEES, documentName,"uid", aUID);
+        changeField(EMPLOYEES, documentName,"Email", anEmail);
+        changeField(EMPLOYEES, documentName,"Contact Number", aContactNumber);
+
+    }
+
 
 
 

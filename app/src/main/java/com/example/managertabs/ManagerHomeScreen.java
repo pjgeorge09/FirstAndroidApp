@@ -15,12 +15,16 @@ import com.example.managertabs.EmployeeFiles.EmployeeActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.MetadataChanges;
 import com.google.firebase.firestore.Transaction;
 import com.example.managertabs.Donation.DonationsActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import javax.annotation.Nullable;
 
 public class ManagerHomeScreen extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,7 +32,65 @@ public class ManagerHomeScreen extends MainActivityManager
      //Manipulatable objects from anywhere in this class that can be altered over-and-over again (Memo might change 5 times while on screen, only one object
      Other memo = new Other();
      TextView textView;
+     private Handler handler = new Handler();
+     private Runnable run = new Runnable() {
+         @Override
+         public void run() {
+             {
 
+                 //Set listener on live update
+                 messageDocRef.addSnapshotListener(MetadataChanges.INCLUDE, new EventListener<DocumentSnapshot>() {
+                     // On some EVENT (some bit of data changes in the database) do the following actions
+                     @Override
+                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                         // Actions being done below (Run new transaction, update Item object class info, then reapply to screen)
+                         db.runTransaction(new Transaction.Function<String>() {
+                             @Override
+                             public String apply(Transaction transaction) throws FirebaseFirestoreException {
+                                 /* IMPORTANT: This DocumentSnapshot is the item that pulls. This way you can get data from ANYWHERE in the Database.
+                                  *               <name>     transaction.get(COLLECTION . DOCUMENT("NAME GOES HERE")    */
+                                 DocumentSnapshot snapshot = transaction.get(OTHER.document("Message"));
+                                 // Using Item Class setters, and DocumentSnapshot's "Get String Method"
+                                 // Get String method is a KEY VALUE PAIR. You pass it the Field name and it returns the string
+//                        item.setName(snapshot.getString("item"));
+                                 memo.setMemo(snapshot.getString("Memo"));
+//                                 // This handler might not be needed with postdelay added
+//                                 new Handler().postDelayed(new Runnable() {
+//                                     @Override
+//                                     public void run() {
+//                                         //update textview here
+//                                         textView.setText(memo.getMemo());
+//                                     }
+//                                 }, 1000);
+
+                                 // Irrelevant but required, does nothing hurts nothing. Maybe void later if possible
+                                 String newPop = snapshot.getString("Memo");
+                                 return newPop;
+                             }
+                             // Listeners just add to the log, but I don't have them printing anything helpful. TODO Make better log messages like "Failed at", getLineFault()
+                         }).addOnSuccessListener(new OnSuccessListener<String>() {
+                                                     @Override
+                                                     public void onSuccess(String s) {
+                                                         Log.d("Log", "Log");
+                                                     }
+                                                 }
+                         ).addOnFailureListener(new OnFailureListener() {
+                             @Override
+                             public void onFailure(@NonNull Exception e) {
+                                 Log.w("string", "string2");
+                             }
+                         });
+                     }
+                 });
+                 // This is inefficient here. Use to update non-clickable data such as two boxes one with current inventory one with update TODO
+                 handler.postDelayed(this, 10000); //Currently set to update every 10 seconds
+                 //update textview here
+                 if(memo.getMemo() != null) {
+                     textView.setText(memo.getMemo());
+                 }
+             }
+         }
+     };
 
     /* onCreate method creates the screen */
     @Override
@@ -55,49 +117,53 @@ public class ManagerHomeScreen extends MainActivityManager
 
         // OnScreenCreate, set the content of the Manager Home Screen to the contents currently in the database (FOR WORKER TOO)
         textView = (TextView)findViewById(R.id.memoBox);
+        textView.setText("Loading...");
+//
+//        /* runTransaction method is a method to get data from the database and pass the info TO VARIABLES */
+//        db.runTransaction(new Transaction.Function<String>(){
+//            @Override
+//            public String apply(Transaction transaction) throws FirebaseFirestoreException {
+//                //Critical setup. Set to messageDocRef from Master but CAN BE ANY DOCUMENT. ex) db.collection("Inventory").document("Corn");
+//                DocumentSnapshot snapshot = transaction.get(messageDocRef);
+//                // newPop is ultimately irrelevant as we are passing data to the static variables at the top.
+//                // todo change to void instead of return String if possible
+//                String newPop = snapshot.getString("Memo");
+//                // Other item class .setMemo method --> DocumentSnapshot method .getString(FieldName) KEY VALUE. Pass it a string field name, get string value
+//                memo.setMemo(snapshot.getString("Memo"));
+//                /* Handler method waits for data to finish being gotten from the internet
+//                 * If no handler, and only partial data, it will abort the operation with no onfail listener
+//                  * https://stackoverflow.com/questions/35734963/update-a-textview-in-real-time-using-a-for
+//                  *
+//                  * BASICALLY this tells the computer to wait 1 second before updating the textView.
+//                  * This handler is doing nothing right now until this RunTransaction is updated with the liveListener*/
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        //update textview here
+//                        textView.setText(memo.getMemo());
+//                    }
+//                },15000);
+//                // Irrelevant return, affects nothing atm
+//                return newPop;
+//            }
+//            //Standard S/F Listeners.
+//        }).addOnSuccessListener(new OnSuccessListener<String>() {
+//                                    @Override
+//                                    public void onSuccess(String s) {
+//                                        Log.d("Create Memo Status"," Succeeded");
+//                                    }
+//                                }
+//        ).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Log.w("Create Memo Status", " Failed utterly and miserably.");
+//            }
+//        });
 
 
-        /* runTransaction method is a method to get data from the database and pass the info TO VARIABLES */
-        db.runTransaction(new Transaction.Function<String>(){
-            @Override
-            public String apply(Transaction transaction) throws FirebaseFirestoreException {
-                //Critical setup. Set to messageDocRef from Master but CAN BE ANY DOCUMENT. ex) db.collection("Inventory").document("Corn");
-                DocumentSnapshot snapshot = transaction.get(messageDocRef);
-                // newPop is ultimately irrelevant as we are passing data to the static variables at the top.
-                // todo change to void instead of return String if possible
-                String newPop = snapshot.getString("Memo");
-                // Other item class .setMemo method --> DocumentSnapshot method .getString(FieldName) KEY VALUE. Pass it a string field name, get string value
-                memo.setMemo(snapshot.getString("Memo"));
-                /* Handler method waits for data to finish being gotten from the internet
-                 * If no handler, and only partial data, it will abort the operation with no onfail listener
-                  * https://stackoverflow.com/questions/35734963/update-a-textview-in-real-time-using-a-for
-                  *
-                  * BASICALLY this tells the computer to wait 1 second before updating the textView.
-                  * This handler is doing nothing right now until this RunTransaction is updated with the liveListener*/
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //update textview here
-                        textView.setText(memo.getMemo());
-                    }
-                },1000);
-                // Irrelevant return, affects nothing atm
-                return newPop;
-            }
-            //Standard S/F Listeners.
-        }).addOnSuccessListener(new OnSuccessListener<String>() {
-                                    @Override
-                                    public void onSuccess(String s) {
-                                        Log.d("Create Memo Status"," Succeeded");
-                                    }
-                                }
-        ).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w("Create Memo Status", " Failed utterly and miserably.");
-            }
-        });
+        //***** should CONTINUOUSLY LISTEN
 
+        //*****
 
 
         /* Handler method waits for data to finish being gotten from the internet
@@ -105,13 +171,8 @@ public class ManagerHomeScreen extends MainActivityManager
          * https://stackoverflow.com/questions/35734963/update-a-textview-in-real-time-using-a-for
          * DO NOT SET LESS THAN 1000 MILLIS
          * BASICALLY this tells the computer to wait 1 second before updating the textView.*/
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //update textview here
-                textView.setText(memo.getMemo());
-            }
-        },1000);
+        handler.postDelayed(run,1000);
+
 
     }//End OnCreate
 
@@ -186,4 +247,7 @@ public class ManagerHomeScreen extends MainActivityManager
         changeField(OTHER, "Message","Memo", update);
     }
 
+    public void theFun(){
+
+    }
 }
