@@ -2,19 +2,95 @@ package com.example.managertabs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.managertabs.Donation.WorkerDonations;
 import com.example.managertabs.WorkerInventory;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.MetadataChanges;
+import com.google.firebase.firestore.Transaction;
+
+import javax.annotation.Nullable;
 
 public class WorkerHomeScreen extends MainActivityWorker
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    static String workerMemo = "";
+    TextView textView;
+    Other memo = new Other();
+    private Handler handler = new Handler();
+    private Runnable run = new Runnable() {
+        @Override
+        public void run() {
+            {
+
+                //Set listener on live update
+                messageDocRef.addSnapshotListener(MetadataChanges.INCLUDE, new EventListener<DocumentSnapshot>() {
+                    // On some EVENT (some bit of data changes in the database) do the following actions
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                        // Actions being done below (Run new transaction, update Item object class info, then reapply to screen)
+                        db.runTransaction(new Transaction.Function<String>() {
+                            @Override
+                            public String apply(Transaction transaction) throws FirebaseFirestoreException {
+                                /* IMPORTANT: This DocumentSnapshot is the item that pulls. This way you can get data from ANYWHERE in the Database.
+                                 *               <name>     transaction.get(COLLECTION . DOCUMENT("NAME GOES HERE")    */
+                                DocumentSnapshot snapshot = transaction.get(OTHER.document("Message"));
+                                // Using Item Class setters, and DocumentSnapshot's "Get String Method"
+                                // Get String method is a KEY VALUE PAIR. You pass it the Field name and it returns the string
+//                        item.setName(snapshot.getString("item"));
+                                memo.setMemo(snapshot.getString("Memo"));
+//                                 // This handler might not be needed with postdelay added
+//                                 new Handler().postDelayed(new Runnable() {
+//                                     @Override
+//                                     public void run() {
+//                                         //update textview here
+//                                         textView.setText(memo.getMemo());
+//                                     }
+//                                 }, 1000);
+
+                                // Irrelevant but required, does nothing hurts nothing. Maybe void later if possible
+                                String newPop = snapshot.getString("Memo");
+                                return newPop;
+                            }
+                            // Listeners just add to the log, but I don't have them printing anything helpful. TODO Make better log messages like "Failed at", getLineFault()
+                        }).addOnSuccessListener(new OnSuccessListener<String>() {
+                                                    @Override
+                                                    public void onSuccess(String s) {
+                                                        Log.d("Log", "Log");
+                                                    }
+                                                }
+                        ).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w("string", "string2");
+                            }
+                        });
+                    }
+                });
+                // This is inefficient here. Use to update non-clickable data such as two boxes one with current inventory one with update TODO
+                handler.postDelayed(this, 10000); //Currently set to update every 10 seconds
+                //update textview here
+                if(memo.getMemo() != null) {
+                    textView.setText(memo.getMemo());
+                }
+            }
+        }
+    };
+
 
     /* onCreate method creates the screen */
     @Override
@@ -39,9 +115,16 @@ public class WorkerHomeScreen extends MainActivityWorker
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //Set listener on live update
+        textView = (TextView)findViewById(R.id.memoWorker);
+        textView.setText("Loading...");
 
-        TextView textView = (TextView)findViewById(R.id.memoWorker);
-//        textView.setText(memoString);
+
+        handler.postDelayed(run, 1000); //Currently set to update every 10 seconds
+//        //update textview here
+//        if(memo.getMemo() != null) {
+//            textView.setText(memo.getMemo());
+//        }
 
     }
 

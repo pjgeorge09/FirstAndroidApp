@@ -115,10 +115,6 @@ public class EmployeeActivity extends MainActivityManager
                 }
             }
         },0);
-        initializeData();
-
-
-
 
 //        handler.postDelayed(runner,1000);
         // Initialization of our employee adapter
@@ -133,25 +129,6 @@ public class EmployeeActivity extends MainActivityManager
 
 
     }
-
-
-        // Initializes employee list as an ArrayList and adds hardcoded employee objects to it
-        // Data initialized is hard coded and needs to be changed to data pulled from database
-        private void initializeData() {
-
-//            employees = new ArrayList
-
-//            employees.add(new Employee(9, "John", "Temporary", "JohnTemporary@gmail.com",
-//                    "2468 Cary St. Richmond, VA 23220", "03/03/03", R.drawable.boy));
-//
-//            employees.add(new Employee(10, "Bryan", "Hilldrup", "hilldrupbf@vcu.edu",
-//                    "12345 Main St. Richmond, VA 23220", "07/07/07", R.drawable.man));
-//
-//            employees.add(new Employee(11, "Peter", "George", "petergeorge@vcu.edu",
-//                    "9889 Broad St. Richmond, Va 23220", "12/31/00", R.drawable.girl1));
-        }
-
-
 
 
         /* PETES CODE, find a way to implement for database implementation
