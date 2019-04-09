@@ -55,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/manager_inventory"
+        android:id="@+id/inventory_rv"
         />
     <!--android:onClick="changeName"-->
         app:layout_constraintBottom_toBottomOf="parent"

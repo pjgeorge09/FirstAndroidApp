@@ -16,14 +16,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import com.example.managertabs.Donation.DonationsActivity;
-import com.example.managertabs.Donation.DonationsAdapter;
+import com.example.managertabs.EmployeeFiles.Employee;
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
+import com.example.managertabs.EmployeeFiles.EmployeeAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.MetadataChanges;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Transaction;
 
 import java.util.ArrayList;
@@ -33,20 +38,15 @@ import javax.annotation.Nullable;
 
 
 public class Inventory extends MainActivityManager implements NavigationView.OnNavigationItemSelectedListener {
-    //Create the item you will be manipulating here
     Item item = new Item();
-    // Handler and Runnable needed on every screen that has constant update requests.
+    // Private variables
+    // Employee list holds a list of employee objects
+    //
+    static ArrayList<inventoryData> items = new ArrayList<>();
+    static Boolean added = false;
+    inventoryData tempData = new inventoryData();
+    //Handler/Runnable for listeners
     private Handler handler = new Handler();
-    private Runnable runner = new Runnable() {
-        @Override
-        public void run() {
-            //Constant updates go here
-            //TODO Can call Master methods here to update based on text box
-            //Constant updates go above this line
-            handler.postDelayed(this,1000); //Set to update every second.
-        }
-    };
-
 
     /* onCreate method creates the screen */
     @Override
@@ -79,44 +79,44 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
         // TODO THIS IS THE WORKING THING. THE METHOD. THIS TRANSACTION WILL BE OUR GETTERS
         // db = database.   runTransaction is the method of getting data from database into variables
         // TODO ===> https://firebase.google.com/docs/firestore/manage-data/transactions
-        db.runTransaction(new Transaction.Function<String>(){
-            @Override
-            public String apply(Transaction transaction) throws FirebaseFirestoreException{
-                /* IMPORTANT: This DocumentSnapshot is the item that pulls. This way you can get data from ANYWHERE in the Database.
-                 *               <name>     transaction.get(COLLECTION . DOCUMENT("NAME GOES HERE")    */
-                DocumentSnapshot snapshot = transaction.get(INVENTORY.document("Canned Tuna"));  //currently set to Canned Tuna needs changed TODO
-                // Using Item Class setters, and DocumentSnapshot's "Get String Method"
-                // Get String method is a KEY VALUE PAIR. You pass it the Field name and it returns the string
-                item.setName(snapshot.getString("item"));
-                item.setLocation(snapshot.getString("Location"));
-                // Supposedly works with non-string values with get method (REQUIRES CASTING THOUGH)
-                item.setQuantity((int)snapshot.get("Quantity"));
-                item.setThreshold((int)snapshot.get("Threshold"));
-                item.setType(snapshot.getString("Type"));
-                //Method gets angry if you change it from String so this line is actually useless. Try setting as void again when get time
-                String newPop = snapshot.getString("Memo");
-                // Returns to no-where, irrelevant but needed statement
-                return newPop;
-            }
-            // Listeners just add to the log, but I don't have them printing anything helpful. TODO Make better log messages like "Failed at", getLineFault()
-        }).addOnSuccessListener(new OnSuccessListener<String>() {
-                                    @Override
-                                    public void onSuccess(String s) {
-                                        Log.d("Log","Log");
-                                    }
-                                }
-        ).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w("string","string2");
-            }
-        });
+//        db.runTransaction(new Transaction.Function<String>(){
+//            @Override
+//            public String apply(Transaction transaction) throws FirebaseFirestoreException{
+//                /* IMPORTANT: This DocumentSnapshot is the item that pulls. This way you can get data from ANYWHERE in the Database.
+//                 *               <name>     transaction.get(COLLECTION . DOCUMENT("NAME GOES HERE")    */
+//                DocumentSnapshot snapshot = transaction.get(INVENTORY.document("Canned Tuna"));  //currently set to Canned Tuna needs changed TODO
+//                // Using Item Class setters, and DocumentSnapshot's "Get String Method"
+//                // Get String method is a KEY VALUE PAIR. You pass it the Field name and it returns the string
+//                item.setName(snapshot.getString("item"));
+//                item.setLocation(snapshot.getString("Location"));
+//                // Supposedly works with non-string values with get method (REQUIRES CASTING THOUGH)
+//                item.setQuantity((int)snapshot.get("Quantity"));
+//                item.setThreshold((int)snapshot.get("Threshold"));
+//                item.setType(snapshot.getString("Type"));
+//                //Method gets angry if you change it from String so this line is actually useless. Try setting as void again when get time
+//                String newPop = snapshot.getString("Memo");
+//                // Returns to no-where, irrelevant but needed statement
+//                return newPop;
+//            }
+//            // Listeners just add to the log, but I don't have them printing anything helpful. TODO Make better log messages like "Failed at", getLineFault()
+//        }).addOnSuccessListener(new OnSuccessListener<String>() {
+//                                    @Override
+//                                    public void onSuccess(String s) {
+//                                        Log.d("Log","Log");
+//                                    }
+//                                }
+//        ).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Log.w("string","string2");
+//            }
+//        });
 
 
         // Recycle Stuff
 
         //links the java to the recycler view
-        recyclerView =(RecyclerView) findViewById(R.id.manager_inventory);
+        recyclerView = (RecyclerView) findViewById(R.id.inventory_rv);
 
 
         // Says if the recycler has fixed size probably should set to false if we are going to be adding item otherwise leave @ true to improve preformance
@@ -127,7 +127,7 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
         //Test data cardView
         List<inventoryData> inventory = new ArrayList<>();
 
-            inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
+        inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
         inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
 
         inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
@@ -136,8 +136,22 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
 
 //Using prepackage layout manager
         LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //update textview here
+                if(!added) {
+                    generateInventory();
+
+
+                }
+            }
+        },10000);
+
+
         //creates a new donations adapter object and passes it the test data donations array
-        inventoryAdapter = new inventoryAdapter(inventory);
+        inventoryAdapter = new inventoryAdapter(items);
         //links the recycler view to the layout manager
         recyclerView.setLayoutManager(layoutManager);
         //links the recyclerview to the donations adapter
@@ -241,5 +255,32 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void generateInventory(){
+        INVENTORY
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String category = document.getString("Category");
+                                String dateRec = document.getString("Date Received");
+                                String expiration = document.getString("Expiration");
+                                String location = document.getString("Location");
+                                String quantity = document.getString("Quantity");
+                                String threshold = document.getString("Threshold");
+                                String docToName = document.getId();
+                                items.add(new inventoryData(category, expiration,docToName, dateRec, location,quantity,threshold));
+                                Log.d("Temp Tag", document.getId() + " => " + document.getData());
+
+                            }
+                        } else {
+                            Log.d("Abandon Operation", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        added = true;
     }
 }

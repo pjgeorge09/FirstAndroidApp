@@ -43,7 +43,7 @@
                 android:text="@string/item" />
 
             <TextView
-                android:id="@+id/Inventory_Date_Recived"
+                android:id="@+id/Inventory_Date_Received"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Size:" />

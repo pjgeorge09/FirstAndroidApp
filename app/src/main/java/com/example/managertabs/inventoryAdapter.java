@@ -75,7 +75,7 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
             Item= (TextView)itemView.findViewById(R.id.Inventory_Item);
             Location=(TextView)itemView.findViewById(R.id.Inventory_Loacation);
             Quantity= (TextView)itemView.findViewById(R.id.Inventory_Quantity);
-            DateR= (TextView)itemView.findViewById(R.id.Inventory_Date_Recived);
+            DateR= (TextView)itemView.findViewById(R.id.Inventory_Date_Received);
             Min_Threshold= (TextView)itemView.findViewById(R.id.Inventory_Min);
 
 

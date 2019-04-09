@@ -9,12 +9,24 @@ public class inventoryData {
     String inventoryQuantity;
     String inventoryMin_Threshold;
 
+    //general constructor
+    public inventoryData(){
 
+    }
 
     public inventoryData(String inventoryCategory, String inventoryExpire, String inventoryItem, String inventoryDateRecived, String inventoryLocation, String inventoryQuantity, String inventoryMin_Threshold) {
         this.inventoryCategory = inventoryCategory;
         this.inventoryExpire = inventoryExpire;
         this.inventoryItem = inventoryItem;
+        this.inventoryDateRecived = inventoryDateRecived;
+        this.inventoryLocation = inventoryLocation;
+        this.inventoryQuantity = inventoryQuantity;
+        this.inventoryMin_Threshold = inventoryMin_Threshold;
+    }
+
+    public inventoryData(String inventoryCategory, String inventoryExpire, String inventoryDateRecived, String inventoryLocation, String inventoryQuantity, String inventoryMin_Threshold) {
+        this.inventoryCategory = inventoryCategory;
+        this.inventoryExpire = inventoryExpire;
         this.inventoryDateRecived = inventoryDateRecived;
         this.inventoryLocation = inventoryLocation;
         this.inventoryQuantity = inventoryQuantity;

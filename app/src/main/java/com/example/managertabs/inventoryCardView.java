@@ -23,7 +23,7 @@ public class inventoryCardView extends Activity {
         Item= (TextView)findViewById(R.id.Inventory_Item);
         Location=(TextView)findViewById(R.id.Inventory_Loacation);
         Quantity= (TextView)findViewById(R.id.Inventory_Quantity);
-        DateR= (TextView)findViewById(R.id.Inventory_Date_Recived);
+        DateR= (TextView)findViewById(R.id.Inventory_Date_Received);
         Min_Threshold= (TextView)findViewById(R.id.Inventory_Min);
 
     }
