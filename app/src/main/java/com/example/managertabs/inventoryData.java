@@ -4,16 +4,18 @@ public class inventoryData {
     String inventoryCategory;
     String inventoryExpire;
     String inventoryItem;
-    String inventorySize;
+    String inventoryDateRecived;
     String inventoryLocation;
     String inventoryQuantity;
     String inventoryMin_Threshold;
 
-    public inventoryData(String inventoryCategory, String inventoryExpire, String inventoryItem, String inventorySize, String inventoryLocation, String inventoryQuantity, String inventoryMin_Threshold) {
+
+
+    public inventoryData(String inventoryCategory, String inventoryExpire, String inventoryItem, String inventoryDateRecived, String inventoryLocation, String inventoryQuantity, String inventoryMin_Threshold) {
         this.inventoryCategory = inventoryCategory;
         this.inventoryExpire = inventoryExpire;
         this.inventoryItem = inventoryItem;
-        this.inventorySize = inventorySize;
+        this.inventoryDateRecived = inventoryDateRecived;
         this.inventoryLocation = inventoryLocation;
         this.inventoryQuantity = inventoryQuantity;
         this.inventoryMin_Threshold = inventoryMin_Threshold;
@@ -43,12 +45,12 @@ public class inventoryData {
         this.inventoryItem = inventoryItem;
     }
 
-    public String getInventorySize() {
-        return inventorySize;
+    public String getInventoryDateRecived() {
+        return inventoryDateRecived;
     }
 
-    public void setInventorySize(String inventorySize) {
-        this.inventorySize = inventorySize;
+    public void setInventoryDateRecived(String inventoryDateRecived) {
+        this.inventoryDateRecived = inventoryDateRecived;
     }
 
     public String getInventoryLocation() {
@@ -73,6 +75,8 @@ public class inventoryData {
 
     public void setInventoryMin_Threshold(String inventoryMin_Threshold) {
         this.inventoryMin_Threshold = inventoryMin_Threshold;
+
+
     }
 }
 

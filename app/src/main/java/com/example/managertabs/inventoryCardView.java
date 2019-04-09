@@ -10,7 +10,7 @@ public class inventoryCardView extends Activity {
     TextView Item;
     TextView Location;
     TextView Quantity;
-    TextView Size;
+    TextView DateR;
     TextView Min_Threshold;
     //allows each the text views in the card view to be set to the appropiate field
 
@@ -23,7 +23,7 @@ public class inventoryCardView extends Activity {
         Item= (TextView)findViewById(R.id.Inventory_Item);
         Location=(TextView)findViewById(R.id.Inventory_Loacation);
         Quantity= (TextView)findViewById(R.id.Inventory_Quantity);
-        Size= (TextView)findViewById(R.id.Inventory_Size);
+        DateR= (TextView)findViewById(R.id.Inventory_Date_Recived);
         Min_Threshold= (TextView)findViewById(R.id.Inventory_Min);
 
     }

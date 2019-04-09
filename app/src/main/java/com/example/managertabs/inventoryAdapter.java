@@ -36,7 +36,7 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
         holder.Item.setText("Item: "+ProperData.get(position).inventoryItem);
         holder.Location.setText("Location: "+ProperData.get(position).inventoryLocation);
         holder.Quantity.setText("Quantity: "+ProperData.get(position).inventoryQuantity);
-        holder.Size.setText("Size: "+ProperData.get(position).inventorySize);
+        holder.DateR.setText("Date Received: "+ProperData.get(position).inventoryDateRecived);
         holder.Min_Threshold.setText("Minimum Threshold: "+ProperData.get(position).inventoryMin_Threshold);
     }
 
@@ -61,7 +61,7 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
         TextView Item;
         TextView Location;
         TextView Quantity;
-        TextView Size;
+        TextView DateR;
         TextView Min_Threshold;
         //links the card view and textboxes to the view holder
         public InventoryViewHolder(View itemView) {
@@ -75,7 +75,7 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
             Item= (TextView)itemView.findViewById(R.id.Inventory_Item);
             Location=(TextView)itemView.findViewById(R.id.Inventory_Loacation);
             Quantity= (TextView)itemView.findViewById(R.id.Inventory_Quantity);
-            Size= (TextView)itemView.findViewById(R.id.Inventory_Size);
+            DateR= (TextView)itemView.findViewById(R.id.Inventory_Date_Recived);
             Min_Threshold= (TextView)itemView.findViewById(R.id.Inventory_Min);
 
 
