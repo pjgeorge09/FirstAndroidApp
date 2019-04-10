@@ -1,6 +1,7 @@
 package com.example.managertabs;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 import static com.example.managertabs.R.layout.inventory_card_view;
@@ -23,6 +24,10 @@ public class inventoryCardView extends Activity {
         Item= (TextView)findViewById(R.id.Inventory_Item);
         Location=(TextView)findViewById(R.id.Inventory_Loacation);
         Quantity= (TextView)findViewById(R.id.Inventory_Quantity);
+        Integer quan = Integer.parseInt(Quantity.toString());
+        Integer min = Integer.parseInt(Min_Threshold.toString());
+        if(quan < min){ Quantity.setTextColor(Color.RED); }
+        Quantity.setTextColor(Color.RED);
         DateR= (TextView)findViewById(R.id.Inventory_Date_Received);
         Min_Threshold= (TextView)findViewById(R.id.Inventory_Min);
 

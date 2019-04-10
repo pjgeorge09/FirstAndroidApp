@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 
 public class Inventory extends MainActivityManager implements NavigationView.OnNavigationItemSelectedListener {
     Item item = new Item();
-    LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+    LinearLayoutManager layoutManager2= new LinearLayoutManager(this);
     // Private variables
     // Employee list holds a list of employee objects
     //
@@ -59,7 +59,7 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
                     //creates a new donations adapter object and passes it the test data donations array
                     inventoryAdapter = new inventoryAdapter(items);
                     //links the recycler view to the layout manager
-                    recyclerView.setLayoutManager(layoutManager);
+                    recyclerView.setLayoutManager(layoutManager2);
                     //links the recyclerview to the donations adapter
                     recyclerView.setAdapter(inventoryAdapter);
 //                }
@@ -154,8 +154,16 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
                     //update textview here
                     if(!added) {
                         generateInventory();
+
                     }
-                    generateInventory();
+                    else{
+                        inventoryAdapter = new inventoryAdapter(items);
+                        //links the recycler view to the layout manager
+                        recyclerView.setLayoutManager(layoutManager2);
+                        //links the recyclerview to the donations adapter
+                        recyclerView.setAdapter(inventoryAdapter);
+                    }
+//                    generateInventory();
                 }
 
             },10000);
@@ -298,10 +306,6 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
                     }
                 });
         added = true;
-        inventoryAdapter = new inventoryAdapter(items);
-        //links the recycler view to the layout manager
-        recyclerView.setLayoutManager(layoutManager);
-        //links the recyclerview to the donations adapter
-        recyclerView.setAdapter(inventoryAdapter);
+
     }
 }
