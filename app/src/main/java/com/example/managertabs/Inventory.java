@@ -163,10 +163,9 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
                         //links the recyclerview to the donations adapter
                         recyclerView.setAdapter(inventoryAdapter);
                     }
-//                    generateInventory();
                 }
 
-            },10000);
+            },2000);
             Collections.sort(items);
 
 

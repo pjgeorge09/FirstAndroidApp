@@ -1,5 +1,6 @@
 package com.example.managertabs;
 
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,6 +39,11 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
         holder.Quantity.setText("Quantity: "+ProperData.get(position).inventoryQuantity);
         holder.DateR.setText("Date Received: "+ProperData.get(position).inventoryDateRecived);
         holder.Min_Threshold.setText("Minimum Threshold: "+ProperData.get(position).inventoryMin_Threshold);
+        int test = Integer.parseInt(ProperData.get(position).inventoryQuantity.toString());
+        int bar = Integer.parseInt(ProperData.get(position).inventoryMin_Threshold.toString());
+        if(test < bar){
+            holder.Quantity.setTextColor(Color.RED);
+        }
     }
 
     @Override
@@ -68,8 +74,9 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
             super(itemView);
 
             cardView = (CardView)itemView.findViewById(R.id.CV_inventory);
-            //text box in row
+            cardView.setCardBackgroundColor(Color.LTGRAY);
 
+            //text box in row
             Category= (TextView)itemView.findViewById(R.id.Inventory_Category);
             Expire= (TextView)itemView.findViewById(R.id.Inventory_Expire);
             Item= (TextView)itemView.findViewById(R.id.Inventory_Item);
@@ -77,8 +84,6 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
             Quantity= (TextView)itemView.findViewById(R.id.Inventory_Quantity);
             DateR= (TextView)itemView.findViewById(R.id.Inventory_Date_Received);
             Min_Threshold= (TextView)itemView.findViewById(R.id.Inventory_Min);
-
-
         }
     }
 }
