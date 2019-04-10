@@ -59,14 +59,6 @@ public class ManagerHomeScreen extends MainActivityManager
                                  // Get String method is a KEY VALUE PAIR. You pass it the Field name and it returns the string
 //                        item.setName(snapshot.getString("item"));
                                  memo.setMemo(snapshot.getString("Memo"));
-//                                 // This handler might not be needed with postdelay added
-//                                 new Handler().postDelayed(new Runnable() {
-//                                     @Override
-//                                     public void run() {
-//                                         //update textview here
-//                                         textView.setText(memo.getMemo());
-//                                     }
-//                                 }, 1000);
 
                                  // Irrelevant but required, does nothing hurts nothing. Maybe void later if possible
                                  String newPop = snapshot.getString("Memo");
@@ -90,7 +82,7 @@ public class ManagerHomeScreen extends MainActivityManager
                  });
                  // This is inefficient here. Use to update non-clickable data such as two boxes one with current inventory one with update TODO
                  if(set == false){
-                     handler.postDelayed(this, 7000); //Currently set to update every 10 seconds
+                     handler.postDelayed(this, 2000); //Currently set to update every 10 seconds
                  }
                  //update textview here
                  if(memo.getMemo() != null) {
@@ -181,7 +173,7 @@ public class ManagerHomeScreen extends MainActivityManager
          * https://stackoverflow.com/questions/35734963/update-a-textview-in-real-time-using-a-for
          * DO NOT SET LESS THAN 1000 MILLIS
          * BASICALLY this tells the computer to wait 1 second before updating the textView.*/
-        handler.postDelayed(run,7000);
+        handler.postDelayed(run,2000);
 
 
     }//End OnCreate
