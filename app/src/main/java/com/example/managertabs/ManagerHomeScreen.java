@@ -12,12 +12,16 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.MetadataChanges;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Transaction;
 import com.example.managertabs.Donation.DonationsActivity;
 import android.view.View;
@@ -32,6 +36,7 @@ public class ManagerHomeScreen extends MainActivityManager
      //Manipulatable objects from anywhere in this class that can be altered over-and-over again (Memo might change 5 times while on screen, only one object
      Other memo = new Other();
      TextView textView;
+     public boolean set = false;
      private Handler handler = new Handler();
      private Runnable run = new Runnable() {
          @Override
@@ -71,22 +76,26 @@ public class ManagerHomeScreen extends MainActivityManager
                          }).addOnSuccessListener(new OnSuccessListener<String>() {
                                                      @Override
                                                      public void onSuccess(String s) {
+                                                         set = true;
                                                          Log.d("Log", "Log");
                                                      }
                                                  }
                          ).addOnFailureListener(new OnFailureListener() {
                              @Override
                              public void onFailure(@NonNull Exception e) {
-                                 Log.w("string", "string2");
+                                 Log.w("string", "Listener failed");
                              }
                          });
                      }
                  });
                  // This is inefficient here. Use to update non-clickable data such as two boxes one with current inventory one with update TODO
-                 handler.postDelayed(this, 10000); //Currently set to update every 10 seconds
+                 if(set == false){
+                     handler.postDelayed(this, 7000); //Currently set to update every 10 seconds
+                 }
                  //update textview here
                  if(memo.getMemo() != null) {
                      textView.setText(memo.getMemo());
+                     handler.removeCallbacks(run);
                  }
              }
          }
@@ -96,6 +105,7 @@ public class ManagerHomeScreen extends MainActivityManager
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkQuantities();
         // Set the background for the view, includes in the XML links to it's related files and clickables
         setContentView(R.layout.activity_manager_home);
 
@@ -171,7 +181,7 @@ public class ManagerHomeScreen extends MainActivityManager
          * https://stackoverflow.com/questions/35734963/update-a-textview-in-real-time-using-a-for
          * DO NOT SET LESS THAN 1000 MILLIS
          * BASICALLY this tells the computer to wait 1 second before updating the textView.*/
-        handler.postDelayed(run,1000);
+        handler.postDelayed(run,7000);
 
 
     }//End OnCreate
@@ -247,7 +257,34 @@ public class ManagerHomeScreen extends MainActivityManager
         changeField(OTHER, "Message","Memo", update);
     }
 
-    public void theFun(){
+
+    void checkQuantities(){
+        INVENTORY
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String docToName = document.getId();
+                                String quan = document.getString("Quantity");
+                                String min = document.getString("Threshold");
+                                int current = Integer.parseInt(quan);
+                                int minimum = Integer.parseInt(min);
+                                if(current < minimum){
+                                    pushNotification(docToName);
+                                }
+                                Log.d("Temp Tag", document.getId() + " => " + document.getData());
+
+                            }
+                        } else {
+                            Log.d("Abandon Operation", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    void pushNotification(String aLowInventoryItem){
 
     }
 }

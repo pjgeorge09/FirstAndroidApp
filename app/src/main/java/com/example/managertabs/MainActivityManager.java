@@ -106,4 +106,6 @@ public class MainActivityManager extends Master {
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
