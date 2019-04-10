@@ -45,7 +45,8 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
     // Employee list holds a list of employee objects
     //
     static ArrayList<inventoryData> items = new ArrayList<>();
-    static Boolean added = false;
+    public static boolean added = false;
+    static Boolean updated = false;
     //Handler/Runnable for listeners
     private Handler handler = new Handler();
     private Runnable runner = new Runnable() {
@@ -53,16 +54,20 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
         public void run() {
             // Rerun stuff goes below this line
 
-            //creates a new donations adapter object and passes it the test data donations array
-            inventoryAdapter = new inventoryAdapter(items);
-            //links the recycler view to the layout manager
-            recyclerView.setLayoutManager(layoutManager);
-            //links the recyclerview to the donations adapter
-            recyclerView.setAdapter(inventoryAdapter);
+//                if(!items.isEmpty()) {
+
+                    //creates a new donations adapter object and passes it the test data donations array
+                    inventoryAdapter = new inventoryAdapter(items);
+                    //links the recycler view to the layout manager
+                    recyclerView.setLayoutManager(layoutManager);
+                    //links the recyclerview to the donations adapter
+                    recyclerView.setAdapter(inventoryAdapter);
+//                }
 
 
             //Rerun stuff goes above this line
-            handler.postDelayed(this, 5000); //Currently set to update every 10 seconds
+//            handler.postDelayed(this, 6000); //Currently set to update every 10 seconds
+
         }
     };
     /* onCreate method creates the screen */
@@ -136,32 +141,26 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
         // Says if the recycler has fixed size probably should set to false if we are going to be adding item otherwise leave @ true to improve preformance
         recyclerView.setHasFixedSize(true);
 
-        //generates the test data
-
-        //Test data cardView
-        List<inventoryData> inventory = new ArrayList<>();
-
-        inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
-        inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
-
-        inventory.add(new inventoryData("Can","03/03/1980","Beans","Large","Top Shelf","3","4"));
-
 
 
 //Using prepackage layout manager
         LinearLayoutManager layoutManager= new LinearLayoutManager(this);
 
+
+
         new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //update textview here
-                if(!added) {
+                @Override
+                public void run() {
+                    //update textview here
+                    if(!added) {
+                        generateInventory();
+                    }
                     generateInventory();
-                    Collections.sort(items);
                 }
-            }
-        },1000);
-        Collections.sort(items);
+
+            },10000);
+            Collections.sort(items);
+
 
 //        //creates a new donations adapter object and passes it the test data donations array
 //        inventoryAdapter = new inventoryAdapter(items);
@@ -170,7 +169,8 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
 //        //links the recyclerview to the donations adapter
 //        recyclerView.setAdapter(inventoryAdapter);
 
-        handler.postDelayed(runner,1000);
+//        handler.postDelayed(runner,1000);
+
 
     }
 
@@ -220,7 +220,7 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
                 ).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w("string","string2");
+                        Log.w("string","string122");
                     }
                 });
             }
@@ -298,5 +298,10 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
                     }
                 });
         added = true;
+        inventoryAdapter = new inventoryAdapter(items);
+        //links the recycler view to the layout manager
+        recyclerView.setLayoutManager(layoutManager);
+        //links the recyclerview to the donations adapter
+        recyclerView.setAdapter(inventoryAdapter);
     }
 }
