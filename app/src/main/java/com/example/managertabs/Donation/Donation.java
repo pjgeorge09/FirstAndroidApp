@@ -1,78 +1,122 @@
 package com.example.managertabs.Donation;
 // object for the DonationsActivity DAta
-public class Donation {
-   //Fields
-    String Date;
-    String Item;
-    String Quantity;
-    String Size;
 
-public  Donation()
-{
+
+import java.util.Comparator;
+//object for the inventory tab
+public class Donation implements Comparable {
+   //inventory
+    String inventoryCategory;
+    String inventoryExpire;
+    String inventoryItem;
+    String inventoryDateRecived;
+    String inventoryLocation;
+    String inventoryQuantity;
+    String inventoryMin_Threshold;
+    //Donor
+    String DonorName;
+    String DonorEmail;
+    String DonorPhone;
+
+    //general constructor
+    public Donation(){
+
+    }
+
+    public Donation (String inventoryCategory, String inventoryExpire, String inventoryItem, String inventoryDateRecived, String inventoryLocation, String inventoryQuantity, String inventoryMin_Threshold) {
+        this.inventoryCategory = inventoryCategory;
+        this.inventoryExpire = inventoryExpire;
+        this.inventoryItem = inventoryItem;
+        this.inventoryDateRecived = inventoryDateRecived;
+        this.inventoryLocation = inventoryLocation;
+        this.inventoryQuantity = inventoryQuantity;
+        this.inventoryMin_Threshold = inventoryMin_Threshold;
+    }
+
+
+    public String getInventoryCategory() {
+        return inventoryCategory;
+    }
+
+    public void setInventoryCategory(String inventoryCategory) {
+        this.inventoryCategory = inventoryCategory;
+    }
+
+    public String getInventoryExpire() {
+        return inventoryExpire;
+    }
+
+    public void setInventoryExpire(String inventoryExpire) {
+        this.inventoryExpire = inventoryExpire;
+    }
+
+    public String getInventoryItem() {
+        return inventoryItem;
+    }
+
+    public void setInventoryItem(String inventoryItem) {
+        this.inventoryItem = inventoryItem;
+    }
+
+    public String getInventoryDateRecived() {
+        return inventoryDateRecived;
+    }
+
+    public void setInventoryDateRecived(String inventoryDateRecived) {
+        this.inventoryDateRecived = inventoryDateRecived;
+    }
+
+    public String getInventoryLocation() {
+        return inventoryLocation;
+    }
+
+    public void setInventoryLocation(String inventoryLocation) {
+        this.inventoryLocation = inventoryLocation;
+    }
+
+    public String getInventoryQuantity() {
+        return inventoryQuantity;
+    }
+
+    public void setInventoryQuantity(String inventoryQuantity) {
+        this.inventoryQuantity = inventoryQuantity;
+    }
+
+    public String getInventoryMin_Threshold() {
+        return inventoryMin_Threshold;
+    }
+
+    public void setInventoryMin_Threshold(String inventoryMin_Threshold) {
+        this.inventoryMin_Threshold = inventoryMin_Threshold;
+
+
+    }
+
+    @Override
+    public int compareTo(Object object) {
+        String compareField = ((Donation)object).getInventoryLocation();
+        return 0;
+    }
+
+    /*Comparator for sorting the list by LOCATION*/
+    public static Comparator<Donation> locationComparator = new Comparator<Donation>() {
+        public int compare(Donation s1, Donation s2) {
+            String item1 = s1.getInventoryLocation().toUpperCase();
+            String item2 = s2.getInventoryLocation().toUpperCase();
+
+            //ascending order
+            return item1.compareTo(item2);
+
+            //descending order
+            //return StudentName2.compareTo(StudentName1);
+        }};
+
+    @Override
+    public String toString() {
+        String toString = this.inventoryItem + " ";
+        return toString;
+    }
+
 
 }
-//constructor to pass the parameters to the object
-    public Donation(String date, String item, String quantity, String size) {
-        this.Date = date;
-        this.Item = item;
-        this.Quantity = quantity;
-        this.Size = size;
-    }
-//getters and setter for each field above
-    public String getDate() {
-    if(Date==null){
-        throw new IllegalArgumentException();
-    }
-    return Date;
-    }
 
-    public void setDate(String date) {
-        if(date==null){
-            throw new IllegalArgumentException();
-        }
-        Date = date;
-    }
-
-    public String getItem() {
-        if(Item==null){
-            throw new IllegalArgumentException();
-        }
-        return Item;
-    }
-
-    public void setItem(String item) {
-        if(item==null){
-            throw new IllegalArgumentException();
-        }
-        Item = item;
-    }
-
-    public String getQuantity() {
-        if(Quantity==null){
-            throw new IllegalArgumentException();
-        }
-
-        return Quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        if(quantity==null){
-            throw new IllegalArgumentException();
-        }
-        Quantity = quantity;
-    }
-
-    public String getSize() {
-        if(Size==null){
-            throw new IllegalArgumentException();
-        }
-        return Size;
-    }
-
-    public void setSize(String size) {
-        if(size==null){
-            throw new IllegalArgumentException();
-        }
-        Size = size;
-    }
-}
