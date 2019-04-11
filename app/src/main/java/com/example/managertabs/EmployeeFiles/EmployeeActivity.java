@@ -25,6 +25,7 @@ import com.example.managertabs.MainActivityManager;
 import com.example.managertabs.ManagerHomeScreen;
 import com.example.managertabs.Master;
 import com.example.managertabs.R;
+import com.example.managertabs.inventoryAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -63,10 +64,23 @@ public class EmployeeActivity extends MainActivityManager
         @Override
         public void run() {
             // Rerun stuff goes below this line
+            employeeAdapter = new EmployeeAdapter(employees);
 
+            // Sets the adapter to the recycler view
+            rv.setAdapter(employeeAdapter);
+            if(added == false){
+                handler.postDelayed(this, 3000); //Currently set to update every 10 seconds
+            }
+            //update textview here
+            if(employees.isEmpty() == false) {
+                employeeAdapter = new EmployeeAdapter(employees);
+
+                // Sets the adapter to the recycler view
+                rv.setAdapter(employeeAdapter);
+                handler.removeCallbacks(runner);
+            }
 
             //Rerun stuff goes above this line
-            handler.postDelayed(this, 15000); //Currently set to update every 10 seconds
         }
     };
 
@@ -114,7 +128,7 @@ public class EmployeeActivity extends MainActivityManager
 
                 }
             }
-        },0);
+        },3000);
 
 //        handler.postDelayed(runner,1000);
         // Initialization of our employee adapter
@@ -124,6 +138,7 @@ public class EmployeeActivity extends MainActivityManager
         rv.setAdapter(employeeAdapter);
         // todo addNewEmployee method works as below perfectly, and in real time
 //        addNewEmployee("103", "103", "Paul","Guller","Paul@gmail.com","804-555-3456");
+        handler.postDelayed(runner,2000);
 
 
 
