@@ -224,6 +224,10 @@ public class ManagerHomeScreen extends MainActivityManager
             Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class);
             startActivity(intent);
         }
+        else if (id == R.id.nav_addWorker) {
+            Intent intent = new Intent(getApplicationContext(), AddWorker.class);
+            startActivity(intent);
+        }
         // If ______ is selected by manager, go to ______
         else if (id == R.id.nav_email) {
         }

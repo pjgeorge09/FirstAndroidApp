@@ -29,6 +29,12 @@
             android:icon="@drawable/ic_staff"
             android:title="Staff" />
 
+        <!-- Icon declaration, implementation, and title for Staff -->
+        <item
+            android:id="@+id/nav_addWorker"
+            android:icon="@drawable/ic_staff"
+            android:title="Add Worker" />
+
 
     </group>
 
