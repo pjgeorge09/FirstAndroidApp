@@ -35,16 +35,6 @@
 
     <!-- Fruits table underline bar -->
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="80dp"
-        android:text="changeName"
-        android:onClick="changeName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

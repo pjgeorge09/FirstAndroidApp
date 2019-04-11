@@ -62,6 +62,19 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
                     recyclerView.setLayoutManager(layoutManager2);
                     //links the recyclerview to the donations adapter
                     recyclerView.setAdapter(inventoryAdapter);
+
+                    if(updated == false){
+                        handler.postDelayed(this, 3000); //Currently set to update every 10 seconds
+                    }
+            //update textview here
+            if(items.isEmpty() == false) {
+                inventoryAdapter = new inventoryAdapter(items);
+                //links the recycler view to the layout manager
+                recyclerView.setLayoutManager(layoutManager2);
+                //links the recyclerview to the donations adapter
+                recyclerView.setAdapter(inventoryAdapter);
+                handler.removeCallbacks(runner);
+            }
 //                }
 
 
@@ -165,9 +178,10 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
                     }
                 }
 
-            },2000);
+            },3000);
             Collections.sort(items);
 
+            handler.postDelayed(runner,3000);
 
 //        //creates a new donations adapter object and passes it the test data donations array
 //        inventoryAdapter = new inventoryAdapter(items);
