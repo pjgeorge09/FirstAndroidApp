@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,8 +26,9 @@ public class Login extends Master {
     private EditText Email;
     private EditText Password;
     private Button Login;
-    private TextView Forgot;
+    private Button Forgot;
     private int counter = 5;
+    private ImageView ii;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
@@ -42,7 +44,9 @@ public class Login extends Master {
         Email = (EditText)findViewById(R.id.etEmail1);
         Password = (EditText)findViewById(R.id.etPassword1);
         Login = (Button)findViewById(R.id.btnLogin1);
-        Forgot = (TextView)findViewById(R.id.tvForgot);
+        Forgot = (Button)findViewById(R.id.btnForgotPassword);
+        ii = (ImageView)findViewById(R.id.IVii);
+
 
         // link to firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
@@ -56,6 +60,13 @@ public class Login extends Master {
             @Override
             public void onClick(View v) {
                 validate(Email.getText().toString(), Password.getText().toString());
+            }
+        });
+
+        Forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pressForgot();
             }
         });
     }
@@ -137,7 +148,7 @@ public class Login extends Master {
     }
 
 
-    public void pressForgot(View v) {
+    public void pressForgot() {
         Intent intent = new Intent(com.example.managertabs.Login.this, ForgotPassword.class);
         startActivity(intent);
     }

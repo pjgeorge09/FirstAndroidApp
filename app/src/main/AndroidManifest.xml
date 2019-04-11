@@ -40,6 +40,12 @@
             android:name=".Inventory"
             android:label="@string/title_activity_manager_inventory"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ForgotPassword"
+            android:label="Forgot Password"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".Login"
             android:label="@string/title_activity_login_temp"
@@ -58,7 +64,6 @@
             android:name=".ManagerHomeScreen"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ForgotPassword" />
         <activity android:name=".AddWorker"></activity>
     </application>
 
