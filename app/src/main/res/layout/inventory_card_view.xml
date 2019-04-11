@@ -33,31 +33,31 @@
                     android:textStyle="bold"
                     />
 
+                <RelativeLayout
+                    android:id="@+id/inventory_buttonDropDown"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="end"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:background="@drawable/arrow_right"
+                        android:layout_alignParentRight="false"
+                        android:layout_alignParentEnd="false" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
 
 
 
-        <RelativeLayout
-            android:id="@+id/inventory_buttonDropDown"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="end"
-            android:layout_alignParentRight="true"
-            android:gravity="center">
-
-            <View
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:background="@drawable/arrow_right"
-                android:layout_alignParentRight="false"
-                android:layout_alignParentEnd="false" />
-
-        </RelativeLayout>
         <LinearLayout
             android:id="@+id/inventory_expand"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
