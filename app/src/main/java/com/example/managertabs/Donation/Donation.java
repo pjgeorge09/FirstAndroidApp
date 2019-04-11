@@ -18,6 +18,32 @@ public class Donation implements Comparable {
     String DonorEmail;
     String DonorPhone;
 
+
+    public String getDonorName() {
+        return DonorName;
+    }
+
+    public void setDonorName(String donorName) {
+        this.DonorName = donorName;
+    }
+
+    public String getDonorEmail() {
+        return DonorEmail;
+    }
+
+    public void setDonorEmail(String donorEmail) {
+        this.DonorEmail = donorEmail;
+    }
+
+    public String getDonorPhone() {
+        return DonorPhone;
+    }
+
+    public void setDonorPhone(String donorPhone) {
+        this.DonorPhone = donorPhone;
+    }
+
+
     //general constructor
     public Donation(){
 
