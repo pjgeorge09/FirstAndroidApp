@@ -46,7 +46,7 @@
     <string name="date">Date: </string>
     <string name="item">Item: </string>
     <string name="quantity">Quantity: </string>
-    <string name="DateRecived">Date Received:</string>
+    <string name="dateRecived">Date Received:</string>
     <string name="expire">Expire:</string>
     <string name="category">Category:</string>
     <string name="min">Minimum Threshold:</string>
