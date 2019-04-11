@@ -16,12 +16,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class AddWorker extends AppCompatActivity {
+public class AddWorker extends Master {
 
 
     private EditText addEmail;
     private EditText addPassword;
     private Button addButton;
+    private EditText FirstName;
+    private EditText LastName;
+    private EditText PhoneNumber;
+    private EditText UID;
     private FirebaseAuth firebaseAuth;
 
 
@@ -33,6 +37,10 @@ public class AddWorker extends AppCompatActivity {
         addEmail = (EditText)findViewById(R.id.etEmailAdd);
         addPassword = (EditText)findViewById(R.id.etPasswordAdd);
         addButton = (Button)findViewById(R.id.btnAddWorker);
+        FirstName = (EditText)findViewById(R.id.etFirstName);
+        LastName = (EditText)findViewById(R.id.etLastName);
+        PhoneNumber = (EditText)findViewById(R.id.etPhoneNumber);
+        UID = (EditText)findViewById(R.id.etUID);
         firebaseAuth = FirebaseAuth.getInstance();
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +49,16 @@ public class AddWorker extends AppCompatActivity {
                 // password and email in boxes on click
                 String userEmail = addEmail.getText().toString().trim();
                 String userPassword = addPassword.getText().toString().trim();
+                String firstName = FirstName.getText().toString().trim();
+                String lastName = LastName.getText().toString().trim();
+                String phoneNumber = PhoneNumber.getText().toString().trim();
+                String uid = UID.getText().toString().trim();
+
+
+                /**
+                 * Adds employee in the acutally data base under its uid
+                 */
+                addNewEmployee(uid, uid, firstName, lastName, userEmail, phoneNumber);
 
                 /**
                  * WANT  TO ADD BOXES THAT WILL PUT NEW USER IN AUTH (WHICH IT ALREADY DOES)
