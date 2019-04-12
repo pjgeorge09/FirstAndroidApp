@@ -24,10 +24,10 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.DonorViewHol
     public static class DonorViewHolder extends RecyclerView.ViewHolder {
 
         // Private variables for our View
-        CardView cv;
-        TextView name;
-        TextView email;
-        TextView birthDate;
+        CardView donorcv;
+        TextView donorName;
+        TextView donorEmail;
+        TextView donorCN;
         TextView allowContact;
 
         // Constructor for the DonorViewHolder
@@ -35,15 +35,14 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.DonorViewHol
         // in the Donor Activity
         DonorViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.cv);
-            name = (TextView)itemView.findViewById(R.id.employee_name);
-            email = (TextView)itemView.findViewById(R.id.employee_email);
-            birthDate = (TextView)itemView.findViewById(R.id.birth_date);
+            donorcv = (CardView)itemView.findViewById(R.id.donorcv);
+            donorName = (TextView)itemView.findViewById(R.id.donor_name);
+            donorEmail = (TextView)itemView.findViewById(R.id.donor_email);
+            donorCN = (TextView)itemView.findViewById(R.id.donor_CN);
             allowContact = (TextView)itemView.findViewById(R.id.allowContact);
         }
     }
 
-    // SparseBooleanArray maps a list of integers to a corresponding boolean
     List<Donor> donors;
 
     // Initializes the DonorAdapter and sets each donors position in the List
@@ -75,8 +74,10 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.DonorViewHol
     // Mandatory Override method for every adapter class
     @Override
     public void onBindViewHolder(final DonorViewHolder donorViewHolder, final int i){
-        donorViewHolder.name.setText(donors.get(i).getFirstName() + " " + donors.get(i).getLastName());
-        donorViewHolder.email.setText(donors.get(i).getEmailAddress());
+        donorViewHolder.donorName.setText(donors.get(i).getFirstName() + " " + donors.get(i).getLastName());
+        donorViewHolder.donorEmail.setText(donors.get(i).getEmailAddress());
+        donorViewHolder.donorCN.setText(donors.get(i).getContactNumber());
+        donorViewHolder.allowContact.setText(donors.get(i).getAllowContact().toString());
     }
 
     // Gets the size of the donors List that was passed

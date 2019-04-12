@@ -24,25 +24,6 @@ import java.util.List;
 public class DonationsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-
-    /* Unsure if needed, should be declared elsewhere?
-    private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter adapter;
-
-<<<<<<< HEAD:app/src/main/java/com/example/managertabs/Donations.java
-public class Donations extends Master implements NavigationView.OnNavigationItemSelectedListener {
-    private RecyclerView recyclerView;
-    private     RecyclerView.LayoutManager layoutManager;
-    private  RecyclerView.Adapter adapter;
-=======
->>>>>>> dummy:app/src/main/java/com/example/managertabs/Donation/DonationsActivity.java
-    //test data
-    private ArrayList<String> TestData;
-    //Formal Test Data wtih Object
-    private ArrayList<Donation> ProperData;
-    */
-
     /* onCreate method creates the screen */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
