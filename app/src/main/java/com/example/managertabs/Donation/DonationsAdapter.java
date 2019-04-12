@@ -5,12 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.managertabs.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.DonationViewHolder>{
 
@@ -34,11 +37,16 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.Dona
     @Override
     public void onBindViewHolder(DonationViewHolder holder, int position){
    //passes the data to the text views
-        holder.Date.setText("Date: "+ ProperData.get(position).Date);
-        holder.Item.setText("Item: "+ProperData.get(position).Item);
-        holder.Quantity.setText("Quantity: "+ProperData.get(position).Quantity);
-        holder.Size.setText("Size: "+ProperData.get(position).Size);
-
+        //inventory
+        holder.Category.setText("Category: "+ProperData.get(position).inventoryCategory);
+        holder.Expire.setText("Expires"+ProperData.get(position).inventoryExpire);
+        holder.Item.setText("Item: "+ProperData.get(position).inventoryItem);
+        holder.Location.setText("Size: "+ProperData.get(position).inventoryLocation);
+        holder.Quantity.setText("Quantity: "+ProperData.get(position).inventoryQuantity);
+        holder.DateR.setText("Date: "+ ProperData.get(position).inventoryDateRecived);
+        holder.Min_Threshold.setText("Minimum Threshold: "+ProperData.get(position).inventoryMin_Threshold);
+        //Donor
+        holder
     }
 
     @Override
@@ -56,11 +64,21 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.Dona
 
 //custom view holder class
     public static class DonationViewHolder extends RecyclerView.ViewHolder {
-        CardView cardView;
-        TextView Date;
-        TextView Item;
-        TextView Quantity;
-        TextView Size;
+    CardView cardView;
+    //inventory
+    TextView Category;
+    TextView Expire;
+    TextView Item;
+    TextView Location;
+    TextView Quantity;
+    TextView DateR;
+    TextView Min_Threshold;
+    //Donor
+    TextView DonorName;
+    TextView DonorPhone;
+    TextView DonorEmail;
+    RelativeLayout inventoryButtonLayout;
+    LinearLayout inventoryExpandableLayout;
         //links the card view and textboxes to the view holder
         public DonationViewHolder(View itemView) {
             super(itemView);
