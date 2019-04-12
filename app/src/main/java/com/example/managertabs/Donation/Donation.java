@@ -17,8 +17,21 @@ public class Donation implements Comparable {
     String DonorName;
     String DonorEmail;
     String DonorPhone;
+//general constructor
+    public Donation(String inventoryCategory, String inventoryExpire, String inventoryItem, String inventoryDateRecived, String inventoryLocation, String inventoryQuantity, String inventoryMin_Threshold, String donorName, String donorEmail, String donorPhone) {
+        this.inventoryCategory = inventoryCategory;
+        this.inventoryExpire = inventoryExpire;
+        this.inventoryItem = inventoryItem;
+        this.inventoryDateRecived = inventoryDateRecived;
+        this.inventoryLocation = inventoryLocation;
+        this.inventoryQuantity = inventoryQuantity;
+        this.inventoryMin_Threshold = inventoryMin_Threshold;
+        this.DonorName = donorName;
+        this.DonorEmail = donorEmail;
+        this.DonorPhone = donorPhone;
+    }
 
-
+    //Donor get and set
     public String getDonorName() {
         return DonorName;
     }
@@ -44,20 +57,7 @@ public class Donation implements Comparable {
     }
 
 
-    //general constructor
-    public Donation(){
 
-    }
-
-    public Donation (String inventoryCategory, String inventoryExpire, String inventoryItem, String inventoryDateRecived, String inventoryLocation, String inventoryQuantity, String inventoryMin_Threshold) {
-        this.inventoryCategory = inventoryCategory;
-        this.inventoryExpire = inventoryExpire;
-        this.inventoryItem = inventoryItem;
-        this.inventoryDateRecived = inventoryDateRecived;
-        this.inventoryLocation = inventoryLocation;
-        this.inventoryQuantity = inventoryQuantity;
-        this.inventoryMin_Threshold = inventoryMin_Threshold;
-    }
 
 
     public String getInventoryCategory() {
