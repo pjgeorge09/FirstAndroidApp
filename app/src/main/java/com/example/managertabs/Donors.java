@@ -164,16 +164,16 @@ public class Donors extends MainActivityManager
     /* Method to populate the ArrayList with employee objects in NO PARTICULAR ORDER (Maybe autosorted by order online) */
     public void generateDonors(){
         DONORS
-                .get()
+              .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String localFN = document.getString("First Name");
-                                String localLN = document.getString("Last Name");
-                                String localEmail = document.getString("Email");
-                                String localCN = document.getString("Contact Number");
+                                String localFN = document.getString("firstName");
+                                String localLN = document.getString("lastName");
+                                String localEmail = document.getString("email");
+                                String localCN = document.getString("phoneNumber");
                                 Boolean localAC = document.getBoolean("allowContact");
 
                                 donors.add(new Donor(localFN,localLN,localEmail,localCN, localAC));

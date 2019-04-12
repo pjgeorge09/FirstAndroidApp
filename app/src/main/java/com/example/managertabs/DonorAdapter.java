@@ -74,10 +74,15 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.DonorViewHol
     // Mandatory Override method for every adapter class
     @Override
     public void onBindViewHolder(final DonorViewHolder donorViewHolder, final int i){
-        donorViewHolder.donorName.setText(donors.get(i).getFirstName() + " " + donors.get(i).getLastName());
-        donorViewHolder.donorEmail.setText(donors.get(i).getEmailAddress());
-        donorViewHolder.donorCN.setText(donors.get(i).getContactNumber());
-        donorViewHolder.allowContact.setText(donors.get(i).getAllowContact().toString());
+        donorViewHolder.donorName.setText("Name: " + donors.get(i).getFirstName() + " " + donors.get(i).getLastName());
+        donorViewHolder.donorEmail.setText("Email: " + donors.get(i).getEmailAddress());
+        donorViewHolder.donorCN.setText("Contact Number: " + donors.get(i).getContactNumber());
+        if(donors.get(i).getAllowContact()){
+            donorViewHolder.allowContact.setText("Allow Contact: Yes");
+        }
+        else{
+            donorViewHolder.allowContact.setText("Allow Contact: No");
+        }
     }
 
     // Gets the size of the donors List that was passed
