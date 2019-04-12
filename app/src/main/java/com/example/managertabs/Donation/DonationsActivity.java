@@ -107,7 +107,7 @@ public class Donations extends Master implements NavigationView.OnNavigationItem
     }
 //declarations for above
     private RecyclerView recyclerView;
-    private List<Donation> donations;
+    private ArrayList<Donation> donations;
     private DonationsAdapter donationsAdapter;
 
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and

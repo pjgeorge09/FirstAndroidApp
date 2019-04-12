@@ -26,6 +26,7 @@ public class Donation implements Comparable {
         this.inventoryLocation = inventoryLocation;
         this.inventoryQuantity = inventoryQuantity;
         this.inventoryMin_Threshold = inventoryMin_Threshold;
+
         this.DonorName = donorName;
         this.DonorEmail = donorEmail;
         this.DonorPhone = donorPhone;
