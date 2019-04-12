@@ -39,22 +39,18 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.DonorViewHol
             name = (TextView)itemView.findViewById(R.id.employee_name);
             email = (TextView)itemView.findViewById(R.id.employee_email);
             birthDate = (TextView)itemView.findViewById(R.id.birth_date);
-            allowContact = (TextView)itemView.findViewById(R.id.allowcontact);
+            allowContact = (TextView)itemView.findViewById(R.id.allowContact);
         }
     }
 
     // SparseBooleanArray maps a list of integers to a corresponding boolean
     List<Donor> donors;
-    private SparseBooleanArray expandState = new SparseBooleanArray();
 
     // Initializes the DonorAdapter and sets each donors position in the List
     // to a corresponding false boolean value in the SparseBooleanArray
     DonorAdapter(List<Donor> donors){
         this.donors = donors;
 
-        for (int i = 0; i < donors.size(); i++) {
-            expandState.append(i, false);
-        }
     }
 
     // Attaches our DonorAdapter to our RecyclerView

@@ -41,6 +41,7 @@ public class Master extends AppCompatActivity {
     public final CollectionReference INVENTORY = db.collection("Inventory");
     public CollectionReference DONATIONS = db.collection("Donations");
     public CollectionReference EMPLOYEES = db.collection("Employees");
+    public CollectionReference DONORS = db.collection("Donors");
     public CollectionReference OTHER = db.collection("Other");
 
     final DocumentReference messageDocRef = OTHER.document("Message");
