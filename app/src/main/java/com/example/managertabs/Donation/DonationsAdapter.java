@@ -82,7 +82,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.Dona
         holder.DateR.setText("Date: "+ ProperData.get(position).inventoryDateRecived);
         holder.Min_Threshold.setText("Minimum Threshold: "+ProperData.get(position).inventoryMin_Threshold);
         //Donor
-        holder.DonorName.setText("Name: "+ProperData.get(position).DonorName);
+        holder.DonorName.setText("Donor: "+ProperData.get(position).DonorName);
         holder.DonorPhone.setText("Phone:"+ProperData.get(position).DonorPhone);
         holder.DonorEmail.setText("Email:"+ProperData.get(position).DonorEmail);
 
