@@ -146,6 +146,7 @@
 
         </RelativeLayout>
         <LinearLayout
+            android:id="@+id/Donation_Donor_Expand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="190dp"
