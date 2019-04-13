@@ -73,7 +73,7 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
         //passes the data to the text views
         holder.Category.setText("Category: "+ this.ProperData.get(position).inventoryCategory);
         holder.Expire.setText("Expire: "+ this.ProperData.get(position).inventoryExpire);
-        holder.Item.setText("Item: "+ this.ProperData.get(position).inventoryItem);
+        holder.Item.setText(this.ProperData.get(position).inventoryItem);
         holder.Location.setText("Location: "+ this.ProperData.get(position).inventoryLocation);
         holder.Quantity.setText("Quantity: "+ this.ProperData.get(position).inventoryQuantity);
         holder.DateR.setText("Date Received: "+ this.ProperData.get(position).inventoryDateRecived);
@@ -135,7 +135,7 @@ public class inventoryAdapter extends RecyclerView.Adapter<inventoryAdapter.Inve
             super(itemView);
 
             cardView = (CardView)itemView.findViewById(R.id.CV_inventory);
-            cardView.setCardBackgroundColor(Color.LTGRAY);
+            cardView.setCardBackgroundColor(Color.parseColor("#AFB5FF"));
 
             //text box in row
             Category= (TextView)itemView.findViewById(R.id.Inventory_Category);
