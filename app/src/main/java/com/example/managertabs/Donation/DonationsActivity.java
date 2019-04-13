@@ -162,19 +162,20 @@ public class DonationsActivity extends MainActivityManager
 
         //input from edit text
         //Inventory
-        EditText Item;
-        EditText Expire;
-        EditText Location;
-        EditText Quantity;
-        EditText Min;
-        EditText DateR;
+        Donation PeteMakeThisGoToTheDataBasePls = new Donation();
+        EditText Item=(EditText)findViewById(R.id.donation_item_input);;
+        EditText Expire= (EditText)findViewById(R.id.donation_expire_input);
+        EditText Location=(EditText)findViewById(R.id.donation_loaction_input);
+        EditText Quantity=(EditText)findViewById(R.id.donation_quantity_input);
+        EditText Min=(EditText)findViewById(R.id.donation_min_input);
+        EditText DateR=(EditText)findViewById(R.id.donation_date_input);
         //Donor
-        EditText DonorName;
-        EditText DonorPhoneNumber;
-        EditText DonorEmail;
+        EditText DonorName=(EditText)findViewById(R.id.donation_donor_name_input);
+        EditText DonorPhoneNumber=(EditText)findViewById(R.id.donation_donor_phone_input);
+        EditText DonorEmail=(EditText)findViewById(R.id.donation_donor_email_input);
         //Button
         Button addDonationButton =(Button) findViewById(R.id.donation_add_database);
-
+//make button do something
         addDonationButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"Donation Added",Toast.LENGTH_LONG).show();// Set your own toast  message
