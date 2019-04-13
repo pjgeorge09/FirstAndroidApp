@@ -17,8 +17,17 @@ public class Donation implements Comparable {
     String DonorName;
     String DonorEmail;
     String DonorPhone;
-//general constructor
-    public Donation(String inventoryCategory, String inventoryExpire, String inventoryItem, String inventoryDateRecived, String inventoryLocation, String inventoryQuantity, String inventoryMin_Threshold, String donorName, String donorEmail, String donorPhone) {
+
+    //General Constructor
+    public Donation(){
+
+    }
+
+
+    //Parameterized constructor
+    public Donation(String inventoryCategory, String inventoryExpire, String inventoryItem,
+                    String inventoryDateRecived, String inventoryLocation, String inventoryQuantity,
+                    String inventoryMin_Threshold, String donorName, String donorEmail, String donorPhone) {
         this.inventoryCategory = inventoryCategory;
         this.inventoryExpire = inventoryExpire;
         this.inventoryItem = inventoryItem;

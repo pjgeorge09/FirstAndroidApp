@@ -2,6 +2,8 @@ package com.example.managertabs.Donation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,38 +12,76 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.managertabs.Donors;
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
 import com.example.managertabs.Inventory;
+import com.example.managertabs.Item;
+import com.example.managertabs.MainActivityManager;
 import com.example.managertabs.ManagerHomeScreen;
 import com.example.managertabs.R;
+import com.example.managertabs.inventoryAdapter;
+import com.example.managertabs.inventoryData;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class DonationsActivity extends AppCompatActivity
+public class DonationsActivity extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+
+    Donation donation = new Donation();
+    LinearLayoutManager layoutManager2= new LinearLayoutManager(this);
+    // Private variables
+    // Employee list holds a list of employee objects
+    //
+    static ArrayList<Donation> donations = new ArrayList<>();
+    public static boolean added = false;
+    static Boolean updated = false;
+    //Handler/Runnable for listeners
+    private Handler handler = new Handler();
+    private Runnable runner = new Runnable() {
+        @Override
+        public void run() {
+            // Rerun stuff goes below this line
+
+            donationsAdapter = new DonationsAdapter(donations);
+            //links the recycler view to the layout manager
+            recyclerView.setLayoutManager(layoutManager);
+            //links the recyclerview to the donations adapter
+            recyclerView.setAdapter(donationsAdapter);
+
+            if(updated == false){
+                handler.postDelayed(this, 1000); //Currently set to update every 10 seconds
+            }
+            //update textview here
+            if(donations.isEmpty() == false) {
+
+                donationsAdapter = new DonationsAdapter(donations);
+                //links the recycler view to the layout manager
+                recyclerView.setLayoutManager(layoutManager);
+                //links the recyclerview to the donations adapter
+                recyclerView.setAdapter(donationsAdapter);
+                handler.removeCallbacks(runner);
+            }
+//                }
 
 
-    /* Unsure if needed, should be declared elsewhere?
-    private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter adapter;
+            //Rerun stuff goes above this line
+//            handler.postDelayed(this, 6000); //Currently set to update every 10 seconds
 
-<<<<<<< HEAD:app/src/main/java/com/example/managertabs/Donations.java
-public class Donations extends Master implements NavigationView.OnNavigationItemSelectedListener {
-    private RecyclerView recyclerView;
-    private     RecyclerView.LayoutManager layoutManager;
-    private  RecyclerView.Adapter adapter;
-=======
->>>>>>> dummy:app/src/main/java/com/example/managertabs/Donation/DonationsActivity.java
-    //test data
-    private ArrayList<String> TestData;
-    //Formal Test Data wtih Object
-    private ArrayList<Donation> ProperData;
-    */
+        }
+    };
+
+
 
     /* onCreate method creates the screen */
     @Override
@@ -74,40 +114,57 @@ public class Donations extends Master implements NavigationView.OnNavigationItem
         // Says if the recycler has fixed size probably should set to false if we are going to be adding item otherwise leave @ true to improve preformance
         recyclerView.setHasFixedSize(true);
 
-        //generates the test data
+
+//         addNewDonation("Box","06/2090","Paper Towels","05/11/2019","Y11",
+//                 "4","","Thomas Anderson","","804-986-1234");
+//         addNewDonation("Box", "03/03/2019", "Canned Beef Broth", "03/03/2019","J1","6","","Tony Stark","TS@Stark.com","");
+//         addNewDonation("Can", "09/04/2022", "Corn (M)", "03/03/2019","J2","11","","Steve Rogers","CapAmerica@aol.com","804-555-3232");
+//         addNewDonation("Can", "09/04/2022", "Tuna (M)", "03/03/2019","J3","15","","Thor Odinson","","");
+//         addNewDonation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890");
+         //generates the test data
 
        //Test data cardView
         donations = new ArrayList<>();
 
         initializeData();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //update textview here
+                if(!added) {
+                    generateDonations();
 
+                }
+                else{
+                    donationsAdapter = new DonationsAdapter(donations);
+                    //links the recycler view to the layout manager
+                    recyclerView.setLayoutManager(layoutManager);
+                    //links the recyclerview to the donations adapter
+                    recyclerView.setAdapter(donationsAdapter);
+                }
+            }
+
+        },3000);
+        Collections.sort(donations);
+
+        handler.postDelayed(runner,3000);
 //Using prepackage layout manager
         LinearLayoutManager layoutManager= new LinearLayoutManager(this);
         //creates a new donations adapter object and passes it the test data donations array
-        donationsAdapter = new DonationsAdapter(donations);
-        //links the recycler view to the layout manager
-        recyclerView.setLayoutManager(layoutManager);
-        //links the recyclerview to the donations adapter
-        recyclerView.setAdapter(donationsAdapter);
+
         }
 //fills the donations array with test data
     private void initializeData(){
-        donations.add(new Donation("Box", "03/03/2019", "Canned Beef Broth", "03/03/2019","J1","6","","Tony Stark","TS@Stark.com",""));
-        donations.add(new Donation("Can", "09/04/2022", "Corn (M)", "03/03/2019","J2","11","","Steve Rogers","CapAmerica@aol.com","804-555-3232"));
-        donations.add(new Donation("Can", "09/04/2022", "Tuna (M)", "03/03/2019","J3","15","","Thor Odinson","",""));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+//        donations.add(new Donation("Box", "03/03/2019", "Canned Beef Broth", "03/03/2019","J1","6","","Tony Stark","TS@Stark.com",""));
+//        donations.add(new Donation("Can", "09/04/2022", "Corn (M)", "03/03/2019","J2","11","","Steve Rogers","CapAmerica@aol.com","804-555-3232"));
+//        donations.add(new Donation("Can", "09/04/2022", "Tuna (M)", "03/03/2019","J3","15","","Thor Odinson","",""));
+//        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+//        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
 
     }
 //declarations for above
     private RecyclerView recyclerView;
-    private ArrayList<Donation> donations;
+//    private ArrayList<Donation> donations;
     private DonationsAdapter donationsAdapter;
 
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and
@@ -149,4 +206,34 @@ public class Donations extends Master implements NavigationView.OnNavigationItem
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void generateDonations(){
+        DONATIONS
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                donations.add(new Donation(document.getString("Category"), document.getString("Expiration"),
+                                        document.getString("Item"), document.getString("Date Received"), document.getString("Location"),
+                                        document.getString("Quantity"),document.getString("Threshold"), document.getString("Name"),
+                                        document.getString("Email"), document.getString("Phone")));
+                                Log.d("Temp Tag", document.getId() + " => " + document.getData());
+
+                            }
+                        } else {
+                            Log.d("Abandon Operation", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        added = true;
+
+    }
+
+
+
+
+
 }

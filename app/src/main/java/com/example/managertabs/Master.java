@@ -131,7 +131,31 @@ public class Master extends AppCompatActivity {
 
     }
 
+    // ADD DONATION. One button, does whole operation. This WILL ADD DUPLICATES. Each time it creates a
+    // unique donation id that is never replicated. The list can get large very quickly. At later date
+    // Consider limiting to most recent 200 donations or something, or exporting to long-term data (NOT IN THIS PROJECT OUTSIDE SCOPE)
+    public void addNewDonation(String inventoryCategory, String inventoryExpire, String inventoryItem,
+                               String inventoryDateRecived, String inventoryLocation, String inventoryQuantity,
+                               String inventoryMin_Threshold, String donorName, String donorEmail, String donorPhone){
+//Create a map object of EXACTLY <String, Object> = HashMap (Best speed)
+        Map<String, Object> toAdd = new HashMap<>();
+        toAdd.put("Category", inventoryCategory); toAdd.put("Expiration",inventoryExpire); toAdd.put("Item",inventoryItem); toAdd.put("Date Received",inventoryDateRecived);
+        toAdd.put("Location",inventoryLocation); toAdd.put("Quantity",inventoryQuantity); toAdd.put("Threshold",inventoryMin_Threshold); toAdd.put("Name",donorName);
+        toAdd.put("Email",donorEmail); toAdd.put("Phone",donorPhone);
 
+        db.collection("Donations").document()
+                // .set(toAdd) adds it to the database
+                .set(toAdd).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void documentReference) {
+                // Decently-written Log. Should implement this everywhere tbh
+                Log.d("Firebase Employee added", "doc w ID :" );
+            }
+        });
+
+
+
+    }
 
 
 }
