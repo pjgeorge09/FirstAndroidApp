@@ -77,7 +77,7 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.Dona
         holder.Category.setText("Category: "+ProperData.get(position).inventoryCategory);
         holder.Expire.setText("Expires"+ProperData.get(position).inventoryExpire);
         holder.Item.setText("Item: "+ProperData.get(position).inventoryItem);
-        holder.Location.setText("Size: "+ProperData.get(position).inventoryLocation);
+        holder.Location.setText("Location: "+ProperData.get(position).inventoryLocation);
         holder.Quantity.setText("Quantity: "+ProperData.get(position).inventoryQuantity);
         holder.DateR.setText("Date: "+ ProperData.get(position).inventoryDateRecived);
         holder.Min_Threshold.setText("Minimum Threshold: "+ProperData.get(position).inventoryMin_Threshold);
