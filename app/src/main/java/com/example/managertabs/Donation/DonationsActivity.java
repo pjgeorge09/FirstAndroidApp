@@ -92,6 +92,9 @@ public class Donations extends Master implements NavigationView.OnNavigationItem
         }
 //fills the donations array with test data
     private void initializeData(){
+        donations.add(new Donation("Box", "03/03/2019", "Canned Beef Broth", "03/03/2019","J1","6","","Tony Stark","TS@Stark.com",""));
+        donations.add(new Donation("Can", "09/04/2022", "Corn (M)", "03/03/2019","J2","11","","Steve Rogers","CapAmerica@aol.com","804-555-3232"));
+        donations.add(new Donation("Can", "09/04/2022", "Tuna (M)", "03/03/2019","J3","15","","Thor Odinson","",""));
         donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
         donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
         donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
@@ -99,10 +102,7 @@ public class Donations extends Master implements NavigationView.OnNavigationItem
         donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
         donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
         donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
-        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
 
     }
 //declarations for above
