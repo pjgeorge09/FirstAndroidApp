@@ -14,6 +14,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.managertabs.Donors;
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
@@ -32,6 +34,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class DonationsActivity extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -152,7 +159,29 @@ public class DonationsActivity extends MainActivityManager
         LinearLayoutManager layoutManager= new LinearLayoutManager(this);
         //creates a new donations adapter object and passes it the test data donations array
 
-        }
+
+        //input from edit text
+        //Inventory
+        EditText Item;
+        EditText Expire;
+        EditText Location;
+        EditText Quantity;
+        EditText Min;
+        EditText DateR;
+        //Donor
+        EditText DonorName;
+        EditText DonorPhoneNumber;
+        EditText DonorEmail;
+        //Button
+        Button addDonationButton =(Button) findViewById(R.id.donation_add_database);
+
+        addDonationButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Donation Added",Toast.LENGTH_LONG).show();// Set your own toast  message
+            }
+        });}
+
+
 //fills the donations array with test data
     private void initializeData(){
 //        donations.add(new Donation("Box", "03/03/2019", "Canned Beef Broth", "03/03/2019","J1","6","","Tony Stark","TS@Stark.com",""));
