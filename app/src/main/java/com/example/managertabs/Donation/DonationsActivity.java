@@ -102,7 +102,7 @@ public class DonationsActivity extends MainActivityManager
         setSupportActionBar(toolbar);
 
         // Sets the navigation drawer to still be accessible by the toolbar button. This is the sliding part
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -156,29 +156,62 @@ public class DonationsActivity extends MainActivityManager
 
         handler.postDelayed(runner,3000);
 //Using prepackage layout manager
-        LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+        final LinearLayoutManager layoutManager= new LinearLayoutManager(this);
         //creates a new donations adapter object and passes it the test data donations array
 
 
-        //input from edit text
-        //Inventory
-        Donation PeteMakeThisGoToTheDataBasePls = new Donation();
-        EditText Item=(EditText)findViewById(R.id.donation_item_input);;
-        EditText Expire= (EditText)findViewById(R.id.donation_expire_input);
-        EditText Location=(EditText)findViewById(R.id.donation_loaction_input);
-        EditText Quantity=(EditText)findViewById(R.id.donation_quantity_input);
-        EditText Min=(EditText)findViewById(R.id.donation_min_input);
-        EditText DateR=(EditText)findViewById(R.id.donation_date_input);
-        //Donor
-        EditText DonorName=(EditText)findViewById(R.id.donation_donor_name_input);
-        EditText DonorPhoneNumber=(EditText)findViewById(R.id.donation_donor_phone_input);
-        EditText DonorEmail=(EditText)findViewById(R.id.donation_donor_email_input);
+
+
         //Button
         Button addDonationButton =(Button) findViewById(R.id.donation_add_database);
 //make button do something
         addDonationButton.setOnClickListener(new OnClickListener() {
+
+            //input from edit text
+            //Inventory
+             Donation PeteMakeThisGoToTheDataBasePls = new Donation();
+             EditText Item=(EditText)findViewById(R.id.donation_item_input);;
+             EditText Expire= (EditText)findViewById(R.id.donation_expire_input);
+             EditText Location=(EditText)findViewById(R.id.donation_loaction_input);
+             EditText Quantity=(EditText)findViewById(R.id.donation_quantity_input);
+             EditText Min=(EditText)findViewById(R.id.donation_min_input);
+            EditText DateR=(EditText)findViewById(R.id.donation_date_input);
+
+            //Donor
+            EditText DonorName=(EditText)findViewById(R.id.donation_donor_name_input);
+            EditText DonorPhoneNumber=(EditText)findViewById(R.id.donation_donor_phone_input);
+            EditText DonorEmail=(EditText)findViewById(R.id.donation_donor_email_input);
+            String item;
+            String expire;
+            String location;
+            String quantity;
+            String min;
+            String date;
+            String donorname;
+            String donorphone;
+            String donoremail;
             public void onClick(View v) {
+                //set the edit texts to strings to be passed to the donation object
+            item=Item.getText().toString();
+            expire=Expire.getText().toString();
+            location=Location.getText().toString();
+            quantity=Quantity.getText().toString();
+            min=Min.getText().toString();
+            date=DateR.getText().toString();
+            donorname=DonorName.getText().toString();
+            donorphone=DonorPhoneNumber.getText().toString();
+            donoremail=DonorEmail.getText().toString();
+            //sets the strings the donation object
+            PeteMakeThisGoToTheDataBasePls.setDonorEmail(donoremail);
+            PeteMakeThisGoToTheDataBasePls.setDonorName(donorname);
+            PeteMakeThisGoToTheDataBasePls.setDonorPhone(donorphone);
+            PeteMakeThisGoToTheDataBasePls.setInventoryItem(item);
+            PeteMakeThisGoToTheDataBasePls.setInventoryExpire(expire);
+            PeteMakeThisGoToTheDataBasePls.setInventoryLocation(location);
+            PeteMakeThisGoToTheDataBasePls.setInventoryQuantity(quantity);
+            PeteMakeThisGoToTheDataBasePls.setInventoryDateRecived(date);
                 Toast.makeText(getApplicationContext(),"Donation Added",Toast.LENGTH_LONG).show();// Set your own toast  message
+
             }
         });}
 
