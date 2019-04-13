@@ -70,10 +70,18 @@ public class WorkerDonations extends MainActivityWorker
     }
     //fills the donations array with test data
     private void initializeData(){
-        donations.add(new Donation("03/22/1901", "Beans", "500", "Small"));
-        donations.add(new Donation("03/21/1904", "Peas", "500", "Medium"));
-        donations.add(new Donation("03/13/1903", "Green Peas", "500", "Large"));
-        donations.add(new Donation("03/01/1902", "Canned Tomtatoes", "500", "Small"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+
     }
     //declarations for above
     private RecyclerView recyclerView;

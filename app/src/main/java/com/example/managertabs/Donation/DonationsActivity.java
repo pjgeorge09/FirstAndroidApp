@@ -2,6 +2,8 @@ package com.example.managertabs.Donation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,19 +12,83 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.managertabs.Donors;
 import com.example.managertabs.EmployeeFiles.EmployeeActivity;
 import com.example.managertabs.Inventory;
+import com.example.managertabs.Item;
+import com.example.managertabs.MainActivityManager;
 import com.example.managertabs.ManagerHomeScreen;
 import com.example.managertabs.R;
+import com.example.managertabs.inventoryAdapter;
+import com.example.managertabs.inventoryData;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class DonationsActivity extends AppCompatActivity
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class DonationsActivity extends MainActivityManager
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+
+    Donation donation = new Donation();
+    LinearLayoutManager layoutManager2= new LinearLayoutManager(this);
+    // Private variables
+    // Employee list holds a list of employee objects
+    //
+    static ArrayList<Donation> donations = new ArrayList<>();
+    public static boolean added = false;
+    static Boolean updated = false;
+    //Handler/Runnable for listeners
+    private Handler handler = new Handler();
+    private Runnable runner = new Runnable() {
+        @Override
+        public void run() {
+            // Rerun stuff goes below this line
+
+            donationsAdapter = new DonationsAdapter(donations);
+            //links the recycler view to the layout manager
+            recyclerView.setLayoutManager(layoutManager);
+            //links the recyclerview to the donations adapter
+            recyclerView.setAdapter(donationsAdapter);
+
+            if(updated == false){
+                handler.postDelayed(this, 1000); //Currently set to update every 10 seconds
+            }
+            //update textview here
+            if(donations.isEmpty() == false) {
+
+                donationsAdapter = new DonationsAdapter(donations);
+                //links the recycler view to the layout manager
+                recyclerView.setLayoutManager(layoutManager);
+                //links the recyclerview to the donations adapter
+                recyclerView.setAdapter(donationsAdapter);
+                handler.removeCallbacks(runner);
+            }
+//                }
+
+
+            //Rerun stuff goes above this line
+//            handler.postDelayed(this, 6000); //Currently set to update every 10 seconds
+
+        }
+    };
+
+
 
     /* onCreate method creates the screen */
     @Override
@@ -36,7 +102,7 @@ public class DonationsActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         // Sets the navigation drawer to still be accessible by the toolbar button. This is the sliding part
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -55,32 +121,113 @@ public class DonationsActivity extends AppCompatActivity
         // Says if the recycler has fixed size probably should set to false if we are going to be adding item otherwise leave @ true to improve preformance
         recyclerView.setHasFixedSize(true);
 
-        //generates the test data
+
+//         addNewDonation("Box","06/2090","Paper Towels","05/11/2019","Y11",
+//                 "4","","Thomas Anderson","","804-986-1234");
+//         addNewDonation("Box", "03/03/2019", "Canned Beef Broth", "03/03/2019","J1","6","","Tony Stark","TS@Stark.com","");
+//         addNewDonation("Can", "09/04/2022", "Corn (M)", "03/03/2019","J2","11","","Steve Rogers","CapAmerica@aol.com","804-555-3232");
+//         addNewDonation("Can", "09/04/2022", "Tuna (M)", "03/03/2019","J3","15","","Thor Odinson","","");
+//         addNewDonation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890");
+         //generates the test data
 
        //Test data cardView
         donations = new ArrayList<>();
 
         initializeData();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //update textview here
+                if(!added) {
+                    generateDonations();
 
+                }
+                else{
+                    donationsAdapter = new DonationsAdapter(donations);
+                    //links the recycler view to the layout manager
+                    recyclerView.setLayoutManager(layoutManager);
+                    //links the recyclerview to the donations adapter
+                    recyclerView.setAdapter(donationsAdapter);
+                }
+            }
+
+        },3000);
+        Collections.sort(donations);
+
+        handler.postDelayed(runner,3000);
 //Using prepackage layout manager
-        LinearLayoutManager layoutManager= new LinearLayoutManager(this);
+        final LinearLayoutManager layoutManager= new LinearLayoutManager(this);
         //creates a new donations adapter object and passes it the test data donations array
-        donationsAdapter = new DonationsAdapter(donations);
-        //links the recycler view to the layout manager
-        recyclerView.setLayoutManager(layoutManager);
-        //links the recyclerview to the donations adapter
-        recyclerView.setAdapter(donationsAdapter);
-        }
+
+
+
+
+        //Button
+        Button addDonationButton =(Button) findViewById(R.id.donation_add_database);
+//make button do something
+        addDonationButton.setOnClickListener(new OnClickListener() {
+
+            //input from edit text
+            //Inventory
+             Donation PeteMakeThisGoToTheDataBasePls = new Donation();
+             EditText Item=(EditText)findViewById(R.id.donation_item_input);;
+             EditText Expire= (EditText)findViewById(R.id.donation_expire_input);
+             EditText Location=(EditText)findViewById(R.id.donation_loaction_input);
+             EditText Quantity=(EditText)findViewById(R.id.donation_quantity_input);
+             EditText Min=(EditText)findViewById(R.id.donation_min_input);
+            EditText DateR=(EditText)findViewById(R.id.donation_date_input);
+
+            //Donor
+            EditText DonorName=(EditText)findViewById(R.id.donation_donor_name_input);
+            EditText DonorPhoneNumber=(EditText)findViewById(R.id.donation_donor_phone_input);
+            EditText DonorEmail=(EditText)findViewById(R.id.donation_donor_email_input);
+            String item;
+            String expire;
+            String location;
+            String quantity;
+            String min;
+            String date;
+            String donorname;
+            String donorphone;
+            String donoremail;
+            public void onClick(View v) {
+                //set the edit texts to strings to be passed to the donation object
+            item=Item.getText().toString();
+            expire=Expire.getText().toString();
+            location=Location.getText().toString();
+            quantity=Quantity.getText().toString();
+            min=Min.getText().toString();
+            date=DateR.getText().toString();
+            donorname=DonorName.getText().toString();
+            donorphone=DonorPhoneNumber.getText().toString();
+            donoremail=DonorEmail.getText().toString();
+            //sets the strings the donation object
+            PeteMakeThisGoToTheDataBasePls.setDonorEmail(donoremail);
+            PeteMakeThisGoToTheDataBasePls.setDonorName(donorname);
+            PeteMakeThisGoToTheDataBasePls.setDonorPhone(donorphone);
+            PeteMakeThisGoToTheDataBasePls.setInventoryItem(item);
+            PeteMakeThisGoToTheDataBasePls.setInventoryExpire(expire);
+            PeteMakeThisGoToTheDataBasePls.setInventoryLocation(location);
+            PeteMakeThisGoToTheDataBasePls.setInventoryQuantity(quantity);
+            PeteMakeThisGoToTheDataBasePls.setInventoryDateRecived(date);
+                Toast.makeText(getApplicationContext(),"Donation Added",Toast.LENGTH_LONG).show();// Set your own toast  message
+
+            }
+        });}
+
+
 //fills the donations array with test data
     private void initializeData(){
-        donations.add(new Donation("03/22/1901", "Beans", "500", "Small"));
-        donations.add(new Donation("03/21/1904", "Peas", "500", "Medium"));
-        donations.add(new Donation("03/13/1903", "Green Peas", "500", "Large"));
-        donations.add(new Donation("03/01/1902", "Canned Tomtatoes", "500", "Small"));
+//        donations.add(new Donation("Box", "03/03/2019", "Canned Beef Broth", "03/03/2019","J1","6","","Tony Stark","TS@Stark.com",""));
+//        donations.add(new Donation("Can", "09/04/2022", "Corn (M)", "03/03/2019","J2","11","","Steve Rogers","CapAmerica@aol.com","804-555-3232"));
+//        donations.add(new Donation("Can", "09/04/2022", "Tuna (M)", "03/03/2019","J3","15","","Thor Odinson","",""));
+//        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","Top Shelf","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+//        donations.add(new Donation("Box", "03/03/2019", "Pizza", "03/03/2011","","22","1","Bob jr they stole my hores","bob@gmsil.com","1234567890"));
+
     }
 //declarations for above
     private RecyclerView recyclerView;
-    private List<Donation> donations;
+//    private ArrayList<Donation> donations;
     private DonationsAdapter donationsAdapter;
 
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and
@@ -122,4 +269,34 @@ public class DonationsActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void generateDonations(){
+        DONATIONS
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                donations.add(new Donation(document.getString("Category"), document.getString("Expiration"),
+                                        document.getString("Item"), document.getString("Date Received"), document.getString("Location"),
+                                        document.getString("Quantity"),document.getString("Threshold"), document.getString("Name"),
+                                        document.getString("Email"), document.getString("Phone")));
+                                Log.d("Temp Tag", document.getId() + " => " + document.getData());
+
+                            }
+                        } else {
+                            Log.d("Abandon Operation", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        added = true;
+
+    }
+
+
+
+
+
 }
