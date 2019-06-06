@@ -75,11 +75,6 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
                 recyclerView.setAdapter(inventoryAdapter);
                 handler.removeCallbacks(runner);
             }
-//                }
-
-
-            //Rerun stuff goes above this line
-//            handler.postDelayed(this, 6000); //Currently set to update every 10 seconds
 
         }
     };
@@ -104,48 +99,6 @@ public class Inventory extends MainActivityManager implements NavigationView.OnN
         // Sets the side navigation to be able to be called and buttons selected. This is the clickable part.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        // Calls changeField method from Master class (Sets ANY Field data to whatever you set here. Needs tested for NUMBERS)
-//        changeField(INVENTORY, "Tomatoes","Location","T117");
-
-        // TODO THIS IS THE WORKING THING. THE METHOD. THIS TRANSACTION WILL BE OUR GETTERS
-        // db = database.   runTransaction is the method of getting data from database into variables
-        // TODO ===> https://firebase.google.com/docs/firestore/manage-data/transactions
-//        db.runTransaction(new Transaction.Function<String>(){
-//            @Override
-//            public String apply(Transaction transaction) throws FirebaseFirestoreException{
-//                /* IMPORTANT: This DocumentSnapshot is the item that pulls. This way you can get data from ANYWHERE in the Database.
-//                 *               <name>     transaction.get(COLLECTION . DOCUMENT("NAME GOES HERE")    */
-//                DocumentSnapshot snapshot = transaction.get(INVENTORY.document("Canned Tuna"));  //currently set to Canned Tuna needs changed TODO
-//                // Using Item Class setters, and DocumentSnapshot's "Get String Method"
-//                // Get String method is a KEY VALUE PAIR. You pass it the Field name and it returns the string
-//                item.setName(snapshot.getString("item"));
-//                item.setLocation(snapshot.getString("Location"));
-//                // Supposedly works with non-string values with get method (REQUIRES CASTING THOUGH)
-//                item.setQuantity((int)snapshot.get("Quantity"));
-//                item.setThreshold((int)snapshot.get("Threshold"));
-//                item.setType(snapshot.getString("Type"));
-//                //Method gets angry if you change it from String so this line is actually useless. Try setting as void again when get time
-//                String newPop = snapshot.getString("Memo");
-//                // Returns to no-where, irrelevant but needed statement
-//                return newPop;
-//            }
-//            // Listeners just add to the log, but I don't have them printing anything helpful. TODO Make better log messages like "Failed at", getLineFault()
-//        }).addOnSuccessListener(new OnSuccessListener<String>() {
-//                                    @Override
-//                                    public void onSuccess(String s) {
-//                                        Log.d("Log","Log");
-//                                    }
-//                                }
-//        ).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.w("string","string2");
-//            }
-//        });
-
-
-        // Recycle Stuff
 
         //links the java to the recycler view
         recyclerView = (RecyclerView) findViewById(R.id.inventory_rv);

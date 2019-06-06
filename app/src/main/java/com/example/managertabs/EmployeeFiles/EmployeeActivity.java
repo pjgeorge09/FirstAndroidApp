@@ -146,40 +146,6 @@ public class EmployeeActivity extends MainActivityManager
     }
 
 
-        /* PETES CODE, find a way to implement for database implementation
-
-        //Initialize the database, it is linked to my android already
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        // FOR BRYAN - We create an item, a map, that can receive ANY object (int, string etc)
-        Map<String, Object> worker = new HashMap<>();
-        // Sample data
-        worker.put("firstName", "Peter");
-        worker.put("lastName", "George");
-        worker.put("eid", 12456);
-
-        //Messages = rows in SQL. It's like a set. so maybe another example  "John Temporary"
-        db.collection("Employees")
-                .add(worker)
-                // ON SUCCESS
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("FIREBASE_DATA_ADDED", "Document added with ID: " + documentReference.getId());
-                    }
-                })
-                //ON FAILURE
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("FIREBASE_DATA_ERROR", "Document failed to add, exception backtrace: " + Arrays.toString(e.getStackTrace()));
-                    }
-                });
-
-
-
-    } PETES END OF ONCREATE FUNCTION
-        */
-
     /* Method used when drawer (tabs) layout is open, listens for button clicks (tab selected) and
     does a screen transition based on received */
     @Override
@@ -235,12 +201,6 @@ public class EmployeeActivity extends MainActivityManager
                                 String localEmail = document.getString("Email");
                                 String localUID = document.getString("uid");
                                 String localCN = document.getString("Contact Number");
-//                                Employee newEmployee = new Employee(localUID,localFN,localLN,localEmail,localCN);
-//                                tempEmployee.setFirstName(document.getString("First Name"));
-//                                tempEmployee.setLastName(document.getString("Last Name"));
-//                                tempEmployee.setEmailAddress(document.getString("Email"));
-//                                tempEmployee.setUid(document.getString("uid"));
-//                                tempEmployee.setContactNumber(document.getString("Contact Number"));
 
                                 employees.add(new Employee(localUID,localFN,localLN,localEmail,localCN));
                                 Log.d("Temp Tag", document.getId() + " => " + document.getData());

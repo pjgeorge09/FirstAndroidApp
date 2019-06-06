@@ -42,7 +42,6 @@ public class ManagerHomeScreen extends MainActivityManager
          @Override
          public void run() {
              {
-
                  //Set listener on live update
                  messageDocRef.addSnapshotListener(MetadataChanges.INCLUDE, new EventListener<DocumentSnapshot>() {
                      // On some EVENT (some bit of data changes in the database) do the following actions
@@ -120,59 +119,7 @@ public class ManagerHomeScreen extends MainActivityManager
         // OnScreenCreate, set the content of the Manager Home Screen to the contents currently in the database (FOR WORKER TOO)
         textView = (TextView)findViewById(R.id.memoBox);
         textView.setText("Loading...");
-//
-//        /* runTransaction method is a method to get data from the database and pass the info TO VARIABLES */
-//        db.runTransaction(new Transaction.Function<String>(){
-//            @Override
-//            public String apply(Transaction transaction) throws FirebaseFirestoreException {
-//                //Critical setup. Set to messageDocRef from Master but CAN BE ANY DOCUMENT. ex) db.collection("Inventory").document("Corn");
-//                DocumentSnapshot snapshot = transaction.get(messageDocRef);
-//                // newPop is ultimately irrelevant as we are passing data to the static variables at the top.
-//                // todo change to void instead of return String if possible
-//                String newPop = snapshot.getString("Memo");
-//                // Other item class .setMemo method --> DocumentSnapshot method .getString(FieldName) KEY VALUE. Pass it a string field name, get string value
-//                memo.setMemo(snapshot.getString("Memo"));
-//                /* Handler method waits for data to finish being gotten from the internet
-//                 * If no handler, and only partial data, it will abort the operation with no onfail listener
-//                  * https://stackoverflow.com/questions/35734963/update-a-textview-in-real-time-using-a-for
-//                  *
-//                  * BASICALLY this tells the computer to wait 1 second before updating the textView.
-//                  * This handler is doing nothing right now until this RunTransaction is updated with the liveListener*/
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        //update textview here
-//                        textView.setText(memo.getMemo());
-//                    }
-//                },15000);
-//                // Irrelevant return, affects nothing atm
-//                return newPop;
-//            }
-//            //Standard S/F Listeners.
-//        }).addOnSuccessListener(new OnSuccessListener<String>() {
-//                                    @Override
-//                                    public void onSuccess(String s) {
-//                                        Log.d("Create Memo Status"," Succeeded");
-//                                    }
-//                                }
-//        ).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.w("Create Memo Status", " Failed utterly and miserably.");
-//            }
-//        });
 
-
-        //***** should CONTINUOUSLY LISTEN
-
-        //*****
-
-
-        /* Handler method waits for data to finish being gotten from the internet
-         * If no handler, and only partial data, it will abort the operation with no onfail listener
-         * https://stackoverflow.com/questions/35734963/update-a-textview-in-real-time-using-a-for
-         * DO NOT SET LESS THAN 1000 MILLIS
-         * BASICALLY this tells the computer to wait 1 second before updating the textView.*/
         handler.postDelayed(run,2000);
 
 
